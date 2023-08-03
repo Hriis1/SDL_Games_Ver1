@@ -1,6 +1,9 @@
 #pragma once
 #include <SDL/SDL.h>
+#include <vector>
+#include <fstream>
 
+#include "GlobalData.h"
 #include "LTexture.h"
 
 //Tile constants
@@ -108,6 +111,64 @@ public:
 
             _inited = true;
         }
+        return true;
+    }
+    static bool loadTiles(const std::string& path, std::vector<Tile*>& tiles)
+    {
+        //The tile offsets
+        int x = 0, y = 0;
+
+        //Open the map
+        std::ifstream map(path);
+
+        if (map.fail()) //If the map couldn't be loaded
+        {
+            printf("Unable to load map file!\n");
+            return false;
+        }
+        //Determines what kind of tile will be made
+        int tileType = -1;
+        int i = 0;
+        //Initialize the tiles
+        while (map >> tileType)
+        {
+            if (map.fail()) //If the was a problem in reading the map
+            {
+                //Stop loading map
+                printf("Error loading map: Unexpected end of file!\n");
+                return false;
+            }
+
+            if ((tileType >= 0) && (tileType < TOTAL_TILE_SPRITES)) //If the number is a valid tile number
+            {
+                tiles.emplace_back(new Tile(x, y, (TILE_TYPE)tileType));
+            }
+            else //If we don't recognize the tile type
+            {
+                //Stop loading map
+                printf("Error loading map: Invalid tile type at %d!\n", i);
+                return false;
+            }
+
+            //Move to next tile spot
+            x += TILE_WIDTH;
+
+            if (x >= LEVEL_WIDTH) //If we've gone too far
+            {
+                //Move back
+                x = 0;
+
+                //Move to the next row
+                y += TILE_HEIGHT;
+            }
+
+            i++;
+        }
+
+        //Close the file
+        map.close();
+
+
         return true;
     }
 private:
