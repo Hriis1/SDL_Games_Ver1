@@ -242,15 +242,12 @@ bool loadTiles(std::vector<Tile*>& tiles)
         printf("Unable to load map file!\n");
         return false;
     }
+    //Determines what kind of tile will be made
+    int tileType = -1;
+    int i = 0;
     //Initialize the tiles
-    for (int i = 0; i < TOTAL_TILES; ++i)
+    while(map >> tileType)
     {
-        //Determines what kind of tile will be made
-        int tileType = -1;
-
-        //Read tile from map file
-        map >> tileType;
-
         //If the was a problem in reading the map
         if (map.fail())
         {
@@ -284,6 +281,8 @@ bool loadTiles(std::vector<Tile*>& tiles)
             //Move to the next row
             y += TILE_HEIGHT;
         }
+
+        i++;
     }
 
     //Close the file
