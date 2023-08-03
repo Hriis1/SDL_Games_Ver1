@@ -1,5 +1,6 @@
 //Using SDL and standard IO
 #include <stdio.h>
+#include <vector>
 #include <string>
 #include <fstream>
 
@@ -26,9 +27,9 @@ TTF_Font* gFont = NULL;
 SDL_Color gTextColor = { 0, 0, 0, 0xFF };
 
 //The tiles
-Tile* tiles[TOTAL_TILES];
+std::vector<Tile*>tiles;
 
-bool loadTiles(Tile* tiles[]);
+bool loadTiles(std::vector<Tile*>& tiles);
 
 //Starts up SDL and creates window
 bool init()
@@ -227,7 +228,7 @@ int main(int argc, char* args[])
     return 0;
 }
 
-bool loadTiles(Tile* tiles[])
+bool loadTiles(std::vector<Tile*>& tiles)
 {
     //The tile offsets
     int x = 0, y = 0;
@@ -261,7 +262,7 @@ bool loadTiles(Tile* tiles[])
         //If the number is a valid tile number
         if ((tileType >= 0) && (tileType < TOTAL_TILE_SPRITES))
         {
-            tiles[i] = new Tile(x, y, (TILE_TYPE)tileType);
+            tiles.emplace_back(new Tile(x, y, (TILE_TYPE)tileType));
         }
         //If we don't recognize the tile type
         else

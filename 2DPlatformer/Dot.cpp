@@ -40,7 +40,7 @@ void Dot::handleEvent(SDL_Event& e)
     }
 }
 
-void Dot::update(std::vector<SDL_FRect>& boxes, std::vector<Circle<float>> circles, Tile* tiles[])
+void Dot::update(std::vector<SDL_FRect>& boxes, std::vector<Circle<float>> circles, std::vector<Tile*>& tiles)
 {
     //Move the dot left or right
     _xPos += _xVel;
@@ -52,28 +52,6 @@ void Dot::update(std::vector<SDL_FRect>& boxes, std::vector<Circle<float>> circl
         //Move back
         _xPos -= _xVel;
         shiftColliders();
-    }
-
-    //Handle X collision with boxes
-    for (size_t i = 0; i < boxes.size(); i++)
-    {
-        if (checkCollision(_collisionCircle, boxes[i]))
-        {
-            //Move back
-            _xPos -= _xVel;
-            shiftColliders();
-        }
-    }
-
-    //Handle X collision with circles
-    for (size_t i = 0; i < circles.size(); i++)
-    {
-        if (checkCollision(_collisionCircle, circles[i]))
-        {
-            //Move back
-            _xPos -= _xVel;
-            shiftColliders();
-        }
     }
 
     //Handle X collision with tiles
@@ -100,28 +78,6 @@ void Dot::update(std::vector<SDL_FRect>& boxes, std::vector<Circle<float>> circl
         //Move back
         _yPos -= _yVel;
         shiftColliders();
-    }
-
-    //Handle Y collision with boxes
-    for (size_t i = 0; i < boxes.size(); i++)
-    {
-        if (checkCollision(_collisionCircle, boxes[i]))
-        {
-            //Move back
-            _yPos -= _yVel;
-            shiftColliders();
-        }
-    }
-
-    //Handle Y collision with circles
-    for (size_t i = 0; i < circles.size(); i++)
-    {
-        if (checkCollision(_collisionCircle, circles[i]))
-        {
-            //Move back
-            _yPos -= _yVel;
-            shiftColliders();
-        }
     }
 
     //Handle Y collision with tiles
