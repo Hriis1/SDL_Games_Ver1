@@ -152,6 +152,7 @@
     <ClInclude Include="LWindow.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileData.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>

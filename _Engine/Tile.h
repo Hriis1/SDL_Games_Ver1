@@ -4,12 +4,9 @@
 #include <fstream>
 
 #include "GlobalData.h"
+#include "TileData.h"
 #include "LTexture.h"
 
-//Tile constants
-const static int TILE_WIDTH = 160;
-const static int TILE_HEIGHT = 160;
-const static int TOTAL_TILES = 192;
 
 //The different tile sprites
 static enum TILE_TYPE
@@ -55,52 +52,52 @@ public:
             _spriteClips[TILE_SKULL].w = TILE_WIDTH;
             _spriteClips[TILE_SKULL].h = TILE_HEIGHT;
 
-            _spriteClips[TILE_ROOTS].x = 161;
+            _spriteClips[TILE_ROOTS].x = 162;
             _spriteClips[TILE_ROOTS].y = 0;
             _spriteClips[TILE_ROOTS].w = TILE_WIDTH;
             _spriteClips[TILE_ROOTS].h = TILE_HEIGHT;
 
 
 
-            _spriteClips[TILE_GRASS_LEFTEND].x = 322;
+            _spriteClips[TILE_GRASS_LEFTEND].x = 324;
             _spriteClips[TILE_GRASS_LEFTEND].y = 0;
             _spriteClips[TILE_GRASS_LEFTEND].w = TILE_WIDTH;
             _spriteClips[TILE_GRASS_LEFTEND].h = TILE_HEIGHT;
 
-            _spriteClips[TILE_GRASS_RIGHTEND].x = 322;
-            _spriteClips[TILE_GRASS_RIGHTEND].y = 161;
+            _spriteClips[TILE_GRASS_RIGHTEND].x = 324;
+            _spriteClips[TILE_GRASS_RIGHTEND].y = 162;
             _spriteClips[TILE_GRASS_RIGHTEND].w = TILE_WIDTH;
             _spriteClips[TILE_GRASS_RIGHTEND].h = TILE_HEIGHT;
 
-            _spriteClips[TILE_GRASS_MIDDLE1].x = 161;
-            _spriteClips[TILE_GRASS_MIDDLE1].y = 322;
+            _spriteClips[TILE_GRASS_MIDDLE1].x = 162;
+            _spriteClips[TILE_GRASS_MIDDLE1].y = 324;
             _spriteClips[TILE_GRASS_MIDDLE1].w = TILE_WIDTH;
             _spriteClips[TILE_GRASS_MIDDLE1].h = TILE_HEIGHT;
 
-            _spriteClips[TILE_GRASS_MIDDLE2].x = 483;
-            _spriteClips[TILE_GRASS_MIDDLE2].y = 322;
+            _spriteClips[TILE_GRASS_MIDDLE2].x = 486;
+            _spriteClips[TILE_GRASS_MIDDLE2].y = 324;
             _spriteClips[TILE_GRASS_MIDDLE2].w = TILE_WIDTH;
             _spriteClips[TILE_GRASS_MIDDLE2].h = TILE_HEIGHT;
 
 
 
-            _spriteClips[TILE_DIRT_LEFTEND].x = 483;
+            _spriteClips[TILE_DIRT_LEFTEND].x = 486;
             _spriteClips[TILE_DIRT_LEFTEND].y = 0;
             _spriteClips[TILE_DIRT_LEFTEND].w = TILE_WIDTH;
             _spriteClips[TILE_DIRT_LEFTEND].h = TILE_HEIGHT;
                               
             _spriteClips[TILE_DIRT_RIGHTEND].x = 0;
-            _spriteClips[TILE_DIRT_RIGHTEND].y = 483;
+            _spriteClips[TILE_DIRT_RIGHTEND].y = 486;
             _spriteClips[TILE_DIRT_RIGHTEND].w = TILE_WIDTH;
             _spriteClips[TILE_DIRT_RIGHTEND].h = TILE_HEIGHT;
                               
             _spriteClips[TILE_DIRT_MIDDLE1].x = 0;
-            _spriteClips[TILE_DIRT_MIDDLE1].y = 322;
+            _spriteClips[TILE_DIRT_MIDDLE1].y = 324;
             _spriteClips[TILE_DIRT_MIDDLE1].w = TILE_WIDTH;
             _spriteClips[TILE_DIRT_MIDDLE1].h = TILE_HEIGHT;
                               
-            _spriteClips[TILE_DIRT_MIDDLE2].x = 483;
-            _spriteClips[TILE_DIRT_MIDDLE2].y = 161;
+            _spriteClips[TILE_DIRT_MIDDLE2].x = 486;
+            _spriteClips[TILE_DIRT_MIDDLE2].y = 162;
             _spriteClips[TILE_DIRT_MIDDLE2].w = TILE_WIDTH;
             _spriteClips[TILE_DIRT_MIDDLE2].h = TILE_HEIGHT;
 
@@ -109,13 +106,13 @@ public:
             
             
 
-            _spriteClips[TILE_PLATFORM1].x = 161;
-            _spriteClips[TILE_PLATFORM1].y = 483;
+            _spriteClips[TILE_PLATFORM1].x = 162;
+            _spriteClips[TILE_PLATFORM1].y = 486;
             _spriteClips[TILE_PLATFORM1].w = TILE_WIDTH;
             _spriteClips[TILE_PLATFORM1].h = TILE_HEIGHT;
 
-            _spriteClips[TILE_PLATFORM2].x = 322;
-            _spriteClips[TILE_PLATFORM2].y = 483;
+            _spriteClips[TILE_PLATFORM2].x = 324;
+            _spriteClips[TILE_PLATFORM2].y = 486;
             _spriteClips[TILE_PLATFORM2].w = TILE_WIDTH;
             _spriteClips[TILE_PLATFORM2].h = TILE_HEIGHT;
 

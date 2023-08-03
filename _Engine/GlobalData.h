@@ -1,8 +1,9 @@
 #pragma once
+#include "TileData.h"
 
 //The dimensions of the level
-const static int LEVEL_WIDTH = 1280;
-const static int LEVEL_HEIGHT = 960;
+static const int LEVEL_WIDTH = 8 * TILE_WIDTH;
+static const int LEVEL_HEIGHT = 6 * TILE_HEIGHT;
 
 //Screen dimension constants
 const static int SCREEN_WIDTH = 1280;
