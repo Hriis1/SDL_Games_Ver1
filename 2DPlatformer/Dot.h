@@ -18,7 +18,10 @@ class Dot
     //The position of the dot is the center of the circle
 public:
     //Initializes the variables
-    Dot(SDL_Renderer* renderer, SDL_Window* window);
+    Dot();
+
+    //Init the dot
+    bool init(SDL_Renderer* renderer, SDL_Window* window);
 
     //Takes key presses and adjusts the dot's velocity
     void handleEvent(SDL_Event& e);

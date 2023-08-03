@@ -135,7 +135,8 @@ int main(int argc, char* args[])
            //The camera area
             SDL_Rect camera = { 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
 
-            Dot dot = Dot(gWindow.renderer, gWindow.getSDLWindow());
+            Dot dot = Dot();
+            dot.init(gWindow.renderer, gWindow.getSDLWindow());
             std::vector<SDL_FRect> boxes;
             std::vector<Circle<float>> circles;
 

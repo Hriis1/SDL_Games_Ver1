@@ -1,15 +1,25 @@
 #include "Dot.h"
 
-Dot::Dot(SDL_Renderer* renderer, SDL_Window* window)
+Dot::Dot()
 {
-    _dotTexture.initRenderer(renderer);
-    _dotTexture.loadFromFile("dot.bmp", window);
-
     //Set collision circle size
     _collisionCircle.r = DOT_WIDTH / 2;
 
     //Move collider relative to the circle
     shiftColliders();
+}
+
+bool Dot::init(SDL_Renderer* renderer, SDL_Window* window)
+{
+    _dotTexture.initRenderer(renderer);
+
+    if(!_dotTexture.loadFromFile("dot.bmp", window))
+    {
+        printf("Could not load dot texture\n");
+        return false;
+    }
+
+    return true;
 }
 
 void Dot::handleEvent(SDL_Event& e)
