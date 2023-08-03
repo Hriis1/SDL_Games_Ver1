@@ -236,8 +236,7 @@ bool loadTiles(std::vector<Tile*>& tiles)
     //Open the map
     std::ifstream map("tileMap.map");
 
-    //If the map couldn't be loaded
-    if (map.fail())
+    if (map.fail()) //If the map couldn't be loaded
     {
         printf("Unable to load map file!\n");
         return false;
@@ -248,21 +247,18 @@ bool loadTiles(std::vector<Tile*>& tiles)
     //Initialize the tiles
     while(map >> tileType)
     {
-        //If the was a problem in reading the map
-        if (map.fail())
+        if (map.fail()) //If the was a problem in reading the map
         {
             //Stop loading map
             printf("Error loading map: Unexpected end of file!\n");
             return false;
         }
 
-        //If the number is a valid tile number
-        if ((tileType >= 0) && (tileType < TOTAL_TILE_SPRITES))
+        if ((tileType >= 0) && (tileType < TOTAL_TILE_SPRITES)) //If the number is a valid tile number
         {
             tiles.emplace_back(new Tile(x, y, (TILE_TYPE)tileType));
         }
-        //If we don't recognize the tile type
-        else
+        else //If we don't recognize the tile type
         {
             //Stop loading map
             printf("Error loading map: Invalid tile type at %d!\n", i);
@@ -272,8 +268,7 @@ bool loadTiles(std::vector<Tile*>& tiles)
         //Move to next tile spot
         x += TILE_WIDTH;
 
-        //If we've gone too far
-        if (x >= LEVEL_WIDTH)
+        if (x >= LEVEL_WIDTH) //If we've gone too far
         {
             //Move back
             x = 0;
