@@ -132,9 +132,6 @@ int main(int argc, char* args[])
         }
         else
         {
-            //Enable text input
-            SDL_StartTextInput();
-
            //The camera area
             SDL_Rect camera = { 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
 
@@ -216,10 +213,6 @@ int main(int argc, char* args[])
             }
         }
     }
-
-    //Disable text input
-    SDL_StopTextInput();
-
     //Free resources and close SDL
     close();
 
