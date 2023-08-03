@@ -144,6 +144,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GlobalData.h" />
+    <ClInclude Include="LBitmapFont.h" />
+    <ClInclude Include="LButton.h" />
+    <ClInclude Include="LTexture.h" />
+    <ClInclude Include="LTimer.h" />
+    <ClInclude Include="LWindow.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="Utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LBitmapFont.cpp" />
+    <ClCompile Include="LButton.cpp" />
+    <ClCompile Include="LTexture.cpp" />
+    <ClCompile Include="LTimer.cpp" />
+    <ClCompile Include="LWindow.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
