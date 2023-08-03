@@ -149,7 +149,7 @@ void Game::run()
             SDL_RenderClear(_window.renderer);
 
             //Render level
-            for (int i = 0; i < TOTAL_TILES; ++i)
+            for (int i = 0; i < _tiles.size(); ++i)
             {
                 _tiles[i]->render(camera);
             }

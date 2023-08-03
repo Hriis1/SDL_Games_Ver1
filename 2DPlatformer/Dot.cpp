@@ -65,9 +65,9 @@ void Dot::update(std::vector<SDL_FRect>& boxes, std::vector<Circle<float>> circl
     }
 
     //Handle X collision with tiles
-    for (size_t i = 0; i < TOTAL_TILES; i++)
+    for (size_t i = 0; i < tiles.size(); i++)
     {
-        if ((tiles[i]->getType() >= TILE_CENTER) && (tiles[i]->getType() <= TILE_TOPLEFT))
+       // if ((tiles[i]->getType() >= TILE_CENTER) && (tiles[i]->getType() <= TILE_TOPLEFT))
         {
             if (checkCollision(_collisionCircle, tiles[i]->getBox()))
             {
@@ -91,9 +91,9 @@ void Dot::update(std::vector<SDL_FRect>& boxes, std::vector<Circle<float>> circl
     }
 
     //Handle Y collision with tiles
-    for (size_t i = 0; i < TOTAL_TILES; i++)
+    for (size_t i = 0; i < tiles.size(); i++)
     {
-        if ((tiles[i]->getType() >= TILE_CENTER) && (tiles[i]->getType() <= TILE_TOPLEFT))
+       // if ((tiles[i]->getType() >= TILE_CENTER) && (tiles[i]->getType() <= TILE_TOPLEFT))
         {
             if (checkCollision(_collisionCircle, tiles[i]->getBox()))
             {
