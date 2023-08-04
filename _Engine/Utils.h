@@ -94,7 +94,7 @@ static bool checkCollision(Circle<T>& a, Circle<T>& b)
 
 //Circle/Box collision detector
 template<typename T>
-static bool checkCollision(Circle<T>& a, SDL_FRect& b)
+static bool checkCollision(Circle<T>& a, const SDL_FRect& b)
 {
     //Closest point on collision box
     float cX, cY;
