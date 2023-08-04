@@ -127,8 +127,15 @@ public:
     }
     static bool loadTiles(const std::string& path, std::vector<Tile*>& tiles, float tile_scale = 1.0f)
     {
+        //Get the unused part after scaling
+        float scaledX = TILE_TEXTURE_WIDTH * tile_scale;
+        float scaledY = TILE_TEXTURE_HEIGHT * tile_scale;
+
+        float intPart = 0;
+        float scaledXFract = modf(scaledX, &intPart);
+
         //The tile offsets
-        float x = 0.0f, y = 0.0f;
+        int x = 0, y = 0;
 
         //x bound
         float xBound = LEVEL_WIDTH;
@@ -143,7 +150,7 @@ public:
         }
         //Determines what kind of tile will be made
         int tileType = -1;
-        int i = 0;
+        float i = 0;
         //Initialize the tiles
         while (map >> tileType)
         {
@@ -165,23 +172,25 @@ public:
             else //If we don't recognize the tile type
             {
                 //Stop loading map
-                printf("Error loading map: Invalid tile type at %d!\n", i);
+                printf("Error loading map: Invalid tile type!\n");
                 return false;
             }
 
             //Move to next tile spot
-            x += TILE_TEXTURE_WIDTH * tile_scale;
+            x += int(TILE_TEXTURE_WIDTH * tile_scale);
 
-            if (x >= xBound) //If we've gone too far
+            if (x >= xBound - i) //If we've gone too far
             {
+                i = 0.0f;
+
                 //Move back
                 x = 0;
 
                 //Move to the next row
-                y += TILE_TEXTURE_HEIGHT * tile_scale;
+                y += int(TILE_TEXTURE_HEIGHT * tile_scale);
             }
 
-            i++;
+            i+= scaledXFract;
         }
 
         //Close the file
