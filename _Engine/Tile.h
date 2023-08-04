@@ -20,13 +20,13 @@ class Tile
 {
 public:
     //Initializes position and type
-    Tile(int x, int y, float scale, TILE_TYPE tileType);
+    Tile(float x, float y, float scale, TILE_TYPE tileType);
 
     //Shows the tile
-    void render(SDL_Rect& camera);
+    void render(SDL_FRect& camera);
 
     //getters
-    SDL_Rect getBox() const
+    SDL_FRect getBox() const
     {
         return _box;
     }
@@ -192,7 +192,7 @@ public:
     }
 private:
     //The attributes of the tile
-    SDL_Rect _box;
+    SDL_FRect _box;
     float _scale = 1.0f;
 
     //The tile type

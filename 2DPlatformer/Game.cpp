@@ -84,7 +84,7 @@ bool Game::loadMedia()
 void Game::run()
 {
     //The camera area
-    SDL_Rect camera = { 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
+    SDL_FRect camera = { 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
 
     std::vector<SDL_FRect> boxes;
     std::vector<Circle<float>> circles;
