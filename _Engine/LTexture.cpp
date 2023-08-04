@@ -197,7 +197,7 @@ void LTexture::setAsRenderTarget()
     SDL_SetRenderTarget(_renderer, _texture);
 }
 
-void LTexture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
+void LTexture::render(int x, int y, SDL_Rect* clip, float scale,double angle, SDL_Point* center, SDL_RendererFlip flip)
 {
     //Set rendering space and render to screen
     SDL_Rect renderQuad = { x, y, _width, _height };
@@ -208,6 +208,10 @@ void LTexture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* cen
         renderQuad.w = clip->w;
         renderQuad.h = clip->h;
     }
+
+    //Scale texture if needed
+    renderQuad.w *= scale;
+    renderQuad.h *= scale;
 
     //Render to screen
     SDL_RenderCopyEx(_renderer, _texture, clip, &renderQuad, angle, center, flip);
