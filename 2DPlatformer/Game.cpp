@@ -126,7 +126,7 @@ void Game::run()
             camera.x = (_dot.getXPos()) - SCREEN_WIDTH / 2;
             camera.y = (_dot.getYPos()) - SCREEN_HEIGHT / 2;
 
-            //Keep the camera in bounds
+            //Keep the camera in bounds 
             if (camera.x < 0)
             {
                 camera.x = 0;
