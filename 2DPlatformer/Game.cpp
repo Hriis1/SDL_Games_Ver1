@@ -72,7 +72,7 @@ bool Game::loadMedia()
     //Load textures
 
     //Load tiles
-    if (!Tile::loadTiles("tileMap.map", _tiles, 0.5f))
+    if (!Tile::loadTiles("tileMapScaled0.5.map", _tiles, 0.5f))
     {
         printf("Failed to load tile set!\n");
         return false;
