@@ -94,13 +94,13 @@ void Player::update(std::vector<Tile*>& tiles, float gravity)
             float tileTop = tiles[i]->getBox().y;
             float tileBot = tiles[i]->getBox().y + tiles[i]->getBox().h;
 
-            float horizontalDistance = std::min(std::abs(playerRight - tileleft),
+            int horizontalDistance = std::min(std::abs(playerRight - tileleft),
                 std::abs(playerleft - tileRight));
 
-            float verticalDistance = std::min(std::abs(playerBot - tileTop),
+            int verticalDistance = std::min(std::abs(playerBot - tileTop),
                 std::abs(playerTop - tileBot));
 
-            if (horizontalDistance <= verticalDistance) {
+            if (horizontalDistance < verticalDistance) {
                 // Resolve horizontal collision
                 float box1CenterX = playerleft + (_collisionRect.w / 2.0f);
                 float box2CenterX = tileleft + (tiles[i]->getBox().w / 2.0f);
@@ -112,7 +112,7 @@ void Player::update(std::vector<Tile*>& tiles, float gravity)
                     _xPos += tileRight - playerleft;
                 }
             }
-            else {
+            else if(horizontalDistance > verticalDistance) {
                 float box1CenterY = playerTop + (_collisionRect.h / 2.0f);
                 float box2CenterY = tileTop + (tiles[i]->getBox().h / 2.0f);
                 // Resolve vertical collision
