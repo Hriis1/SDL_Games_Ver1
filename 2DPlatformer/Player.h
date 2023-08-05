@@ -26,7 +26,7 @@ public:
     void handleEvent(SDL_Event& e);
 
     //Moves the dot
-    void update(std::vector<Tile*>& tiles);
+    void update(std::vector<Tile*>& tiles, float gravity = 0.0f);
 
 
     //Shows the dot on the screen
@@ -60,6 +60,9 @@ private:
     //The velocity
     float _xVel = 0;
     float _yVel = 0;
+
+    //flag - the player is on the ground or not
+    bool _grounded = false;
 
     //texture
     LTexture _texture;

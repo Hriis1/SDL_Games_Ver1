@@ -27,8 +27,8 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        case SDLK_UP: _yVel -= PLAYER_VEL; break;
-        case SDLK_DOWN: _yVel += PLAYER_VEL; break;
+        //case SDLK_UP: _yVel -= PLAYER_VEL; break;
+        //case SDLK_DOWN: _yVel += PLAYER_VEL; break;
         case SDLK_LEFT: _xVel -= PLAYER_VEL; break;
         case SDLK_RIGHT: _xVel += PLAYER_VEL; break;
         }
@@ -39,15 +39,15 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        case SDLK_UP: _yVel += PLAYER_VEL; break;
-        case SDLK_DOWN: _yVel -= PLAYER_VEL; break;
+        //case SDLK_UP: _yVel += PLAYER_VEL; break;
+        //case SDLK_DOWN: _yVel -= PLAYER_VEL; break;
         case SDLK_LEFT: _xVel += PLAYER_VEL; break;
         case SDLK_RIGHT: _xVel -= PLAYER_VEL; break;
         }
     }
 }
 
-void Player::update(std::vector<Tile*>& tiles)
+void Player::update(std::vector<Tile*>& tiles, float gravity)
 {
     //Move the dot left or right
     _xPos += _xVel;
@@ -88,6 +88,7 @@ void Player::update(std::vector<Tile*>& tiles)
     }
 
     //Handle Y collision with tiles
+    bool onground = false;
     for (size_t i = 0; i < tiles.size(); i++)
     {
         // if ((tiles[i]->getType() >= TILE_CENTER) && (tiles[i]->getType() <= TILE_TOPLEFT))
@@ -97,8 +98,18 @@ void Player::update(std::vector<Tile*>& tiles)
                 //Move back
                 _yPos -= _yVel;
                 shiftColliders();
+
+                //set flag and stop yvel
+                onground = true;
+                _yVel = 0.0f;
             }
         }
+    }
+
+    _grounded = onground;
+    if (!_grounded)
+    {
+        _yVel += gravity;
     }
 }
 
