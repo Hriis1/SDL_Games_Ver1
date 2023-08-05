@@ -13,7 +13,7 @@ bool Dot::init(SDL_Renderer* renderer, SDL_Window* window)
 {
     _dotTexture.initRenderer(renderer);
 
-    if(!_dotTexture.loadFromFile("dot.bmp", window))
+    if(!_dotTexture.loadFromFile("textures/dot.bmp", window))
     {
         printf("Could not load dot texture\n");
         return false;
