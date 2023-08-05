@@ -179,7 +179,7 @@ public:
             //Move to next tile spot
             x += int(TILE_TEXTURE_WIDTH * tile_scale);
 
-            if (x >= xBound - i) //If we've gone too far
+            if (x >= int(xBound - i)) //If we've gone too far
             {
                 i = 0.0f;
 
