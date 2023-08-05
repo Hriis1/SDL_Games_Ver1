@@ -19,7 +19,7 @@ static float distanceSquared(float x1, float y1, float x2, float y2)
 }
 
 //Check collision between 2 rects
-static bool checkCollision(SDL_Rect& a, SDL_Rect& b)
+static bool checkCollision(const SDL_Rect& a, const SDL_Rect& b)
 {
     //The sides of the rectangles
     int leftA, leftB;
@@ -46,7 +46,7 @@ static bool checkCollision(SDL_Rect& a, SDL_Rect& b)
     return false;
 }
 
-static bool checkCollision(SDL_FRect& a, SDL_FRect& b)
+static bool checkCollision(const SDL_FRect& a, const SDL_FRect& b)
 {
     //The sides of the rectangles
     float leftA, leftB;

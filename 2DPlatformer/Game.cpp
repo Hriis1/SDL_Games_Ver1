@@ -51,7 +51,7 @@ bool Game::init()
         return false;
     }
 
-    if (!_dot.init(_window.renderer, _window.getSDLWindow()))
+    if (!_player.init(_window.renderer, _window.getSDLWindow()))
     {
         return false;
     }
@@ -104,7 +104,7 @@ void Game::run()
             _window.handleEvent(e);
 
             //Handle input for the dot
-            _dot.handleEvent(e);
+            _player.handleEvent(e);
 
             //Special key input
             if (e.type == SDL_KEYDOWN)
@@ -117,11 +117,11 @@ void Game::run()
         if (!_window.isMinimized())
         {
             //Update
-            _dot.update(_tiles);
+            _player.update(_tiles);
 
             //Center the camera over the dot
-            camera.x = (_dot.getXPos()) - SCREEN_WIDTH / 2;
-            camera.y = (_dot.getYPos()) - SCREEN_HEIGHT / 2;
+            camera.x = (_player.getXPos()) - SCREEN_WIDTH / 2;
+            camera.y = (_player.getYPos()) - SCREEN_HEIGHT / 2;
 
             //Keep the camera in bounds 
             if (camera.x < 0)
@@ -152,7 +152,7 @@ void Game::run()
             }
 
             //Render the textures
-            _dot.render(camera.x, camera.y);
+            _player.render(camera.x, camera.y);
 
             //Update screen
             SDL_RenderPresent(_window.renderer);

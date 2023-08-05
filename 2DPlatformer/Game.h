@@ -14,7 +14,7 @@
 #include <LWindow.h>
 #include <Tile.h>
 
-#include "Dot.h"
+#include "Player.h"
 class Game
 {
 public:
@@ -41,7 +41,7 @@ private:
 	std::vector<Tile*> _tiles;
 
 	//The playable character (for now)
-	Dot _dot;
+	Player _player;
 
 };
 
