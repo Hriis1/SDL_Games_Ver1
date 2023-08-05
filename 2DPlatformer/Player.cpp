@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 Player::Player()
 {
@@ -27,8 +28,8 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        //case SDLK_UP: _yVel -= PLAYER_VEL; break;
-        //case SDLK_DOWN: _yVel += PLAYER_VEL; break;
+        case SDLK_UP: _yVel -= PLAYER_VEL; break;
+        case SDLK_DOWN: _yVel += PLAYER_VEL; break;
         case SDLK_LEFT: _xVel -= PLAYER_VEL; break;
         case SDLK_RIGHT: _xVel += PLAYER_VEL; break;
         }
@@ -39,8 +40,8 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        //case SDLK_UP: _yVel += PLAYER_VEL; break;
-        //case SDLK_DOWN: _yVel -= PLAYER_VEL; break;
+        case SDLK_UP: _yVel += PLAYER_VEL; break;
+        case SDLK_DOWN: _yVel -= PLAYER_VEL; break;
         case SDLK_LEFT: _xVel += PLAYER_VEL; break;
         case SDLK_RIGHT: _xVel -= PLAYER_VEL; break;
         }
@@ -49,35 +50,24 @@ void Player::handleEvent(SDL_Event& e)
 
 void Player::update(std::vector<Tile*>& tiles, float gravity)
 {
-    //Move the dot left or right
+    /*if (!_grounded)
+    {
+        _yVel += gravity;
+    }*/
+    //Move the dot x or right
     _xPos += _xVel;
+    _yPos += _yVel;
     shiftColliders();
 
-    //If the dot collided or went too far to the left or right
+    std::cout << "x= " << _xPos << " y= " << _yPos << std::endl;
+
+    //If the dot collided or went too far to the x or right
     if ((_xPos < 0) || (_xPos + _collisionRect.w > LEVEL_WIDTH))
     {
         //Move back
         _xPos -= _xVel;
         shiftColliders();
     }
-
-    //Handle X collision with tiles
-    for (size_t i = 0; i < tiles.size(); i++)
-    {
-        // if ((tiles[i]->getType() >= TILE_CENTER) && (tiles[i]->getType() <= TILE_TOPLEFT))
-        {
-            if (checkCollision(_collisionRect, tiles[i]->getBox()))
-            {
-                //Move back
-                _xPos -= _xVel;
-                shiftColliders();
-            }
-        }
-    }
-
-    //Move the dot up or down
-    _yPos += _yVel;
-    shiftColliders();
 
     //If the dot collided or went too far up or down
     if ((_yPos < 0) || (_yPos + _collisionRect.h > LEVEL_HEIGHT))
@@ -87,30 +77,61 @@ void Player::update(std::vector<Tile*>& tiles, float gravity)
         shiftColliders();
     }
 
-    //Handle Y collision with tiles
-    bool onground = false;
+    //Handle collision with tiles
     for (size_t i = 0; i < tiles.size(); i++)
     {
-        // if ((tiles[i]->getType() >= TILE_CENTER) && (tiles[i]->getType() <= TILE_TOPLEFT))
+        if (checkCollision(_collisionRect, tiles[i]->getBox())) 
         {
-            if (checkCollision(_collisionRect, tiles[i]->getBox()))
-            {
-                //Move back
-                _yPos -= _yVel;
-                shiftColliders();
+            //Player box values
+            float playerleft = _collisionRect.x;
+            float playerRight = _collisionRect.x + _collisionRect.w;
+            float playerTop = _collisionRect.y;
+            float playerBot = _collisionRect.y + _collisionRect.h;
 
-                //set flag and stop yvel
-                onground = true;
-                _yVel = 0.0f;
+            //Tile box values
+            float tileleft = tiles[i]->getBox().x;
+            float tileRight = tiles[i]->getBox().x + tiles[i]->getBox().w;
+            float tileTop = tiles[i]->getBox().y;
+            float tileBot = tiles[i]->getBox().y + tiles[i]->getBox().h;
+
+            float horizontalDistance = std::min(std::abs(playerRight - tileleft),
+                std::abs(playerleft - tileRight));
+
+            float verticalDistance = std::min(std::abs(playerBot - tileTop),
+                std::abs(playerTop - tileBot));
+
+            if (horizontalDistance <= verticalDistance) {
+                // Resolve horizontal collision
+                float box1CenterX = playerleft + (_collisionRect.w / 2.0f);
+                float box2CenterX = tileleft + (tiles[i]->getBox().w / 2.0f);
+                if (box1CenterX < box2CenterX) //coming from the left
+                {
+                    _xPos += tileleft - playerRight;
+                }
+                else if (box1CenterX > box2CenterX) {
+                    _xPos += tileRight - playerleft;
+                }
             }
+            else {
+                float box1CenterY = playerTop + (_collisionRect.h / 2.0f);
+                float box2CenterY = tileTop + (tiles[i]->getBox().h / 2.0f);
+                // Resolve vertical collision
+                if (box1CenterY < box2CenterY) //coming from the top
+                {
+                    _yPos = tileTop - _collisionRect.h;
+
+                    //Only set grounded to true if the box is colliding with a box below it
+                    _grounded = true;
+                }
+                else {
+                    _yPos = tileBot;
+                }
+            }
+            shiftColliders();
         }
     }
 
-    _grounded = onground;
-    if (!_grounded)
-    {
-        _yVel += gravity;
-    }
+    
 }
 
 void Player::render(int camX, int camY)
