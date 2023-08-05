@@ -50,7 +50,7 @@ void Dot::handleEvent(SDL_Event& e)
     }
 }
 
-void Dot::update(std::vector<SDL_FRect>& boxes, std::vector<Circle<float>> circles, std::vector<Tile*>& tiles)
+void Dot::update(std::vector<Tile*>& tiles)
 {
     //Move the dot left or right
     _xPos += _xVel;

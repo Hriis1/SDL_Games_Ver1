@@ -86,9 +86,6 @@ void Game::run()
     //The camera area
     SDL_FRect camera = { 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
 
-    std::vector<SDL_FRect> boxes;
-    std::vector<Circle<float>> circles;
-
     //Current input point
     int currentData = 0;
 
@@ -120,7 +117,7 @@ void Game::run()
         if (!_window.isMinimized())
         {
             //Update
-            _dot.update(boxes, circles, _tiles);
+            _dot.update(_tiles);
 
             //Center the camera over the dot
             camera.x = (_dot.getXPos()) - SCREEN_WIDTH / 2;

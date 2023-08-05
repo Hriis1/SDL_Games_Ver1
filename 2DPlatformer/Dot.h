@@ -27,7 +27,7 @@ public:
     void handleEvent(SDL_Event& e);
 
     //Moves the dot
-    void update(std::vector<SDL_FRect>& boxes, std::vector<Circle<float>> circles, std::vector<Tile*>& tiles);
+    void update(std::vector<Tile*>& tiles);
 
 
     //Shows the dot on the screen
