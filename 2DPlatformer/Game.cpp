@@ -113,7 +113,7 @@ void Game::run()
             }
         }
 
-        //Only draw when not minimized
+        //Only update when not minimized
         if (!_window.isMinimized())
         {
             //Update
