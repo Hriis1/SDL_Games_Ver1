@@ -86,8 +86,8 @@ public:
 
 
 
-            _spriteClips[TILE_DIRT_LEFTEND].x = 486;
-            _spriteClips[TILE_DIRT_LEFTEND].y = 0;
+            _spriteClips[TILE_DIRT_LEFTEND].x = 324;
+            _spriteClips[TILE_DIRT_LEFTEND].y = 324;
             _spriteClips[TILE_DIRT_LEFTEND].w = TILE_TEXTURE_WIDTH;
             _spriteClips[TILE_DIRT_LEFTEND].h = TILE_TEXTURE_HEIGHT;
                               
