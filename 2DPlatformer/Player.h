@@ -71,8 +71,9 @@ private:
     bool _grounded = false;
     bool _facingRight = true;
 
-    //texture
-    LTexture _texture;
+    //textures
+    LTexture* _currentTexture = NULL;
+    LTexture _textureStandingStill;
 
     //Collision/position rect
     SDL_FRect _collisionRect = {0,0, PLAYER_WIDTH, PLAYER_HEIGHT};

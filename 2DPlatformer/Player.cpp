@@ -9,13 +9,16 @@ Player::Player()
 
 bool Player::init(SDL_Renderer* renderer, SDL_Window* window)
 {
-    _texture.initRenderer(renderer);
-
-    if (!_texture.loadFromFile("textures/player/poki.png", window))
+    //Init textures
+    _textureStandingStill.initRenderer(renderer);
+    if (!_textureStandingStill.loadFromFile("textures/player/poki.png", window))
     {
         printf("Could not load PLAYER texture\n");
         return false;
     }
+
+    //Set the current texture ptr
+    _currentTexture = &_textureStandingStill;
 
     return true;
 }
@@ -155,9 +158,9 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
 void Player::render(int camX, int camY)
 {
     if(_facingRight)
-        _texture.render(_xPos - camX, _yPos - camY, NULL, 1.0f, 0.0, NULL, SDL_FLIP_NONE);
+        _currentTexture->render(_xPos - camX, _yPos - camY, NULL, 1.0f, 0.0, NULL, SDL_FLIP_NONE);
     else
-        _texture.render(_xPos - camX, _yPos - camY, NULL, 1.0f, 0.0, NULL, SDL_FLIP_HORIZONTAL);
+        _currentTexture->render(_xPos - camX, _yPos - camY, NULL, 1.0f, 0.0, NULL, SDL_FLIP_HORIZONTAL);
 }
 
 void Player::shiftColliders()
