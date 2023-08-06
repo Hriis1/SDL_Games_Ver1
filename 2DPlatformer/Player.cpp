@@ -46,7 +46,7 @@ void Player::handleEvent(SDL_Event& e)
     }
 }
 
-void Player::update(std::vector<Tile*>& tiles, float gravity)
+void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
 {
     //Handle gravity
     if (!_grounded)
@@ -60,8 +60,8 @@ void Player::update(std::vector<Tile*>& tiles, float gravity)
     }
 
     //Move the dot x or right
-    _xPos += _xVel;
-    _yPos += _yVel;
+    _xPos += _xVel * deltaTime;
+    _yPos += _yVel * deltaTime;
     shiftColliders();
 
     //std::cout << "x= " << _xPos << " y= " << _yPos << std::endl;
@@ -70,7 +70,7 @@ void Player::update(std::vector<Tile*>& tiles, float gravity)
     if ((_xPos < 0) || (_xPos + _collisionRect.w > LEVEL_WIDTH))
     {
         //Move back
-        _xPos -= _xVel;
+        _xPos -= _xVel * deltaTime;
         shiftColliders();
     }
 
@@ -78,7 +78,7 @@ void Player::update(std::vector<Tile*>& tiles, float gravity)
     if ((_yPos < 0) || (_yPos + _collisionRect.h > LEVEL_HEIGHT))
     {
         //Move back
-        _yPos -= _yVel;
+        _yPos -= _yVel * deltaTime;
         shiftColliders();
     }
 

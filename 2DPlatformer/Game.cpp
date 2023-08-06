@@ -114,10 +114,10 @@ void Game::run()
         if (!_window.isMinimized())
         {
             //Calculate time step
-            float timeStep = _deltaTimer.getTicks() / 1000.f;
+            float deltaTime = _deltaTimer.getTicks() / 1000.f;
 
             //Update
-            _player.update(_tiles, 0.15f);
+            _player.update(_tiles, 0.15f, deltaTime);
 
             //Restart step timer
             _deltaTimer.start();
