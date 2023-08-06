@@ -28,10 +28,12 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        case SDLK_UP: _yVel -= PLAYER_VEL; break;
-        case SDLK_DOWN: _yVel += PLAYER_VEL; break;
+        case SDLK_UP:
+            _yVel -= PLAYER_VEL; 
+            break;
         case SDLK_LEFT: _xVel -= PLAYER_VEL; break;
         case SDLK_RIGHT: _xVel += PLAYER_VEL; break;
+         
         }
     }
     //If a key was released
@@ -155,4 +157,12 @@ void Player::shiftColliders()
 {
     _collisionRect.x = _xPos;
     _collisionRect.y = _yPos;
+}
+
+void Player::jump(float jump_amount)
+{
+    if (_grounded)
+    {
+        _yVel += jump_amount;
+    }
 }

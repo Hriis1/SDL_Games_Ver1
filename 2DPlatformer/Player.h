@@ -51,6 +51,8 @@ public:
 private:
     //Moves the collision rect relative to the offset
     void shiftColliders();
+    
+    void jump(float jump_amount);
 private:
 
     //The X and Y offsets
