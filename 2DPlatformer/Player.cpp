@@ -13,7 +13,14 @@ bool Player::init(SDL_Renderer* renderer, SDL_Window* window)
     _textureStandingStill.initRenderer(renderer);
     if (!_textureStandingStill.loadFromFile("textures/player/poki.png", window))
     {
-        printf("Could not load PLAYER texture\n");
+        printf("Could not load _textureStandingStill\n");
+        return false;
+    }
+
+    _textureMoving.initRenderer(renderer);
+    if (!_textureMoving.loadFromFile("textures/player/pokiMoving.png", window))
+    {
+        printf("Could not load _textureMoving\n");
         return false;
     }
 

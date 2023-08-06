@@ -74,6 +74,7 @@ private:
     //textures
     LTexture* _currentTexture = NULL;
     LTexture _textureStandingStill;
+    LTexture _textureMoving;
 
     //Collision/position rect
     SDL_FRect _collisionRect = {0,0, PLAYER_WIDTH, PLAYER_HEIGHT};
