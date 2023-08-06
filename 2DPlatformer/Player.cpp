@@ -66,6 +66,9 @@ void Player::handleEvent(SDL_Event& e)
 
 void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
 {
+    //updates the texture to be rendered
+    updateTexture();
+
     //Handle gravity
     if (!_grounded)
     {
@@ -170,6 +173,23 @@ void Player::render(int camX, int camY)
         _currentTexture->render(_xPos - camX, _yPos - camY, NULL, 1.0f, 0.0, NULL, SDL_FLIP_HORIZONTAL);
 }
 
+void Player::updateTexture()
+{
+    const Uint8* state = SDL_GetKeyboardState(NULL);
+    if (state[SDL_SCANCODE_LEFT] || state[SDL_SCANCODE_RIGHT]) //if left arrow or right arrow is being pressed
+    {
+        _currentTexture = &_textureMoving;
+    }
+    else if (!_grounded) //also if the player is in the air
+    {
+        _currentTexture = &_textureMoving;
+    }
+    else //if the player is on the ground and is not moving
+    {
+        _currentTexture = &_textureStandingStill;
+    }
+}
+
 void Player::shiftColliders()
 {
     _collisionRect.x = _xPos;
@@ -183,3 +203,5 @@ void Player::jump(float jump_amount)
         _yVel -= jump_amount;
     }
 }
+
+

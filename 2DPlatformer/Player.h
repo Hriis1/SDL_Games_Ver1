@@ -48,10 +48,15 @@ public:
     }
 
 private:
+    //Updates the _currentTexture ptr based on the state of the player
+    void updateTexture();
+
     //Moves the collision rect relative to the offset
     void shiftColliders();
     
+    //jump :)
     void jump(float jump_amount);
+
 private:
 
     const float PLAYER_VEL = 200.0f;
