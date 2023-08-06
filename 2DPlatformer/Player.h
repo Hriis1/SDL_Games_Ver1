@@ -9,10 +9,7 @@
 #include <LTexture.h>
 #include <Tile.h>
 
-constexpr float PLAYER_VEL = 1.0f;
-constexpr float PLAYER_WIDTH = 60;
-constexpr float PLAYER_HEIGHT = 99;
-constexpr float PLAYER_JUMP_AMOUNT = 7.0f;
+
 
 class Player
 {
@@ -55,6 +52,11 @@ private:
     
     void jump(float jump_amount);
 private:
+
+    const float PLAYER_VEL = 1.0f;
+    const float PLAYER_WIDTH = 60;
+    const float PLAYER_HEIGHT = 99;
+    const float PLAYER_JUMP_AMOUNT = 7.0f;
 
     //The X and Y offsets
     float _xPos = 10;
