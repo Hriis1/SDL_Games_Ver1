@@ -54,10 +54,10 @@ private:
     void jump(float jump_amount);
 private:
 
-    const float PLAYER_VEL = 1.0f;
+    const float PLAYER_VEL = 200.0f;
     const float PLAYER_WIDTH = 60;
     const float PLAYER_HEIGHT = 99;
-    const float PLAYER_JUMP_AMOUNT = 7.0f;
+    const float PLAYER_JUMP_AMOUNT = 800.0f;
 
     //The X and Y offsets
     float _xPos = 10;

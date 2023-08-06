@@ -117,7 +117,7 @@ void Game::run()
             float deltaTime = _deltaTimer.getTicks() / 1000.f;
 
             //Update
-            _player.update(_tiles, 0.15f, deltaTime);
+            _player.update(_tiles, 9.5f, deltaTime);
 
             //Restart step timer
             _deltaTimer.start();
