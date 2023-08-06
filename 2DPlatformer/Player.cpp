@@ -28,9 +28,7 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        case SDLK_UP:
-            _yVel -= PLAYER_VEL; 
-            break;
+        case SDLK_UP: jump(PLAYER_JUMP_AMOUNT); break;
         case SDLK_LEFT: _xVel -= PLAYER_VEL; break;
         case SDLK_RIGHT: _xVel += PLAYER_VEL; break;
          
@@ -42,8 +40,6 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        case SDLK_UP: _yVel += PLAYER_VEL; break;
-        case SDLK_DOWN: _yVel -= PLAYER_VEL; break;
         case SDLK_LEFT: _xVel += PLAYER_VEL; break;
         case SDLK_RIGHT: _xVel -= PLAYER_VEL; break;
         }
@@ -163,6 +159,6 @@ void Player::jump(float jump_amount)
 {
     if (_grounded)
     {
-        _yVel += jump_amount;
+        _yVel -= jump_amount;
     }
 }
