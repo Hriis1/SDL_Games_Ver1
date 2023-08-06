@@ -69,7 +69,7 @@ private:
 
     //flags
     bool _grounded = false;
-    bool _facingRight = false;
+    bool _facingRight = true;
 
     //texture
     LTexture _texture;

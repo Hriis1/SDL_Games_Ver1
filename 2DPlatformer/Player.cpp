@@ -29,8 +29,16 @@ void Player::handleEvent(SDL_Event& e)
         switch (e.key.keysym.sym)
         {
         case SDLK_UP: jump(PLAYER_JUMP_AMOUNT); break;
-        case SDLK_LEFT: _xVel -= PLAYER_VEL; break;
-        case SDLK_RIGHT: _xVel += PLAYER_VEL; break;
+        case SDLK_LEFT: 
+            _xVel -= PLAYER_VEL;
+            //Change the textures direction
+            _facingRight = false;
+            break;
+        case SDLK_RIGHT: 
+            _xVel += PLAYER_VEL;
+            //Change the textures direction
+            _facingRight = true;
+            break;
          
         }
     }
