@@ -12,7 +12,7 @@
 constexpr float PLAYER_VEL = 1.0f;
 constexpr float PLAYER_WIDTH = 60;
 constexpr float PLAYER_HEIGHT = 99;
-constexpr float PLAYER_JUMP_AMOUNT = 6.0f;
+constexpr float PLAYER_JUMP_AMOUNT = 7.0f;
 
 class Player
 {

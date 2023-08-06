@@ -117,7 +117,7 @@ void Game::run()
         if (!_window.isMinimized())
         {
             //Update
-            _player.update(_tiles, 0.5f);
+            _player.update(_tiles, 0.15f);
 
             //Center the camera over the dot
             camera.x = (_player.getXPos()) - SCREEN_WIDTH / 2;
