@@ -12,6 +12,7 @@
 #include <GlobalData.h>
 #include <LTexture.h>
 #include <LWindow.h>
+#include <LTimer.h>
 #include <Tile.h>
 
 #include "Player.h"
@@ -36,6 +37,9 @@ private:
 
 	//Text colors
 	SDL_Color _textColor = { 0, 0, 0, 0xFF };
+
+	//Keeps track of deltaTime
+	LTimer _deltaTimer;
 
 	//The tiles
 	std::vector<Tile*> _tiles;

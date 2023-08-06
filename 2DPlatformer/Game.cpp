@@ -86,9 +86,6 @@ void Game::run()
     //The camera area
     SDL_FRect camera = { 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
 
-    //Current input point
-    int currentData = 0;
-
     //Start the game loop and poll events
     SDL_Event e;
     bool quit = false;
@@ -116,8 +113,14 @@ void Game::run()
         //Only update when not minimized
         if (!_window.isMinimized())
         {
+            //Calculate time step
+            float timeStep = _deltaTimer.getTicks() / 1000.f;
+
             //Update
             _player.update(_tiles, 0.15f);
+
+            //Restart step timer
+            _deltaTimer.start();
 
             //Center the camera over the dot
             camera.x = (_player.getXPos()) - SCREEN_WIDTH / 2;
