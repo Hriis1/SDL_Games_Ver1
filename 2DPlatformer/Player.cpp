@@ -146,7 +146,10 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
 
 void Player::render(int camX, int camY)
 {
-    _texture.render(_xPos - camX, _yPos - camY);
+    if(_facingRight)
+        _texture.render(_xPos - camX, _yPos - camY, NULL, 1.0f, 0.0, NULL, SDL_FLIP_NONE);
+    else
+        _texture.render(_xPos - camX, _yPos - camY, NULL, 1.0f, 0.0, NULL, SDL_FLIP_HORIZONTAL);
 }
 
 void Player::shiftColliders()

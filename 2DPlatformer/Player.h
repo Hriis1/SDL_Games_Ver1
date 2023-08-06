@@ -67,8 +67,9 @@ private:
     float _xVel = 0;
     float _yVel = 0;
 
-    //flag - the player is on the ground or not
+    //flags
     bool _grounded = false;
+    bool _facingRight = false;
 
     //texture
     LTexture _texture;
