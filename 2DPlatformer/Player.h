@@ -54,15 +54,20 @@ private:
     //Moves the collision rect relative to the offset
     void shiftColliders();
     
+    //Charges the jump amount
+    void chargeJump(float deltaTime);
+
     //jump :)
-    void jump(float jump_amount);
+    void jump();
 
 private:
 
+    //consts
     const float PLAYER_VEL = 200.0f;
     const float PLAYER_WIDTH = 60;
     const float PLAYER_HEIGHT = 99;
     const float PLAYER_JUMP_AMOUNT = 800.0f;
+    const float JUMP_CHARGE = 20.0f;
 
     //The X and Y offsets
     float _xPos = 10;
@@ -71,6 +76,8 @@ private:
     //The velocity
     float _xVel = 0;
     float _yVel = 0;
+
+    float _jumpVelocity = 0.0f;
 
     //flags
     bool _grounded = false;

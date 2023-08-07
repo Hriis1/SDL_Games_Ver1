@@ -38,7 +38,7 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        case SDLK_UP: jump(PLAYER_JUMP_AMOUNT); break;
+        //case SDLK_UP: jump(PLAYER_JUMP_AMOUNT); break;
         case SDLK_LEFT: 
             _xVel -= PLAYER_VEL;
             //Change the textures direction
@@ -60,6 +60,7 @@ void Player::handleEvent(SDL_Event& e)
         {
         case SDLK_LEFT: _xVel += PLAYER_VEL; break;
         case SDLK_RIGHT: _xVel -= PLAYER_VEL; break;
+        case SDLK_SPACE: jump(); break;
         }
     }
 }
@@ -68,6 +69,9 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
 {
     //updates the texture to be rendered
     updateTexture();
+
+    //charges the jump
+    chargeJump(deltaTime);
 
     //Handle gravity
     if (!_grounded)
@@ -196,12 +200,27 @@ void Player::shiftColliders()
     _collisionRect.y = _yPos;
 }
 
-void Player::jump(float jump_amount)
+void Player::chargeJump(float deltaTime)
 {
-    if (_grounded)
+    if (_grounded) //only charge jump if grounded
     {
-        _yVel -= jump_amount;
+        const Uint8* state = SDL_GetKeyboardState(NULL);
+        if (state[SDL_SCANCODE_SPACE]) //if space is being pressed
+        {
+            _jumpVelocity += JUMP_CHARGE * deltaTime;
+        }
     }
+}
+
+void Player::jump()
+{
+    if (_grounded) //only jump if grounded
+    {
+        _yVel -= _jumpVelocity;
+    }
+
+    //Reset the jump velocity
+    _jumpVelocity = 0.0f;
 }
 
 
