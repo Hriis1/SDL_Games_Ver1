@@ -207,7 +207,8 @@ void Player::chargeJump(float deltaTime)
         const Uint8* state = SDL_GetKeyboardState(NULL);
         if (state[SDL_SCANCODE_SPACE]) //if space is being pressed
         {
-            _jumpVelocity += JUMP_CHARGE * deltaTime;
+            if(_jumpVelocity < MAX_JUMP_VELICTY) //only add to the jump velicty if its less than the max
+                _jumpVelocity += JUMP_CHARGE * deltaTime;
         }
     }
 }
