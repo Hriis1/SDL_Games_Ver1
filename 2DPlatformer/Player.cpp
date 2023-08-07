@@ -84,8 +84,10 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
             _yVel = 0;
     }
 
-    //Move the dot x or right
-    _xPos += _xVel * deltaTime;
+    //Move the player
+if(!_chargingJump) //only update the playrs xpos if jump is not being charged
+        _xPos += _xVel * deltaTime;
+
     _yPos += _yVel * deltaTime;
     shiftColliders();
 
@@ -209,8 +211,22 @@ void Player::chargeJump(float deltaTime)
         {
             if(_jumpVelocity < MAX_JUMP_VELICTY) //only add to the jump velicty if its less than the max
                 _jumpVelocity += JUMP_CHARGE * deltaTime;
+
+            //set the chargingjump flag to true
+            _chargingJump = true;
+        }
+        else //if space is not being pressed
+        {
+            _chargingJump = false;
         }
     }
+    else //player is not on the ground
+    {
+        //Player cannot be charging jump if not on the ground
+        _chargingJump = false;
+    }
+
+    
 }
 
 void Player::jump()

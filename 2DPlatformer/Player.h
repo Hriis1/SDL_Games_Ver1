@@ -82,6 +82,7 @@ private:
     //flags
     bool _grounded = false;
     bool _facingRight = true;
+    bool _chargingJump = false;
 
     //textures
     LTexture* _currentTexture = NULL;
