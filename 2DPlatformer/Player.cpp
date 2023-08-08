@@ -85,11 +85,11 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
     }
 
     //Move the player
+    //calculate x velocity
+    _xVel = _grounded ? _jumpingVel + _walkingVel : _jumpingVel; // dont add the walking velocity if in the air
     if (!_chargingJump) //only update the playrs xpos if jump is not being charged
     {
-        float finalXvel = _grounded ? _xVel + _walkingVel : _xVel; // dont add the walking velocity if in the air
-        _xPos += (finalXvel) * deltaTime;
-
+        _xPos += _xVel * deltaTime;
     }
     _yPos += _yVel * deltaTime;
     shiftColliders();
@@ -173,7 +173,7 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
     if (_grounded)
     {
         //take away the xvelocity excluding the walking velocity
-        _xVel = 0.0f;
+        _jumpingVel = 0.0f;
    }
        
 
@@ -245,11 +245,11 @@ void Player::jump()
         const Uint8* state = SDL_GetKeyboardState(NULL);
         if (state[SDL_SCANCODE_RIGHT]) //right arrow is being pressed when jumping
         {
-            _xVel += JUMP_X_VEL;
+            _jumpingVel += JUMP_X_VEL;
         }
         else if(state[SDL_SCANCODE_LEFT]) //left arrow is being pressed when jumping
         {
-            _xVel -= JUMP_X_VEL;
+            _jumpingVel -= JUMP_X_VEL;
         }
 
 

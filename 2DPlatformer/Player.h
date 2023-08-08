@@ -75,9 +75,11 @@ private:
     float _yPos = 10;
 
     //The velocity
+    float _walkingVel = 0.0f;
+    float _jumpingVel = 0.0f;
     float _xVel = 0;
     float _yVel = 0;
-    float _walkingVel = 0.0f;
+    
 
     float _jumpVelocity = 0.0f;
 
