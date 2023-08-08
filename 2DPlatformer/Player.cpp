@@ -111,6 +111,7 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
 
     //Handle collision with tiles
     bool onGround = false;
+    bool bounced = false;
     for (size_t i = 0; i < tiles.size(); i++)
     {
         if (checkCollision(_collisionRect, tiles[i]->getBox())) 
@@ -145,10 +146,11 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
                     _xPos += tileRight - playerleft;
                 }
 
-                if (!_grounded)
+                if (!_grounded && !bounced)
                 {
                     //bounce the player of the wall if the player is not on the ground
                     _jumpingVel = -(_jumpingVel * 2)/3;
+                    bounced = true;
                 }
             }
             else if(horizontalDistance > verticalDistance) {
