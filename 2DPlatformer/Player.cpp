@@ -94,8 +94,6 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
     _yPos += _yVel * deltaTime;
     shiftColliders();
 
-    //std::cout << "x= " << _xPos << " y= " << _yPos << std::endl;
-
     //If the dot collided or went too far to the x or right
     if ((_xPos < 0) || (_xPos + _collisionRect.w > LEVEL_WIDTH))
     {
