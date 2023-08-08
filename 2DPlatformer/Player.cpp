@@ -85,8 +85,7 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
     }
 
     //Move the player
-    //calculate x velocity
-    _xVel = _grounded ? _jumpingVel + _walkingVel : _jumpingVel; // dont add the walking velocity if in the air
+    _xVel = _jumpingVel + _walkingVel;  //calculate x velocity
     if (!_chargingJump) //only update the playrs xpos if jump is not being charged
     {
         _xPos += _xVel * deltaTime;
