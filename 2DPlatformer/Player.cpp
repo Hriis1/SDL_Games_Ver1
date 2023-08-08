@@ -40,12 +40,12 @@ void Player::handleEvent(SDL_Event& e)
         {
         //case SDLK_UP: jump(PLAYER_JUMP_AMOUNT); break;
         case SDLK_LEFT: 
-            _xVel -= PLAYER_VEL;
+            _walkingVel -= PLAYER_VEL;
             //Change the textures direction
             _facingRight = false;
             break;
         case SDLK_RIGHT: 
-            _xVel += PLAYER_VEL;
+            _walkingVel += PLAYER_VEL;
             //Change the textures direction
             _facingRight = true;
             break;
@@ -58,8 +58,8 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        case SDLK_LEFT: _xVel += PLAYER_VEL; break;
-        case SDLK_RIGHT: _xVel -= PLAYER_VEL; break;
+        case SDLK_LEFT: _walkingVel += PLAYER_VEL; break;
+        case SDLK_RIGHT: _walkingVel -= PLAYER_VEL; break;
         case SDLK_SPACE: jump(); break;
         }
     }
@@ -85,9 +85,12 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
     }
 
     //Move the player
-if(!_chargingJump) //only update the playrs xpos if jump is not being charged
-        _xPos += _xVel * deltaTime;
+    if (!_chargingJump) //only update the playrs xpos if jump is not being charged
+    {
+        float finalXvel = _grounded ? _xVel + _walkingVel : _xVel; // dont add the walking velocity if in the air
+        _xPos += (finalXvel) * deltaTime;
 
+    }
     _yPos += _yVel * deltaTime;
     shiftColliders();
 
