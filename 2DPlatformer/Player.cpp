@@ -144,6 +144,12 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
                 else if (box1CenterX > box2CenterX) {
                     _xPos += tileRight - playerleft;
                 }
+
+                if (!_grounded)
+                {
+                    //bounce the player of the wall if the player is not on the ground
+                    _jumpingVel = -(_jumpingVel);
+                }
             }
             else if(horizontalDistance > verticalDistance) {
                 float box1CenterY = playerTop + (_collisionRect.h / 2.0f);
