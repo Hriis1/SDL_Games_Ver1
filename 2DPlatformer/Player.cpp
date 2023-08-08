@@ -78,7 +78,7 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
     {
         _yVel += gravity;
     }
-    else
+    else //player is on the ground
     {
         if (_yVel > 0)
             _yVel = 0;
@@ -169,6 +169,12 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
 
     //Set the actual variable to what we got from the loop
     _grounded = onGround;
+
+    if (_grounded)
+    {
+        //take away the xvelocity excluding the walking velocity
+        _xVel = 0.0f;
+   }
        
 
     
@@ -236,6 +242,17 @@ void Player::jump()
 {
     if (_grounded) //only jump if grounded
     {
+        const Uint8* state = SDL_GetKeyboardState(NULL);
+        if (state[SDL_SCANCODE_RIGHT]) //right arrow is being pressed when jumping
+        {
+            _xVel += JUMP_X_VEL;
+        }
+        else if(state[SDL_SCANCODE_LEFT]) //left arrow is being pressed when jumping
+        {
+            _xVel -= JUMP_X_VEL;
+        }
+
+
         _yVel -= _jumpVelocity;
     }
 
