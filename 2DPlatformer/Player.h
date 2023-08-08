@@ -66,9 +66,9 @@ private:
     const float PLAYER_VEL = 200.0f;
     const float PLAYER_WIDTH = 60;
     const float PLAYER_HEIGHT = 99;
-    const float MAX_JUMP_VELICTY = 1000.0f;
+    const float MAX_JUMP_VELICTY = 900.0f;
     const float JUMP_CHARGE = 700.0f;
-    const float JUMP_X_VEL = 400.0f;
+    const float JUMP_X_VEL = 300.0f;
 
     //The X and Y offsets
     float _xPos = 10;
