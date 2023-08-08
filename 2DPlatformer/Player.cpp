@@ -148,7 +148,7 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
                 if (!_grounded)
                 {
                     //bounce the player of the wall if the player is not on the ground
-                    _jumpingVel = -(_jumpingVel);
+                    _jumpingVel = -(_jumpingVel * 2)/3;
                 }
             }
             else if(horizontalDistance > verticalDistance) {
