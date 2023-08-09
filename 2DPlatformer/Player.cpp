@@ -24,7 +24,7 @@ bool Player::init(SDL_Renderer* renderer, SDL_Window* window, TTF_Font* font)
         return false;
     }
     _chargingJumpTexture.initRenderer(renderer);
-    if (!_textureMoving.loadFromRenderedText("Charging", {255, 0 , 0, 255}, font))
+    if (!_chargingJumpTexture.loadFromRenderedText("Charging", {255, 0 , 0, 255}, font))
     {
         printf("Could not load _chargingJumpTexture\n");
         return false;

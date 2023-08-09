@@ -51,11 +51,6 @@ bool Game::init()
         return false;
     }
 
-    if (!_player.init(_window.renderer, _window.getSDLWindow(), _font))
-    {
-        return false;
-    }
-
     return true;
 }
 
@@ -79,6 +74,11 @@ bool Game::loadMedia()
     }
 
     return true;
+}
+
+bool Game::initPlayer()
+{
+    return _player.init(_window.renderer, _window.getSDLWindow(), _font);
 }
 
 void Game::run()

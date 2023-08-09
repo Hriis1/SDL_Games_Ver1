@@ -28,14 +28,21 @@ int main(int argc, char* args[])
     }
     else
     {
-        //Load media
-        if (!game.loadMedia())
+        
+        if (!game.loadMedia()) //Load media
         {
             printf("Failed to load media!\n");
         }
-        else //run the game
+        else 
         {
-            game.run();
+            if (!game.initPlayer()) //init the player
+            {
+                printf("Failed to init player!\n");
+            }
+            else //run the game
+            {
+                game.run();
+            }
         }
     }
     //Free resources and close SDL

@@ -24,6 +24,8 @@ public:
 
 	bool init();
 	bool loadMedia();
+	//Init player function should be called after the media is loaded
+	bool initPlayer();
 	void run();
 	void quit();
 
