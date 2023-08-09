@@ -18,7 +18,7 @@ public:
     Player();
 
     //Init the dot
-    bool init(SDL_Renderer* renderer, SDL_Window* window);
+    bool init(SDL_Renderer* renderer, SDL_Window* window, TTF_Font* font );
 
     //Takes key presses and adjusts the dot's velocity
     void handleEvent(SDL_Event& e);
@@ -92,6 +92,7 @@ private:
     LTexture* _currentTexture = NULL;
     LTexture _textureStandingStill;
     LTexture _textureMoving;
+    LTexture _chargingJumpTexture;
 
     //Collision/position rect
     SDL_FRect _collisionRect = {0,0, PLAYER_WIDTH, PLAYER_HEIGHT};

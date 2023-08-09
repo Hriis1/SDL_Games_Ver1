@@ -51,7 +51,7 @@ bool Game::init()
         return false;
     }
 
-    if (!_player.init(_window.renderer, _window.getSDLWindow()))
+    if (!_player.init(_window.renderer, _window.getSDLWindow(), _font))
     {
         return false;
     }

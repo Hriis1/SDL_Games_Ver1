@@ -7,7 +7,7 @@ Player::Player()
 	shiftColliders();
 }
 
-bool Player::init(SDL_Renderer* renderer, SDL_Window* window)
+bool Player::init(SDL_Renderer* renderer, SDL_Window* window, TTF_Font* font)
 {
     //Init textures
     _textureStandingStill.initRenderer(renderer);
@@ -21,6 +21,12 @@ bool Player::init(SDL_Renderer* renderer, SDL_Window* window)
     if (!_textureMoving.loadFromFile("textures/player/pokiMoving.png", window))
     {
         printf("Could not load _textureMoving\n");
+        return false;
+    }
+    _chargingJumpTexture.initRenderer(renderer);
+    if (!_textureMoving.loadFromRenderedText("Charging", {255, 0 , 0, 255}, font))
+    {
+        printf("Could not load _chargingJumpTexture\n");
         return false;
     }
 
