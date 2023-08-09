@@ -193,6 +193,11 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
 
 void Player::render(int camX, int camY)
 {
+    //Render the texture indicator for charrging jump
+    if (_chargingJump)
+        _chargingJumpTexture.render(_xPos - camX, _yPos - camY);
+
+    //Render the player texture
     if(_facingRight)
         _currentTexture->render(_xPos - camX, _yPos - camY, NULL, 1.0f, 0.0, NULL, SDL_FLIP_NONE);
     else
