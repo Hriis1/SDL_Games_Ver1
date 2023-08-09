@@ -57,7 +57,7 @@ bool Game::init()
 bool Game::loadMedia()
 {
     //Load fonts
-    _font = TTF_OpenFont("../_Engine/fonts/lazy.ttf", 28);
+    _font = TTF_OpenFont("../_Engine/fonts/lazy.ttf", 18);
     if (_font == NULL)
     {
         printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
