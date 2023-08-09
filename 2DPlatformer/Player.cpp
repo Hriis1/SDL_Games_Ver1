@@ -24,7 +24,7 @@ bool Player::init(SDL_Renderer* renderer, SDL_Window* window, TTF_Font* font)
         return false;
     }
     _chargingJumpTexture.initRenderer(renderer);
-    if (!_chargingJumpTexture.loadFromRenderedText("Charging", {255, 0 , 0, 255}, font))
+    if (!_chargingJumpTexture.loadFromRenderedText("Charging...", {255, 0 , 0, 255}, font))
     {
         printf("Could not load _chargingJumpTexture\n");
         return false;
@@ -195,7 +195,7 @@ void Player::render(int camX, int camY)
 {
     //Render the texture indicator for charrging jump
     if (_chargingJump)
-        _chargingJumpTexture.render(_xPos - camX, _yPos - camY);
+        _chargingJumpTexture.render(_xPos - camX, _yPos - camY - (PLAYER_HEIGHT / 3));
 
     //Render the player texture
     if(_facingRight)
