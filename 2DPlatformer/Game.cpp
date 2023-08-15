@@ -73,7 +73,7 @@ bool Game::loadMedia()
     }
 
     _gameOverText.initRenderer(_window.renderer);
-    if (!_gameOverText.loadFromRenderedText("Game Over!", { 255, 0 , 0 }, _font))
+    if (!_gameOverText.loadFromRenderedText("Game Over!\nPress Space to restart", { 255, 0 , 0 }, _font))
     {
         printf("Failed to load_gameOverText! SDL_image Error: %s\n", IMG_GetError());
         return false;
@@ -175,6 +175,10 @@ void Game::run()
 
             //Render background
             _bgTexture.render(0,0);
+
+            //Render gameovertext
+            if (!_gameRunning)
+                _gameOverText.render(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 
             //Render level
             for (int i = 0; i < _tiles.size(); ++i)
