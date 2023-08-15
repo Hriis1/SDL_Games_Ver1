@@ -78,8 +78,8 @@ private:
     const float JUMP_X_VEL = 400.0f;
 
     //The X and Y offsets
-    float _xPos = 10;
-    float _yPos = 10;
+    float _xPos = 0;
+    float _yPos = 0;
 
     //The velocity
     float _walkingVel = 0.0f;
