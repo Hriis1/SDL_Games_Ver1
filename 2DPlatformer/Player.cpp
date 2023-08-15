@@ -99,7 +99,7 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
     _yPos += _yVel * deltaTime;
     shiftColliders();
 
-    //If the dot collided or went too far to the x or right
+    //If the player collided or went too far to the x or right
     if ((_xPos < 0) || (_xPos + _collisionRect.w > LEVEL_WIDTH))
     {
         //Move back
