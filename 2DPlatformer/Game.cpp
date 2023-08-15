@@ -73,9 +73,16 @@ bool Game::loadMedia()
     }
 
     _gameOverText.initRenderer(_window.renderer);
-    if (!_gameOverText.loadFromRenderedText("Game Over!\nPress Space to restart", { 255, 0 , 0 }, _font))
+    if (!_gameOverText.loadFromRenderedText("Game Over!", { 255, 0 , 0 }, _font))
     {
-        printf("Failed to load_gameOverText! SDL_image Error: %s\n", IMG_GetError());
+        printf("Failed to load _gameOverText! SDL_image Error: %s\n", IMG_GetError());
+        return false;
+    }
+
+    _restartText.initRenderer(_window.renderer);
+    if (!_restartText.loadFromRenderedText("Press space to restart", { 0, 255 , 0 }, _font))
+    {
+        printf("Failed to load _restartText! SDL_image Error: %s\n", IMG_GetError());
         return false;
     }
 
@@ -178,7 +185,10 @@ void Game::run()
 
             //Render gameovertext
             if (!_gameRunning)
-                _gameOverText.render(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+            {
+                _gameOverText.render(SCREEN_WIDTH / 2 - _gameOverText.getWidth() / 2, SCREEN_HEIGHT / 2);
+                _restartText.render(SCREEN_WIDTH / 2 - _restartText.getWidth() / 2, SCREEN_HEIGHT / 2 + _gameOverText.getHeight() + 10);
+            }
 
             //Render level
             for (int i = 0; i < _tiles.size(); ++i)

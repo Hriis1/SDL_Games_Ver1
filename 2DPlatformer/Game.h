@@ -46,6 +46,7 @@ private:
 	//Textures
 	LTexture _bgTexture;
 	LTexture _gameOverText;
+	LTexture _restartText;
 
 	//The tiles
 	std::vector<Tile*> _tiles;
