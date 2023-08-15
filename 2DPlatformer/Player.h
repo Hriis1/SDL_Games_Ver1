@@ -47,6 +47,13 @@ public:
         return _yPos;
     }
 
+    //setters
+    void setPos(float x, float y)
+    {
+        _xPos = x;
+        _yPos = y;
+    }
+
 private:
     //Updates the _currentTexture ptr based on the state of the player
     void updateTexture();

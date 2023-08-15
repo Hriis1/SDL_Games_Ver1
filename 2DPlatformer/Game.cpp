@@ -84,6 +84,7 @@ bool Game::loadMedia()
 
 bool Game::initPlayer()
 {
+    _player.setPos(_xStartingPos, _yStartingPos);
     return _player.init(_window.renderer, _window.getSDLWindow(), _font);
 }
 
