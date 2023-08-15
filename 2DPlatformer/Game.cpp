@@ -154,6 +154,9 @@ void Game::run()
             SDL_SetRenderDrawColor(_window.renderer, 0xFF, 0xFF, 0xFF, 0xFF);
             SDL_RenderClear(_window.renderer);
 
+            //Render background
+            _bgTexture.render(0,0);
+
             //Render level
             for (int i = 0; i < _tiles.size(); ++i)
             {
