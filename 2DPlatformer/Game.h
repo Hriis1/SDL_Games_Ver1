@@ -56,5 +56,9 @@ private:
 	const float _xStartingPos = 10;
 	const float _yStartingPos = 400;
 
+
+	//Gamerunning flag
+	bool _gameRunning = true;
+
 };
 

@@ -117,8 +117,8 @@ void Game::run()
             }
         }
 
-        //Only update when not minimized
-        if (!_window.isMinimized())
+        //Only update when not minimized and game is running
+        if (!_window.isMinimized() && _gameRunning)
         {
             //Calculate time step
             float deltaTime = _deltaTimer.getTicks() / 1000.f;
