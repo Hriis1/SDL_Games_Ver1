@@ -72,6 +72,13 @@ bool Game::loadMedia()
         return false;
     }
 
+    _gameOverText.initRenderer(_window.renderer);
+    if (!_gameOverText.loadFromRenderedText("Game Over!", { 255, 0 , 0 }, _font))
+    {
+        printf("Failed to load_gameOverText! SDL_image Error: %s\n", IMG_GetError());
+        return false;
+    }
+
     //Load tiles
     if (!Tile::loadTiles("tileMapScaled0.5.map", _tiles, 0.5f))
     {
