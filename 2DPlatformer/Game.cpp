@@ -108,7 +108,8 @@ void Game::run()
             _window.handleEvent(e);
 
             //Handle input for the dot
-            _player.handleEvent(e);
+            if(_gameRunning)
+                _player.handleEvent(e);
 
             //Special key input
             if (e.type == SDL_KEYDOWN)
@@ -118,44 +119,47 @@ void Game::run()
         }
  
         //Only update when not minimized and game is running
-        if (!_window.isMinimized() && _gameRunning)
+        if (!_window.isMinimized())
         {
-            //Calculate time step
-            float deltaTime = _deltaTimer.getTicks() / 1000.f;
-
-            //Update
-            _player.update(_tiles, 9.5f, deltaTime);
-
-            //Stop the game if the player falls to the bottom
-            if (_player.getYPos() + _player.getHeight() >= LEVEL_HEIGHT)
+            if (_gameRunning)
             {
-                _gameRunning = false;
-                continue;
-            }
+                //Calculate time step
+                float deltaTime = _deltaTimer.getTicks() / 1000.f;
 
-            //Restart step timer
-            _deltaTimer.start();
+                //Update
+                _player.update(_tiles, 9.5f, deltaTime);
 
-            //Center the camera over the dot
-            camera.x = (_player.getXPos()) - SCREEN_WIDTH / 2;
-            camera.y = (_player.getYPos()) - SCREEN_HEIGHT / 2;
+                //Stop the game if the player falls to the bottom
+                if (_player.getYPos() + _player.getHeight() >= LEVEL_HEIGHT)
+                {
+                    _gameRunning = false;
+                    continue;
+                }
 
-            //Keep the camera in bounds 
-            if (camera.x < 0)
-            {
-                camera.x = 0;
-            }
-            if (camera.y < 0)
-            {
-                camera.y = 0;
-            }
-            if (camera.x > LEVEL_WIDTH - camera.w)
-            {
-                camera.x = LEVEL_WIDTH - camera.w;
-            }
-            if (camera.y > LEVEL_HEIGHT - camera.h)
-            {
-                camera.y = LEVEL_HEIGHT - camera.h;
+                //Restart step timer
+                _deltaTimer.start();
+
+                //Center the camera over the dot
+                camera.x = (_player.getXPos()) - SCREEN_WIDTH / 2;
+                camera.y = (_player.getYPos()) - SCREEN_HEIGHT / 2;
+
+                //Keep the camera in bounds 
+                if (camera.x < 0)
+                {
+                    camera.x = 0;
+                }
+                if (camera.y < 0)
+                {
+                    camera.y = 0;
+                }
+                if (camera.x > LEVEL_WIDTH - camera.w)
+                {
+                    camera.x = LEVEL_WIDTH - camera.w;
+                }
+                if (camera.y > LEVEL_HEIGHT - camera.h)
+                {
+                    camera.y = LEVEL_HEIGHT - camera.h;
+                }
             }
 
             //Clear screen
