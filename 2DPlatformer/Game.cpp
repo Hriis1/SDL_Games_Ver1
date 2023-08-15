@@ -64,6 +64,20 @@ bool Game::loadMedia()
         return false;
     }
 
+    _gameOverFont = TTF_OpenFont("../_Engine/fonts/lazy.ttf", 50);
+    if (_gameOverFont == NULL)
+    {
+        printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
+        return false;
+    }
+
+    _restartFont = TTF_OpenFont("../_Engine/fonts/lazy.ttf", 30);
+    if (_restartFont == NULL)
+    {
+        printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
+        return false;
+    }
+
     //Load textures
     _bgTexture.initRenderer(_window.renderer);
     if (!_bgTexture.loadFromFile("textures/bg.png", _window.getSDLWindow()))
@@ -73,14 +87,14 @@ bool Game::loadMedia()
     }
 
     _gameOverText.initRenderer(_window.renderer);
-    if (!_gameOverText.loadFromRenderedText("Game Over!", { 255, 0 , 0 }, _font))
+    if (!_gameOverText.loadFromRenderedText("Game Over!", { 255, 0 , 0 }, _gameOverFont))
     {
         printf("Failed to load _gameOverText! SDL_image Error: %s\n", IMG_GetError());
         return false;
     }
 
     _restartText.initRenderer(_window.renderer);
-    if (!_restartText.loadFromRenderedText("Press space to restart", { 0, 255 , 0 }, _font))
+    if (!_restartText.loadFromRenderedText("Press space to restart", { 0, 255 , 0 }, _restartFont))
     {
         printf("Failed to load _restartText! SDL_image Error: %s\n", IMG_GetError());
         return false;

@@ -36,6 +36,8 @@ private:
 
 	//Fonts
 	TTF_Font* _font = NULL;
+	TTF_Font* _gameOverFont = NULL;
+	TTF_Font* _restartFont = NULL;
 
 	//Text colors
 	SDL_Color _textColor = { 0, 0, 0, 0xFF };
