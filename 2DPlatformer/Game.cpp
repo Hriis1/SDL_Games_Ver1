@@ -169,6 +169,7 @@ void Game::run()
                 if (_player.getYPos() + _player.getHeight() >= LEVEL_HEIGHT)
                 {
                     _gameRunning = false;
+                    _deltaTimer.stop();
                     continue;
                 }
 
@@ -245,4 +246,6 @@ void Game::quit()
 
 void Game::restart()
 {
+    _gameRunning = true;
+    _player.setPos(_xStartingPos, _yStartingPos);
 }

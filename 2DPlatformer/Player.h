@@ -27,7 +27,6 @@ public:
     //If the function takes a deltaTime the player will be updated independant of framerate 
     void update(std::vector<Tile*>& tiles, float gravity = 0.0f, float deltaTime = 1.0f);
 
-
     //Shows the dot on the screen
     void render(int camX, int camY);
 
