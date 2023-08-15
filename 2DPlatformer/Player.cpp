@@ -107,14 +107,6 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
         shiftColliders();
     }
 
-    //If the dot collided or went too far up or down
-    if ((_yPos < 0) || (_yPos + _collisionRect.h > LEVEL_HEIGHT))
-    {
-        //Move back
-        _yPos -= _yVel * deltaTime;
-        shiftColliders();
-    }
-
     //Handle collision with tiles
     bool onGround = false;
     bool bounced = false;

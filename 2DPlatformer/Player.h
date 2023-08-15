@@ -47,6 +47,16 @@ public:
         return _yPos;
     }
 
+    float getWidth() const
+    {
+        return PLAYER_WIDTH;
+    }
+
+    float getHeight() const
+    {
+        return PLAYER_HEIGHT;
+    }
+
     //setters
     void setPos(float x, float y)
     {

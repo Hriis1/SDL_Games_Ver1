@@ -116,7 +116,7 @@ void Game::run()
 
             }
         }
-
+ 
         //Only update when not minimized and game is running
         if (!_window.isMinimized() && _gameRunning)
         {
@@ -125,6 +125,13 @@ void Game::run()
 
             //Update
             _player.update(_tiles, 9.5f, deltaTime);
+
+            //Stop the game if the player falls to the bottom
+            if (_player.getYPos() + _player.getHeight() >= LEVEL_HEIGHT)
+            {
+                _gameRunning = false;
+                continue;
+            }
 
             //Restart step timer
             _deltaTimer.start();
