@@ -142,7 +142,15 @@ void Game::run()
             //Special key input
             if (e.type == SDL_KEYDOWN)
             {
-
+                //If game is not running
+                if (!_gameRunning)
+                {
+                    //If space is pressed while game is not running
+                    if (e.key.keysym.sym = SDLK_SPACE && e.key.repeat == 0)
+                    {
+                        restart();
+                    }
+                }
             }
         }
  
@@ -233,4 +241,8 @@ void Game::quit()
     Mix_Quit();
     IMG_Quit();
     SDL_Quit();
+}
+
+void Game::restart()
+{
 }

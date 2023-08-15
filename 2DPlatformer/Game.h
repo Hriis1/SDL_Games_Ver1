@@ -28,6 +28,7 @@ public:
 	bool initPlayer();
 	void run();
 	void quit();
+	void restart();
 
 private:
 
