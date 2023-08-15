@@ -65,6 +65,12 @@ bool Game::loadMedia()
     }
 
     //Load textures
+    _bgTexture.initRenderer(_window.renderer);
+    if (!_bgTexture.loadFromFile("textures/bg.png", _window.getSDLWindow()))
+    {
+        printf("Failed to load bg.png! SDL_image Error: %s\n", IMG_GetError());
+        return false;
+    }
 
     //Load tiles
     if (!Tile::loadTiles("tileMapScaled0.5.map", _tiles, 0.5f))

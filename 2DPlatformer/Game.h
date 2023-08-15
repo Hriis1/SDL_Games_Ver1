@@ -43,6 +43,9 @@ private:
 	//Keeps track of deltaTime
 	LTimer _deltaTimer;
 
+	//Textures
+	LTexture _bgTexture;
+
 	//The tiles
 	std::vector<Tile*> _tiles;
 
