@@ -30,6 +30,9 @@ public:
     //Shows the dot on the screen
     void render(int camX, int camY);
 
+    //Resets the player with a new position
+    void reset(float xPos, float yPos);
+
     //getters
     const SDL_FRect& getCollider() const
     {
@@ -54,13 +57,6 @@ public:
     float getHeight() const
     {
         return PLAYER_HEIGHT;
-    }
-
-    //setters
-    void setPos(float x, float y)
-    {
-        _xPos = x;
-        _yPos = y;
     }
 
 private:

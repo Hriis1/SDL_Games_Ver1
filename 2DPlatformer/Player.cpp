@@ -196,6 +196,20 @@ void Player::render(int camX, int camY)
         _currentTexture->render(_xPos - camX, _yPos - camY, NULL, 1.0f, 0.0, NULL, SDL_FLIP_HORIZONTAL);
 }
 
+void Player::reset(float xPos, float yPos)
+{
+    //Reset the player
+    _walkingVel = 0.0f;
+    _jumpingVel = 0.0f;
+    _xVel = 0;
+    _yVel = 0;
+    _jumpVelocity = 0.0f;
+
+    //Set the new pos
+    _xPos = xPos;
+    _yPos = yPos;
+}
+
 void Player::updateTexture()
 {
     const Uint8* state = SDL_GetKeyboardState(NULL);

@@ -112,7 +112,7 @@ bool Game::loadMedia()
 
 bool Game::initPlayer()
 {
-    _player.setPos(_xStartingPos, _yStartingPos);
+    _player.reset(_xStartingPos, _yStartingPos);
     return _player.init(_window.renderer, _window.getSDLWindow(), _font);
 }
 
@@ -146,7 +146,7 @@ void Game::run()
                 if (!_gameRunning)
                 {
                     //If space is pressed while game is not running
-                    if (e.key.keysym.sym = SDLK_SPACE && e.key.repeat == 0)
+                    if (e.key.keysym.sym == SDLK_SPACE && e.key.repeat == 0)
                     {
                         restart();
                     }
@@ -247,5 +247,5 @@ void Game::quit()
 void Game::restart()
 {
     _gameRunning = true;
-    _player.setPos(_xStartingPos, _yStartingPos);
+    _player.reset(_xStartingPos, _yStartingPos);
 }
