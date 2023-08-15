@@ -53,8 +53,8 @@ private:
 	Player _player;
 
 	//The players starting position
-	float _xStartingPos = 10;
-	float _yStartingPos = 400;
+	const float _xStartingPos = 10;
+	const float _yStartingPos = 400;
 
 };
 
