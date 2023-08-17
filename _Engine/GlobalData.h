@@ -3,7 +3,7 @@
 
 //The dimensions of the level
 static const int LEVEL_WIDTH = 9 * TILE_TEXTURE_WIDTH;
-static const int LEVEL_HEIGHT = 6 * TILE_TEXTURE_HEIGHT;
+static const int LEVEL_HEIGHT = 12 * TILE_TEXTURE_HEIGHT;
 
 //Screen dimension constants
 const static int SCREEN_WIDTH = 1280;
