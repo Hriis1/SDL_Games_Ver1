@@ -86,10 +86,18 @@ bool Game::loadMedia()
         return false;
     }
 
+    //Load text textures
     _gameOverText.initRenderer(_window.renderer);
     if (!_gameOverText.loadFromRenderedText("Game Over!", { 255, 0 , 0 }, _gameOverFont))
     {
         printf("Failed to load _gameOverText! SDL_image Error: %s\n", IMG_GetError());
+        return false;
+    }
+
+    _gameWonText.initRenderer(_window.renderer);
+    if (!_gameWonText.loadFromRenderedText("Congrats, you win!", { 0, 0 , 255 }, _gameOverFont))
+    {
+        printf("Failed to load _gameWonText! SDL_image Error: %s\n", IMG_GetError());
         return false;
     }
 
@@ -218,6 +226,10 @@ void Game::run()
             {
                 _gameOverText.render(SCREEN_WIDTH / 2 - _gameOverText.getWidth() / 2, SCREEN_HEIGHT / 2);
                 _restartText.render(SCREEN_WIDTH / 2 - _restartText.getWidth() / 2, SCREEN_HEIGHT / 2 + _gameOverText.getHeight() + 10);
+            }
+            else if (_gameState == GameState::GAME_WON)
+            {
+
             }
 
             //Render level
