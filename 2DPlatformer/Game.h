@@ -68,7 +68,7 @@ private:
 
 	//The players starting position
 	const float _xStartingPos = 10;
-	const float _yStartingPos = 400;
+	const float _yStartingPos = 1500;
 
 
 	//Gamestate flag
