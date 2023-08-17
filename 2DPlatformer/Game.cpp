@@ -229,7 +229,8 @@ void Game::run()
             }
             else if (_gameState == GameState::GAME_WON)
             {
-
+                _gameWonText.render(SCREEN_WIDTH / 2 - _gameWonText.getWidth() / 2, SCREEN_HEIGHT / 2);
+                _restartText.render(SCREEN_WIDTH / 2 - _restartText.getWidth() / 2, SCREEN_HEIGHT / 2 + _gameWonText.getHeight() + 10);
             }
 
             //Render level
