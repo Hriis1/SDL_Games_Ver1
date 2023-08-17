@@ -165,12 +165,17 @@ void Game::run()
                 //Update
                 _player.update(_tiles, 9.5f, deltaTime);
 
-                //Stop the game if the player falls to the bottom
+                //Lose condition
                 if (_player.getYPos() + _player.getHeight() >= LEVEL_HEIGHT)
                 {
                     _gameRunning = false;
                     _deltaTimer.stop();
                     continue;
+                }
+                //Win condition
+                if (_player.getYPos() + _player.getHeight() <= _tiles[0]->getBox().x && checkCollision(_player.getCollider(), _tiles[0]->getBox()))
+                {
+                    _gameRunning = false;
                 }
 
                 //Restart step timer
