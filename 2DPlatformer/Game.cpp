@@ -136,14 +136,14 @@ void Game::run()
             _window.handleEvent(e);
 
             //Handle input for the dot
-            if(_gameRunning)
+            if(_gameState == GameState::RUNNING)
                 _player.handleEvent(e);
 
             //Special key input
             if (e.type == SDL_KEYDOWN)
             {
                 //If game is not running
-                if (!_gameRunning)
+                if (_gameState != GameState::RUNNING)
                 {
                     //If space is pressed while game is not running
                     if (e.key.keysym.sym == SDLK_SPACE && e.key.repeat == 0)
@@ -157,7 +157,7 @@ void Game::run()
         //Only update when not minimized and game is running
         if (!_window.isMinimized())
         {
-            if (_gameRunning)
+            if (_gameState == GameState::RUNNING)
             {
                 //Calculate time step
                 float deltaTime = _deltaTimer.getTicks() / 1000.f;
@@ -168,14 +168,16 @@ void Game::run()
                 //Lose condition
                 if (_player.getYPos() + _player.getHeight() >= LEVEL_HEIGHT)
                 {
-                    _gameRunning = false;
+                    _gameState = GameState::GAME_LOST;
                     _deltaTimer.stop();
                     continue;
                 }
                 //Win condition
                 if (_player.getYPos() + _player.getHeight() <= _tiles[0]->getBox().x && checkCollision(_player.getCollider(), _tiles[0]->getBox()))
                 {
-                    _gameRunning = false;
+                    _gameState = GameState::GAME_WON;
+                    _deltaTimer.stop();
+                    continue;
                 }
 
                 //Restart step timer
@@ -211,8 +213,8 @@ void Game::run()
             //Render background
             _bgTexture.render(0,0);
 
-            //Render gameovertext
-            if (!_gameRunning)
+            //If game is lost
+            if (_gameState == GameState::GAME_LOST)
             {
                 _gameOverText.render(SCREEN_WIDTH / 2 - _gameOverText.getWidth() / 2, SCREEN_HEIGHT / 2);
                 _restartText.render(SCREEN_WIDTH / 2 - _restartText.getWidth() / 2, SCREEN_HEIGHT / 2 + _gameOverText.getHeight() + 10);
@@ -251,6 +253,6 @@ void Game::quit()
 
 void Game::restart()
 {
-    _gameRunning = true;
+    _gameState = GameState::RUNNING;
     _player.reset(_xStartingPos, _yStartingPos);
 }

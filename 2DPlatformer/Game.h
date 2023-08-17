@@ -16,6 +16,11 @@
 #include <Tile.h>
 
 #include "Player.h"
+enum class GameState
+{
+	INVALID = 0, RUNNING, GAME_LOST, GAME_WON
+};
+
 class Game
 {
 public:
@@ -62,8 +67,8 @@ private:
 	const float _yStartingPos = 400;
 
 
-	//Gamerunning flag
-	bool _gameRunning = true;
+	//Gamestate flag
+	GameState _gameState = GameState::RUNNING;
 
 };
 
