@@ -12,6 +12,8 @@ Level1Scene::~Level1Scene()
 bool Level1Scene::init()
 {
     initPlayer();
+
+    return true;
 }
 
 bool Level1Scene::loadMedia()

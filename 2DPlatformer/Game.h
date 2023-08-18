@@ -17,10 +17,6 @@
 #include <Tile.h>
 
 #include "Player.h"
-enum class GameState
-{
-	INVALID = 0, RUNNING, GAME_LOST, GAME_WON
-};
 
 class Level1Scene : public IScene
 {
