@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <memory>
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
@@ -22,7 +23,7 @@ public:
 	void run();
 	void quit();
 private:
-	std::vector<IScene*> _scenes;
+	std::vector<std::unique_ptr<IScene>> _scenes;
 
 	//Custom windows
 	LWindow _window;

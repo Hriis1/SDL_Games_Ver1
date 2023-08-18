@@ -50,7 +50,7 @@ bool App::init()
 
 void App::initScenes()
 {
-    _scenes.push_back(new Level1Scene(_window, _quit));
+    _scenes.push_back(std::make_unique<Level1Scene>(_window, _quit));
 }
 
 void App::run()
