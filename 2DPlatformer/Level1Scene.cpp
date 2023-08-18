@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Level1Scene.h"
 
 Level1Scene::Level1Scene(LWindow& win, bool& quitFlag)
     : _window(win), _quitFlag(quitFlag)

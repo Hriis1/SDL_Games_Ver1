@@ -1,6 +1,6 @@
 #include "App.h"
 #include <Tile.h>
-#include "Game.h"
+#include "Level1Scene.h"
 
 bool App::init()
 {
