@@ -10,16 +10,23 @@
 #include <SDL/SDL_ttf.h>
 
 #include <Scene.h>
+#include <LWindow.h>
 
 class App
 {
 public:
 	App() = default;
 
-	void init();
+	bool init();
 	void run();
+	void quit();
 private:
 	std::vector<IScene*> _scenes;
+
+	//Custom windows
+	LWindow _window;
+
+	int _currentScene = 0;
 	
 };
 
