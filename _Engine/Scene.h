@@ -14,6 +14,7 @@ public:
 	virtual void handleEvents(SDL_Event& e) = 0;
 	virtual void update() = 0;
 	virtual void draw() = 0;
+	virtual void quit() = 0;
 
 	GameState getGameState() const
 	{

@@ -1,5 +1,6 @@
 #include "App.h"
 #include <Tile.h>
+#include "Game.h"
 
 bool App::init()
 {
@@ -49,6 +50,7 @@ bool App::init()
 
 void App::initScenes()
 {
+    _scenes.push_back(new Level1Scene(_window, _quit));
 }
 
 void App::run()
@@ -67,9 +69,8 @@ void App::run()
 
     //Start the game loop and poll events
     SDL_Event e;
-    bool quit = false;
 
-    while (quit == false)
+    while (_quit == false)
     {
         _scenes[_currentScene]->handleEvents(e);
 
@@ -81,6 +82,8 @@ void App::run()
             //Check if we have to go to next scene
             if (_scenes[_currentScene]->getGameState() == GameState::GO_TO_NEXT_SCENE)
             {
+                _scenes[_currentScene]->quit();
+
                 _currentScene++;
                 if (!_scenes[_currentScene]->loadMedia())
                 {
@@ -102,4 +105,12 @@ void App::run()
 
 void App::quit()
 {
+    //Destroy window
+    _window.free();
+
+    //Quit SDL systems
+    TTF_Quit();
+    Mix_Quit();
+    IMG_Quit();
+    SDL_Quit();
 }

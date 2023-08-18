@@ -192,6 +192,19 @@ void Level1Scene::draw()
     SDL_RenderPresent(_window.renderer);
 }
 
+void Level1Scene::quit()
+{
+    //Free fonts
+    TTF_CloseFont(_font);
+    _font = NULL;
+
+    TTF_CloseFont(_gameOverFont);
+    _gameOverFont = NULL;
+
+    TTF_CloseFont(_restartFont);
+    _restartFont = NULL;
+}
+
 bool Level1Scene::initPlayer()
 {
     _player.reset(_xStartingPos, _yStartingPos);

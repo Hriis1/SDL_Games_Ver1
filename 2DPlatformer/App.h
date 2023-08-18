@@ -28,6 +28,7 @@ private:
 	LWindow _window;
 
 	int _currentScene = 0;
+	bool _quit = false;
 	
 };
 

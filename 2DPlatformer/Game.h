@@ -34,6 +34,7 @@ public:
 	void handleEvents(SDL_Event& e) override;
 	void update() override;
 	void draw() override;
+	void quit() override;
 
 	//Init player function should be called after the media is loaded
 	bool initPlayer();
