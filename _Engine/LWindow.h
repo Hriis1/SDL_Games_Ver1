@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL/SDL.h>
+#include <memory>
 
 #include "GlobalData.h"
 
@@ -70,7 +71,7 @@ private:
 
     //Display data
     int _totalDisplays = 0;
-    SDL_Rect* _displayBounds = NULL;
+    std::unique_ptr<SDL_Rect[]> _displayBounds;
 
     //Window dimensions
     int _width = 0;

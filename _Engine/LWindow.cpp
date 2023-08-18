@@ -11,7 +11,7 @@ bool LWindow::init()
     _totalDisplays = SDL_GetNumVideoDisplays();
 
     //Get bounds of each display
-    _displayBounds = new SDL_Rect[_totalDisplays];
+    _displayBounds = std::make_unique<SDL_Rect[]>(_totalDisplays);
     for (int i = 0; i < _totalDisplays; ++i)
     {
         SDL_GetDisplayBounds(i, &_displayBounds[i]);
