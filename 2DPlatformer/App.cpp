@@ -71,7 +71,7 @@ void App::run()
 
     while (quit == false)
     {
-        _scenes[_currentScene]->handleEvents();
+        _scenes[_currentScene]->handleEvents(e);
 
         //Only update when not minimized and game is running
         if (!_window.isMinimized())
