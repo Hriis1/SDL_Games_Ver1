@@ -18,6 +18,7 @@ public:
 	App() = default;
 
 	bool init();
+	void initScenes();
 	void run();
 	void quit();
 private:

@@ -47,6 +47,10 @@ bool App::init()
     return true;
 }
 
+void App::initScenes()
+{
+}
+
 void App::run()
 {
     if (!_scenes[_currentScene]->init())
