@@ -53,14 +53,15 @@ void App::initScenes()
 
 void App::run()
 {
-    if (!_scenes[_currentScene]->init())
-    {
-        printf("Could not init initial scene\n");
-        return;
-    }
     if (!_scenes[_currentScene]->loadMedia())
     {
         printf("Could not initial scene\n");
+        return;
+    }
+
+    if (!_scenes[_currentScene]->init())
+    {
+        printf("Could not init initial scene\n");
         return;
     }
 
@@ -81,14 +82,14 @@ void App::run()
             if (_scenes[_currentScene]->getGameState() == GameState::GO_TO_NEXT_SCENE)
             {
                 _currentScene++;
-                if (!_scenes[_currentScene]->init())
-                {
-                    printf("Could not init next scene\n");
-                    return;
-                }
                 if (!_scenes[_currentScene]->loadMedia())
                 {
                     printf("Could not load media of next scene\n");
+                    return;
+                }
+                if (!_scenes[_currentScene]->init())
+                {
+                    printf("Could not init next scene\n");
                     return;
                 }
                 continue;

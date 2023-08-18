@@ -1,4 +1,5 @@
 #pragma once
+#include <SDL/SDL.h>
 
 enum class GameState
 {
@@ -10,8 +11,8 @@ class IScene
 public:
 	virtual bool init() = 0;
 	virtual bool loadMedia() = 0;
+	virtual void handleEvents(SDL_Event& e) = 0;
 	virtual void update() = 0;
-	virtual void handleEvents() = 0;
 	virtual void draw() = 0;
 
 	GameState getGameState() const

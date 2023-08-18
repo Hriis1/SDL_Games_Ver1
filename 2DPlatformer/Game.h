@@ -9,6 +9,7 @@
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_ttf.h>
 
+#include <Scene.h>
 #include <GlobalData.h>
 #include <LTexture.h>
 #include <LWindow.h>
@@ -21,24 +22,28 @@ enum class GameState
 	INVALID = 0, RUNNING, GAME_LOST, GAME_WON
 };
 
-class Game
+class Level1Scene : public IScene
 {
 public:
-	Game();
-	~Game();
+	Level1Scene(LWindow& win, bool& quitFlag);
+	~Level1Scene();
 
-	bool init();
-	bool loadMedia();
+	//Inherited from IScene
+	bool init() override;
+	bool loadMedia() override;
+	void handleEvents(SDL_Event& e) override;
+	void update() override;
+	void draw() override;
+
 	//Init player function should be called after the media is loaded
 	bool initPlayer();
-	void run();
-	void quit();
 	void restart();
+	
 
 private:
 
 	//Custom windows
-	LWindow _window;
+	LWindow& _window;
 
 	//Fonts
 	TTF_Font* _font = NULL;
@@ -60,6 +65,9 @@ private:
 	LTexture _restartText;
 	
 
+	//The camera area
+	SDL_FRect camera = { 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
+
 	//The tiles
 	std::vector<Tile*> _tiles;
 
@@ -70,9 +78,11 @@ private:
 	const float _xStartingPos = 10;
 	const float _yStartingPos = 1500;
 
-
+	//Quit flag
+	bool& _quitFlag;
 	//Gamestate flag
 	GameState _gameState = GameState::RUNNING;
+	
 
 };
 
