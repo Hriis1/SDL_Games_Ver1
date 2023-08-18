@@ -15,38 +15,27 @@
 #include <Tile.h>
 
 #include "Dot.h"
-#include "Game.h"
+#include "App.h"
 
 
 int main(int argc, char* args[])
 {
-    Game game = Game();
+    App app = App();
     //Start up SDL and create window
-    if (!game.init())
+    if (!app.init())
     {
         printf("Failed to initialize!\n");
     }
     else
     {
-        
-        if (!game.loadMedia()) //Load media
-        {
-            printf("Failed to load media!\n");
-        }
-        else 
-        {
-            if (!game.initPlayer()) //init the player
-            {
-                printf("Failed to init player!\n");
-            }
-            else //run the game
-            {
-                game.run();
-            }
-        }
+        //Add the scenes
+        app.initScenes();
+
+        //Run the app
+        app.run();
     }
     //Free resources and close SDL
-    game.quit();
+    app.quit();
 
     return 0;
 }
