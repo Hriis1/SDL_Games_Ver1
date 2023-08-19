@@ -64,7 +64,7 @@ bool Level1Scene::loadMedia()
     }
 
     _restartText.initRenderer(_window.renderer);
-    if (!_restartText.loadFromRenderedText("Press space to restart", { 0, 255 , 0 }, _restartFont))
+    if (!_restartText.loadFromRenderedText("Press space to go to next level", { 0, 255 , 0 }, _restartFont))
     {
         printf("Failed to load _restartText! SDL_image Error: %s\n", IMG_GetError());
         return false;
