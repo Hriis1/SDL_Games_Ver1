@@ -97,14 +97,21 @@ void Level2Scene::handleEvents(SDL_Event& e)
         //Special key input
         if (e.type == SDL_KEYDOWN)
         {
-            //If game is not running
-            if (_gameState != GameState::RUNNING)
+            if (_gameState == GameState::GAME_LOST) //If game is lost
             {
-                //If space is pressed while game is not running
+                //If space is pressed while game is lost
                 if (e.key.keysym.sym == SDLK_SPACE && e.key.repeat == 0)
                 {
                     restart();
                 }
+            }
+            else if (_gameState == GameState::GAME_WON) //If game is won
+            {
+                //If space is pressed while game is won
+               /* if (e.key.keysym.sym == SDLK_SPACE && e.key.repeat == 0)
+                {
+                    restart();
+                }*/
             }
         }
     }
