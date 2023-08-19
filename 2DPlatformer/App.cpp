@@ -1,6 +1,7 @@
 #include "App.h"
 #include <Tile.h>
 #include "Level1Scene.h"
+#include "Level2Scene.h"
 
 bool App::init()
 {
@@ -51,6 +52,7 @@ bool App::init()
 void App::initScenes()
 {
     _scenes.push_back(std::make_unique<Level1Scene>(_window, _quit));
+    _scenes.push_back(std::make_unique<Level2Scene>(_window, _quit));
 }
 
 void App::run()
@@ -80,6 +82,7 @@ void App::run()
             _scenes[_currentScene]->update();
             
             //Check if we have to go to next scene
+            GameState currentSceneState = _scenes[_currentScene]->getGameState();
             if (_scenes[_currentScene]->getGameState() == GameState::GO_TO_NEXT_SCENE)
             {
                 _scenes[_currentScene]->quit();

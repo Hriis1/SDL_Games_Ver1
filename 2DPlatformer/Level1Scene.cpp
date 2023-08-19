@@ -108,10 +108,10 @@ void Level1Scene::handleEvents(SDL_Event& e)
             else if (_gameState == GameState::GAME_WON) //If game is won
             {
                 //If space is pressed while game is won
-               /* if (e.key.keysym.sym == SDLK_SPACE && e.key.repeat == 0)
+                if (e.key.keysym.sym == SDLK_SPACE && e.key.repeat == 0)
                 {
-                    restart();
-                }*/
+                    _gameState = GameState::GO_TO_NEXT_SCENE;
+                }
             }
         }
     }

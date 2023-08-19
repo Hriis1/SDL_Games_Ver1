@@ -77,8 +77,6 @@ private:
 
 	//Quit flag
 	bool& _quitFlag;
-	//Gamestate flag
-	GameState _gameState = GameState::RUNNING;
 	
 
 };
