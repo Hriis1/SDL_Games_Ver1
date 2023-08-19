@@ -71,7 +71,7 @@ bool Level1Scene::loadMedia()
     }
 
     //Load tiles
-    if (!Tile::loadTiles("tileMapScaled0.5.map", _tiles, 0.5f))
+    if (!Tile::loadTiles("tileMaps/tileMapScaled0.5Level1.map", _tiles, 0.5f))
     {
         printf("Failed to load tile set!\n");
         return false;
