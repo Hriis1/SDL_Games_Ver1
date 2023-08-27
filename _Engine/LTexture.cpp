@@ -36,7 +36,7 @@ bool LTexture::createBlank32bit(int width, int height, SDL_TextureAccess access)
     return _texture != NULL;
 }
 
-bool LTexture::loadFromFile(const std::string& path, SDL_Window* window)
+bool LTexture::loadFromFile(const std::string& path, SDL_Window* window, int colorkey_R, int colorkey_G, int colorkey_B)
 {
     //Load pixels
     if (!loadPixelsFromFile(path, window))
@@ -46,7 +46,7 @@ bool LTexture::loadFromFile(const std::string& path, SDL_Window* window)
     else
     {
         //Load texture from pixels
-        if (!loadFromPixels())
+        if (!loadFromPixels(colorkey_R, colorkey_G, colorkey_B))
         {
             printf("Failed to texture from pixels from %s!\n", path.c_str());
         }
@@ -123,7 +123,7 @@ bool LTexture::loadPixelsFromFile(const std::string& path, SDL_Window* window)
     return _surfacePixels != NULL;
 }
 
-bool LTexture::loadFromPixels()
+bool LTexture::loadFromPixels(int colorkey_R, int colorkey_G, int colorkey_B)
 {
     //Only load if pixels exist
     if (_surfacePixels == NULL)
@@ -133,7 +133,7 @@ bool LTexture::loadFromPixels()
     else
     {
         //Color key image ---- magenta
-        SDL_SetColorKey(_surfacePixels, SDL_TRUE, SDL_MapRGB(_surfacePixels->format, 255, 0, 255));
+        SDL_SetColorKey(_surfacePixels, SDL_TRUE, SDL_MapRGB(_surfacePixels->format, colorkey_R, colorkey_G, colorkey_B));
 
         //Create texture from surface pixels
         _texture = SDL_CreateTextureFromSurface(_renderer, _surfacePixels);

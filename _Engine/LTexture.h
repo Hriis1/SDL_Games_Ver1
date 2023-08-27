@@ -20,7 +20,7 @@ public:
     bool createBlank32bit(int width, int height, SDL_TextureAccess access = SDL_TEXTUREACCESS_STREAMING);
 
     //Loads image at specified path
-    bool loadFromFile(const std::string& path, SDL_Window* window);
+    bool loadFromFile(const std::string& path, SDL_Window* window, int colorkey_R = 0, int colorkey_G = 0, int colorkey_B = 0);
 
     //Creates image from font string
     bool loadFromRenderedText(const std::string& textureText, SDL_Color textColor, TTF_Font* font);
@@ -29,7 +29,7 @@ public:
     bool loadPixelsFromFile(const std::string& path, SDL_Window* window);
 
     //Creates image from preloaded pixels
-    bool loadFromPixels();
+    bool loadFromPixels(int colorkey_R = 0, int colorkey_G = 0, int colorkey_B = 0);
 
 
     //Deallocates texture
