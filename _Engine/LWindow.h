@@ -11,7 +11,7 @@ public:
     LWindow();
 
     //Creates window and inits its renderer
-    bool init();
+    bool init(int width, int height);
 
     //Handles window events
     void handleEvent(SDL_Event& e);

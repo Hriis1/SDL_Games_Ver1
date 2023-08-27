@@ -5,7 +5,7 @@ LWindow::LWindow()
 {
 }
 
-bool LWindow::init()
+bool LWindow::init(int width, int height)
 {
     //Get number of displays
     _totalDisplays = SDL_GetNumVideoDisplays();
@@ -18,13 +18,13 @@ bool LWindow::init()
     }
 
     //Create window
-    _window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    _window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (_window != NULL)
     {
         _mouseFocus = true;
         _keyboardFocus = true;
-        _width = SCREEN_WIDTH;
-        _height = SCREEN_HEIGHT;
+        _width = width;
+        _height = height;
 
         //Create renderer for window
         renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
