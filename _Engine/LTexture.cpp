@@ -133,7 +133,7 @@ bool LTexture::loadFromPixels()
     else
     {
         //Color key image
-        SDL_SetColorKey(_surfacePixels, SDL_TRUE, SDL_MapRGB(_surfacePixels->format, 0, 0, 0));
+        SDL_SetColorKey(_surfacePixels, SDL_TRUE, SDL_MapRGB(_surfacePixels->format, 255, 0, 255));
 
         //Create texture from surface pixels
         _texture = SDL_CreateTextureFromSurface(_renderer, _surfacePixels);
