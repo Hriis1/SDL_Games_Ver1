@@ -1,5 +1,4 @@
 #include "App.h"
-#include <Tile.h>
 #include "LevelScene.h"
 
 bool App::init()
@@ -11,7 +10,7 @@ bool App::init()
         return false;
     }
     //Create windows and create renderers
-    if (!_window.init())
+    if (!_window.init(1280, 720))
     {
         printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
         return false;
