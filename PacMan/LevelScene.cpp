@@ -19,6 +19,11 @@ bool LevelScene::loadMedia()
     //Load fonts
    
     //Load textures
+    _bgTexture.initRenderer(_window.renderer);
+    if (!_bgTexture.loadFromFile("Assets/Textures/map.png", _window.getSDLWindow()))
+    {
+        std::cout << "Couldnt open map.png. Error: " << IMG_GetError() << std::endl;
+    }
    
     //Load text textures
 
@@ -101,6 +106,8 @@ void LevelScene::draw()
     SDL_SetRenderDrawColor(_window.renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(_window.renderer);
 
+    //Draw textures
+    _bgTexture.render(0, 0);
     
 
     //Update screen

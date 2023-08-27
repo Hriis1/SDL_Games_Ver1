@@ -1,5 +1,5 @@
 #pragma once
-#include <stdio.h>
+#include <iostream>
 #include <vector>
 #include <string>
 #include <fstream>
@@ -47,6 +47,7 @@ private:
 	LTimer _deltaTimer;
 
 	//Textures
+	LTexture _bgTexture;
 
 	//Text textures
 
