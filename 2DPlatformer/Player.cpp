@@ -110,6 +110,7 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
     //Handle collision with tiles
     bool onGround = false;
     bool bounced = false;
+    bool hitHead = false;
     for (size_t i = 0; i < tiles.size(); i++)
     {
         if (checkCollision(_collisionRect, tiles[i]->getBox())) 
@@ -163,6 +164,11 @@ void Player::update(std::vector<Tile*>& tiles, float gravity, float deltaTime)
                     onGround = true;
                 }
                 else {
+                    if (!hitHead)
+                    {
+                        _yVel = -_yVel/3;
+                        hitHead = true;
+                    }
                     _yPos = tileBot;
                 }
             }
