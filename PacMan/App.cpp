@@ -1,5 +1,6 @@
 #include "App.h"
 #include "LevelScene.h"
+#include "PacManData.h"
 
 bool App::init()
 {
@@ -10,7 +11,7 @@ bool App::init()
         return false;
     }
     //Create windows and create renderers
-    if (!_window.init(1280, 720))
+    if (!_window.init(PACMAN_SCREEN_WIDTH, PACMAN_SCREEN_HEIGHT))
     {
         printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
         return false;
