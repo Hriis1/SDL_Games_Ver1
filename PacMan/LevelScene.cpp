@@ -1,86 +1,31 @@
-#include "Level1Scene.h"
+#include "LevelScene.h"
 
-Level1Scene::Level1Scene(LWindow& win, bool& quitFlag)
+LevelScene::LevelScene(LWindow& win, bool& quitFlag)
     : _window(win), _quitFlag(quitFlag)
 {
 }
 
-Level1Scene::~Level1Scene()
+LevelScene::~LevelScene()
 {
 }
 
-bool Level1Scene::init()
+bool LevelScene::init()
 {
-    initPlayer();
-
     return true;
 }
 
-bool Level1Scene::loadMedia()
+bool LevelScene::loadMedia()
 {
     //Load fonts
-    _font = TTF_OpenFont("../_Engine/fonts/lazy.ttf", 18);
-    if (_font == NULL)
-    {
-        printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
-        return false;
-    }
-
-    _gameOverFont = TTF_OpenFont("../_Engine/fonts/lazy.ttf", 50);
-    if (_gameOverFont == NULL)
-    {
-        printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
-        return false;
-    }
-
-    _restartFont = TTF_OpenFont("../_Engine/fonts/lazy.ttf", 30);
-    if (_restartFont == NULL)
-    {
-        printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
-        return false;
-    }
-
+   
     //Load textures
-    _bgTexture.initRenderer(_window.renderer);
-    if (!_bgTexture.loadFromFile("textures/bg.png", _window.getSDLWindow()))
-    {
-        printf("Failed to load bg.png! SDL_image Error: %s\n", IMG_GetError());
-        return false;
-    }
-
+   
     //Load text textures
-    _gameOverText.initRenderer(_window.renderer);
-    if (!_gameOverText.loadFromRenderedText("Game Over!", { 255, 0 , 0 }, _gameOverFont))
-    {
-        printf("Failed to load _gameOverText! SDL_image Error: %s\n", IMG_GetError());
-        return false;
-    }
-
-    _gameWonText.initRenderer(_window.renderer);
-    if (!_gameWonText.loadFromRenderedText("Congrats, you win!", { 0, 0 , 255 }, _gameOverFont))
-    {
-        printf("Failed to load _gameWonText! SDL_image Error: %s\n", IMG_GetError());
-        return false;
-    }
-
-    _restartText.initRenderer(_window.renderer);
-    if (!_restartText.loadFromRenderedText("Press space to go to next level", { 0, 255 , 0 }, _restartFont))
-    {
-        printf("Failed to load _restartText! SDL_image Error: %s\n", IMG_GetError());
-        return false;
-    }
-
-    //Load tiles
-    if (!Tile::loadTiles("tileMaps/tileMapScaled0.5Level1.map", _tiles, 0.5f))
-    {
-        printf("Failed to load tile set!\n");
-        return false;
-    }
 
     return true;
 }
 
-void Level1Scene::handleEvents(SDL_Event& e)
+void LevelScene::handleEvents(SDL_Event& e)
 {
     while (SDL_PollEvent(&e))
     {
@@ -91,8 +36,7 @@ void Level1Scene::handleEvents(SDL_Event& e)
         _window.handleEvent(e);
 
         //Handle input for the dot
-        if (_gameState == GameState::RUNNING)
-            _player.handleEvent(e);
+        if (_gameState == GameState::RUNNING);
 
         //Special key input
         if (e.type == SDL_KEYDOWN)
@@ -117,7 +61,7 @@ void Level1Scene::handleEvents(SDL_Event& e)
     }
 }
 
-void Level1Scene::update()
+void LevelScene::update()
 {
     if (_gameState == GameState::RUNNING)
     {
@@ -125,27 +69,11 @@ void Level1Scene::update()
         float deltaTime = _deltaTimer.getTicks() / 1000.f;
 
         //Update
-        _player.update(_tiles, 9.5f, deltaTime);
-
-        //Lose condition
-        if (_player.getYPos() + _player.getHeight() >= LEVEL_HEIGHT)
-        {
-            _gameState = GameState::GAME_LOST;
-            _deltaTimer.stop();
-        }
-        //Win condition
-        if (_player.getYPos() + _player.getHeight() <= _tiles[0]->getBox().x && checkCollision(_player.getCollider(), _tiles[0]->getBox()))
-        {
-            _gameState = GameState::GAME_WON;
-            _deltaTimer.stop();
-        }
 
         //Restart step timer
         _deltaTimer.start();
 
-        //Center the camera over the dot
-        camera.x = (_player.getXPos()) - SCREEN_WIDTH / 2;
-        camera.y = (_player.getYPos()) - SCREEN_HEIGHT / 2;
+        //Center the camera over the player
 
         //Keep the camera in bounds 
         if (camera.x < 0)
@@ -167,61 +95,24 @@ void Level1Scene::update()
     }
 }
 
-void Level1Scene::draw()
+void LevelScene::draw()
 {
     //Clear screen
     SDL_SetRenderDrawColor(_window.renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(_window.renderer);
 
-    //Render background
-    _bgTexture.render(0, 0);
-
-    //If game is lost
-    if (_gameState == GameState::GAME_LOST)
-    {
-        _gameOverText.render(SCREEN_WIDTH / 2 - _gameOverText.getWidth() / 2, SCREEN_HEIGHT / 2);
-        _restartText.render(SCREEN_WIDTH / 2 - _restartText.getWidth() / 2, SCREEN_HEIGHT / 2 + _gameOverText.getHeight() + 10);
-    }
-    else if (_gameState == GameState::GAME_WON)
-    {
-        _gameWonText.render(SCREEN_WIDTH / 2 - _gameWonText.getWidth() / 2, SCREEN_HEIGHT / 2);
-        _restartText.render(SCREEN_WIDTH / 2 - _restartText.getWidth() / 2, SCREEN_HEIGHT / 2 + _gameWonText.getHeight() + 10);
-    }
-
-    //Render level
-    for (int i = 0; i < _tiles.size(); ++i)
-    {
-        _tiles[i]->render(camera);
-    }
-
-    //Render the textures
-    _player.render(camera.x, camera.y);
+    
 
     //Update screen
     SDL_RenderPresent(_window.renderer);
 }
 
-void Level1Scene::quit()
+void LevelScene::quit()
 {
     //Free fonts
-    TTF_CloseFont(_font);
-    _font = NULL;
-
-    TTF_CloseFont(_gameOverFont);
-    _gameOverFont = NULL;
-
-    TTF_CloseFont(_restartFont);
-    _restartFont = NULL;
 }
 
-bool Level1Scene::initPlayer()
-{
-    _player.reset(_xStartingPos, _yStartingPos);
-    return _player.init(_window.renderer, _window.getSDLWindow(), _font);
-}
-
-void Level1Scene::restart()
+void LevelScene::restart()
 {
     _gameState = GameState::RUNNING;
-    _player.reset(_xStartingPos, _yStartingPos);
 }

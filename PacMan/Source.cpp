@@ -1,20 +1,11 @@
-//Using SDL and standard IO
-#include <stdio.h>
-#include <vector>
-#include <string>
-#include <fstream>
-
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_ttf.h>
 
-#include <GlobalData.h>
 #include <LTexture.h>
 #include <LWindow.h>
-#include <Tile.h>
 
-#include "Dot.h"
 #include "App.h"
 
 

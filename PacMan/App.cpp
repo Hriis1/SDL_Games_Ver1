@@ -1,7 +1,6 @@
 #include "App.h"
 #include <Tile.h>
-#include "Level1Scene.h"
-#include "Level2Scene.h"
+#include "LevelScene.h"
 
 bool App::init()
 {
@@ -51,8 +50,7 @@ bool App::init()
 
 void App::initScenes()
 {
-    _scenes.push_back(std::make_unique<Level1Scene>(_window, _quit));
-    _scenes.push_back(std::make_unique<Level2Scene>(_window, _quit));
+    _scenes.push_back(std::make_unique<LevelScene>(_window, _quit));
 }
 
 void App::run()

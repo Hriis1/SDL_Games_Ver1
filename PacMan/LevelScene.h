@@ -16,13 +16,11 @@
 #include <LTimer.h>
 #include <Tile.h>
 
-#include "Player.h"
-
-class Level1Scene : public IScene
+class LevelScene : public IScene
 {
 public:
-	Level1Scene(LWindow& win, bool& quitFlag);
-	~Level1Scene();
+	LevelScene(LWindow& win, bool& quitFlag);
+	~LevelScene();
 
 	//Inherited from IScene
 	bool init() override;
@@ -32,8 +30,6 @@ public:
 	void draw() override;
 	void quit() override;
 
-	//Init player function should be called after the media is loaded
-	bool initPlayer();
 	void restart();
 	
 
@@ -43,9 +39,6 @@ private:
 	LWindow& _window;
 
 	//Fonts
-	TTF_Font* _font = NULL;
-	TTF_Font* _gameOverFont = NULL;
-	TTF_Font* _restartFont = NULL;
 
 	//Text colors
 	SDL_Color _textColor = { 0, 0, 0, 0xFF };
@@ -54,26 +47,11 @@ private:
 	LTimer _deltaTimer;
 
 	//Textures
-	LTexture _bgTexture;
 
 	//Text textures
-	LTexture _gameOverText;
-	LTexture _gameWonText;
-	LTexture _restartText;
-	
 
 	//The camera area
 	SDL_FRect camera = { 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
-
-	//The tiles
-	std::vector<Tile*> _tiles;
-
-	//The playable character (for now)
-	Player _player;
-
-	//The players starting position
-	const float _xStartingPos = 10;
-	const float _yStartingPos = 1500;
 
 	//Quit flag
 	bool& _quitFlag;
