@@ -132,7 +132,7 @@ bool LTexture::loadFromPixels()
     }
     else
     {
-        //Color key image
+        //Color key image ---- magenta
         SDL_SetColorKey(_surfacePixels, SDL_TRUE, SDL_MapRGB(_surfacePixels->format, 255, 0, 255));
 
         //Create texture from surface pixels
