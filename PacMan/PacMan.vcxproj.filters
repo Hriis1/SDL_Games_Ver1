@@ -32,5 +32,8 @@
     <ClInclude Include="LevelScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PacManData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

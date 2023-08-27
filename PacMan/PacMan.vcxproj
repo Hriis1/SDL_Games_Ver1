@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="LevelScene.h" />
+    <ClInclude Include="PacManData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
