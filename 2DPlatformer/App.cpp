@@ -12,7 +12,7 @@ bool App::init()
         return false;
     }
     //Create windows and create renderers
-    if (!_window.init())
+    if (!_window.init(SCREEN_WIDTH, SCREEN_HEIGHT))
     {
         printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
         return false;
