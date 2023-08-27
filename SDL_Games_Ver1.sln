@@ -10,6 +10,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2DPlatformer", "2DPlatforme
 		{C4FCA536-EAF5-40F4-A198-30834BA83F9F} = {C4FCA536-EAF5-40F4-A198-30834BA83F9F}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacMan", "PacMan\PacMan.vcxproj", "{6C1BDB81-9DA7-4753-9CDC-3C1EBC0AF370}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C4FCA536-EAF5-40F4-A198-30834BA83F9F} = {C4FCA536-EAF5-40F4-A198-30834BA83F9F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -34,6 +39,14 @@ Global
 		{0EE51098-2589-4048-834C-CFFD0E0C8646}.Release|x64.Build.0 = Release|x64
 		{0EE51098-2589-4048-834C-CFFD0E0C8646}.Release|x86.ActiveCfg = Release|Win32
 		{0EE51098-2589-4048-834C-CFFD0E0C8646}.Release|x86.Build.0 = Release|Win32
+		{6C1BDB81-9DA7-4753-9CDC-3C1EBC0AF370}.Debug|x64.ActiveCfg = Debug|x64
+		{6C1BDB81-9DA7-4753-9CDC-3C1EBC0AF370}.Debug|x64.Build.0 = Debug|x64
+		{6C1BDB81-9DA7-4753-9CDC-3C1EBC0AF370}.Debug|x86.ActiveCfg = Debug|Win32
+		{6C1BDB81-9DA7-4753-9CDC-3C1EBC0AF370}.Debug|x86.Build.0 = Debug|Win32
+		{6C1BDB81-9DA7-4753-9CDC-3C1EBC0AF370}.Release|x64.ActiveCfg = Release|x64
+		{6C1BDB81-9DA7-4753-9CDC-3C1EBC0AF370}.Release|x64.Build.0 = Release|x64
+		{6C1BDB81-9DA7-4753-9CDC-3C1EBC0AF370}.Release|x86.ActiveCfg = Release|Win32
+		{6C1BDB81-9DA7-4753-9CDC-3C1EBC0AF370}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
