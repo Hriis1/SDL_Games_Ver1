@@ -94,9 +94,17 @@ void Player::render(int camX, int camY)
     {
         _playerSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_HORIZONTAL);
     }
-    else
+    else if(_direction == DIRECTION::RIGHT)
     {
         _playerSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
+    }
+    else if (_direction == DIRECTION::DPWN)
+    {
+        _playerSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 90.0, NULL, SDL_FLIP_NONE);
+    }
+    else
+    {
+        _playerSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, -90.0, NULL, SDL_FLIP_NONE);
     }
           
     //Go to next frame
