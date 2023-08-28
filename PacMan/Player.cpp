@@ -47,15 +47,15 @@ void Player::handleEvent(SDL_Event& e)
     }
 }
 
-void Player::update()
+void Player::update(float  deltaTime)
 {
     //Move the Player left or right
-    _xPos += _xVel;
+    _xPos += _xVel * deltaTime;
     shiftColliders();
 
 
     //Move the Player up or down
-    _yPos += _yVel;
+    _yPos += _yVel * deltaTime;
     shiftColliders();
 
     

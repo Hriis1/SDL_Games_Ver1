@@ -23,7 +23,7 @@ public:
     void handleEvent(SDL_Event& e);
 
     //Moves the Player
-    void update();
+    void update(float  deltaTime);
 
 
     //Shows the Player on the screen
