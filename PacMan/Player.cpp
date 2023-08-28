@@ -69,15 +69,10 @@ void Player::handleEvent(SDL_Event& e)
 
 void Player::update(float  deltaTime)
 {
-
     updateDirection();
 
-    //Move the Player left or right
+    //Move the player
     _xPos += _xVel * deltaTime;
-    shiftColliders();
-
-
-    //Move the Player up or down
     _yPos += _yVel * deltaTime;
     shiftColliders();
 
