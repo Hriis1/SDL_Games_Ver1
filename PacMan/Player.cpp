@@ -10,7 +10,7 @@ bool Player::init(SDL_Renderer* renderer, SDL_Window* window)
 {
     _PlayerTexture.initRenderer(renderer);
 
-    if(!_PlayerTexture.loadFromFile("textures/Player.bmp", window))
+    if(!_PlayerTexture.loadFromFile("Assets/Textures/PacMan.png", window))
     {
         printf("Could not load Player texture\n");
         return false;
