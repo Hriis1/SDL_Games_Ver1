@@ -11,6 +11,11 @@ LevelScene::~LevelScene()
 
 bool LevelScene::init()
 {
+    if (!_player.init(_window.renderer, _window.getSDLWindow()))
+    {
+        std::cout << "Coild not init player!" << std::endl;
+        return false;
+    }
     return true;
 }
 
@@ -40,8 +45,9 @@ void LevelScene::handleEvents(SDL_Event& e)
         //Handle window events
         _window.handleEvent(e);
 
-        //Handle input for the dot
-        if (_gameState == GameState::RUNNING);
+        //Handle input for the player
+        if (_gameState == GameState::RUNNING)
+            _player.handleEvent(e);
 
         //Special key input
         if (e.type == SDL_KEYDOWN)
@@ -74,6 +80,7 @@ void LevelScene::update()
         float deltaTime = _deltaTimer.getTicks() / 1000.f;
 
         //Update
+        _player.update();
 
         //Restart step timer
         _deltaTimer.start();
@@ -81,21 +88,21 @@ void LevelScene::update()
         //Center the camera over the player
 
         //Keep the camera in bounds 
-        if (camera.x < 0)
+        if (_camera.x < 0)
         {
-            camera.x = 0;
+            _camera.x = 0;
         }
-        if (camera.y < 0)
+        if (_camera.y < 0)
         {
-            camera.y = 0;
+            _camera.y = 0;
         }
-        if (camera.x > LEVEL_WIDTH - camera.w)
+        if (_camera.x > LEVEL_WIDTH - _camera.w)
         {
-            camera.x = LEVEL_WIDTH - camera.w;
+            _camera.x = LEVEL_WIDTH - _camera.w;
         }
-        if (camera.y > LEVEL_HEIGHT - camera.h)
+        if (_camera.y > LEVEL_HEIGHT - _camera.h)
         {
-            camera.y = LEVEL_HEIGHT - camera.h;
+            _camera.y = LEVEL_HEIGHT - _camera.h;
         }
     }
 }
@@ -108,6 +115,8 @@ void LevelScene::draw()
 
     //Draw textures
     _bgTexture.render(0, 0);
+
+    _player.render(_camera.x, _camera.y);
     
 
     //Update screen

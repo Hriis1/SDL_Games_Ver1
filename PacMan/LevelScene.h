@@ -53,7 +53,10 @@ private:
 	//Text textures
 
 	//The camera area
-	SDL_FRect camera = { 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
+	SDL_FRect _camera = { 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
+
+	//Player
+	Player _player;
 
 	//Quit flag
 	bool& _quitFlag;
