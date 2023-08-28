@@ -3,7 +3,7 @@
 LevelScene::LevelScene(LWindow& win, bool& quitFlag)
     : _window(win), _quitFlag(quitFlag)
 {
-    _walls.emplace_back(SDL_FRect{ 100, 20, 200, 100 });
+    _walls.emplace_back(SDL_FRect{ 267, 20, 17, 257 });
 }
 
 LevelScene::~LevelScene()
