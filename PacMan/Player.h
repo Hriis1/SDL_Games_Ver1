@@ -48,6 +48,8 @@ public:
 private:
     //Moves the collision circle relative to the Player's offset
     void shiftColliders();
+
+    void updateDirection();
 private:
 
     //consts

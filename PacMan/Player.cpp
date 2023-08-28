@@ -41,19 +41,15 @@ void Player::handleEvent(SDL_Event& e)
         {
         case SDLK_UP:
             _yVel -= PLAYER_VEL;
-            _direction = DIRECTION::UP;
             break;
         case SDLK_DOWN:
             _yVel += PLAYER_VEL;
-            _direction = DIRECTION::DPWN;
             break;
         case SDLK_LEFT:
             _xVel -= PLAYER_VEL;
-            _direction = DIRECTION::LEFT;
             break;
         case SDLK_RIGHT:
             _xVel += PLAYER_VEL; 
-            _direction = DIRECTION::RIGHT;
             break;
         }
     }
@@ -73,6 +69,9 @@ void Player::handleEvent(SDL_Event& e)
 
 void Player::update(float  deltaTime)
 {
+
+    updateDirection();
+
     //Move the Player left or right
     _xPos += _xVel * deltaTime;
     shiftColliders();
@@ -121,4 +120,25 @@ void Player::shiftColliders()
 {
     _collisionRect.x = _xPos;
     _collisionRect.y = _yPos;
+}
+
+void Player::updateDirection()
+{
+    const Uint8* state = SDL_GetKeyboardState(NULL);
+    if (state[SDL_SCANCODE_LEFT]) //if left arrow or right arrow is being pressed
+    {
+        _direction = DIRECTION::LEFT;
+    }
+    else if (state[SDL_SCANCODE_RIGHT]) //if left arrow or right arrow is being pressed
+    {
+        _direction = DIRECTION::RIGHT;
+    }
+    else if (state[SDL_SCANCODE_DOWN]) //if left arrow or right arrow is being pressed
+    {
+        _direction = DIRECTION::DPWN;
+    }
+    else if (state[SDL_SCANCODE_UP]) //if left arrow or right arrow is being pressed
+    {
+        _direction = DIRECTION::UP;
+    }
 }
