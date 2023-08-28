@@ -8,6 +8,7 @@
 #include <Utils.h>
 #include <LTexture.h>
 
+const int PLAYER_ANIMATION_FRAMES = 8;
 
 class Player
 {
@@ -55,6 +56,7 @@ private:
     const float PLAYER_VEL = 160.0f;
     const float PLAYER_WIDTH = 16 * TEXTURE_SCALE;
     const float PLAYER_HEIGHT = 16 * TEXTURE_SCALE;
+    
 
     //The X and Y offsets of the Player
     float _xPos = 10;
@@ -64,12 +66,14 @@ private:
     float _xVel = 0;
     float _yVel = 0;
 
-    //Players texture
-    LTexture _PlayerTexture;
-
-    
     //Players collision circle
     SDL_FRect _collisionRect = { 0,0, PLAYER_WIDTH, PLAYER_HEIGHT };
+
+    //Players texture
+    LTexture _PlayerTexture;
+  
+    //Spriteclips
+    SDL_Rect _SpriteClips[PLAYER_ANIMATION_FRAMES];
 
 };
 

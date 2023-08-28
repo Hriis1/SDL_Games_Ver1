@@ -8,13 +8,24 @@ Player::Player()
 
 bool Player::init(SDL_Renderer* renderer, SDL_Window* window)
 {
+    //init texture
     _PlayerTexture.initRenderer(renderer);
-
     if(!_PlayerTexture.loadFromFile("Assets/Textures/PacMan.png", window))
     {
         printf("Could not load Player texture\n");
         return false;
     }
+
+    //init spriteclips
+    
+    _SpriteClips[0] = { 0,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
+    _SpriteClips[1] = { (int)PLAYER_WIDTH,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
+    _SpriteClips[2] = { (int)PLAYER_WIDTH * 2,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
+    _SpriteClips[3] = { (int)PLAYER_WIDTH * 3,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
+    _SpriteClips[4] = { (int)PLAYER_WIDTH * 4,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
+    _SpriteClips[5] = { (int)PLAYER_WIDTH * 5,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
+    _SpriteClips[6] = { (int)PLAYER_WIDTH * 6,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
+    _SpriteClips[7] = { (int)PLAYER_WIDTH * 7,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
 
     return true;
 }
@@ -63,7 +74,7 @@ void Player::update(float  deltaTime)
 
 void Player::render(int camX, int camY)
 {
-    _PlayerTexture.render(_xPos - camX, _yPos - camY, 0, TEXTURE_SCALE);
+    _PlayerTexture.render(_xPos - camX, _yPos - camY, &_SpriteClips[0], TEXTURE_SCALE);
 }
 
 void Player::shiftColliders()
