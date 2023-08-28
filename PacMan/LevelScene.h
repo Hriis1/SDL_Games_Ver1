@@ -15,6 +15,8 @@
 #include <LWindow.h>
 #include <LTimer.h>
 
+#include "Player.h"
+
 class LevelScene : public IScene
 {
 public:

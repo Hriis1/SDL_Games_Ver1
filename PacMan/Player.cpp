@@ -3,7 +3,7 @@
 Player::Player()
 {
     //Set collision circle size
-    _collisionCircle.r = Player_WIDTH / 2;
+    _collisionCircle.r = PLAYER_WIDTH / 2;
 
     //Move collider relative to the circle
     shiftColliders();
@@ -30,10 +30,10 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        case SDLK_UP: _yVel -= Player_VEL; break;
-        case SDLK_DOWN: _yVel += Player_VEL; break;
-        case SDLK_LEFT: _xVel -= Player_VEL; break;
-        case SDLK_RIGHT: _xVel += Player_VEL; break;
+        case SDLK_UP: _yVel -= PLAYER_VEL; break;
+        case SDLK_DOWN: _yVel += PLAYER_VEL; break;
+        case SDLK_LEFT: _xVel -= PLAYER_VEL; break;
+        case SDLK_RIGHT: _xVel += PLAYER_VEL; break;
         }
     }
     //If a key was released
@@ -42,10 +42,10 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        case SDLK_UP: _yVel += Player_VEL; break;
-        case SDLK_DOWN: _yVel -= Player_VEL; break;
-        case SDLK_LEFT: _xVel += Player_VEL; break;
-        case SDLK_RIGHT: _xVel -= Player_VEL; break;
+        case SDLK_UP: _yVel += PLAYER_VEL; break;
+        case SDLK_DOWN: _yVel -= PLAYER_VEL; break;
+        case SDLK_LEFT: _xVel += PLAYER_VEL; break;
+        case SDLK_RIGHT: _xVel -= PLAYER_VEL; break;
         }
     }
 }
