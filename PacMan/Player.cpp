@@ -75,14 +75,14 @@ void Player::update(float  deltaTime)
 
 void Player::render(int camX, int camY)
 {
-    SDL_Rect* currentClip = &_spriteClips[_animationFrame / 16];
+    SDL_Rect* currentClip = &_spriteClips[_animationFrame / 12];
     _playerSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE);
 
     //Go to next frame
     _animationFrame++;
 
     //Cycle animation
-    if (_animationFrame / 16 >= PLAYER_ANIMATION_FRAMES)
+    if (_animationFrame / 12 >= PLAYER_ANIMATION_FRAMES)
     {
         _animationFrame = 0;
     }
