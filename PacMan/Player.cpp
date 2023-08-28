@@ -9,8 +9,8 @@ Player::Player()
 bool Player::init(SDL_Renderer* renderer, SDL_Window* window)
 {
     //init texture
-    _PlayerTexture.initRenderer(renderer);
-    if(!_PlayerTexture.loadFromFile("Assets/Textures/PacMan.png", window))
+    _playerSpriteSheet.initRenderer(renderer);
+    if(!_playerSpriteSheet.loadFromFile("Assets/Textures/PacMan.png", window))
     {
         printf("Could not load Player texture\n");
         return false;
@@ -75,7 +75,7 @@ void Player::update(float  deltaTime)
 
 void Player::render(int camX, int camY)
 {
-    _PlayerTexture.render(_xPos - camX, _yPos - camY, &_SpriteClips[0], TEXTURE_SCALE);
+    _playerSpriteSheet.render(_xPos - camX, _yPos - camY, &_SpriteClips[0], TEXTURE_SCALE);
 }
 
 void Player::shiftColliders()

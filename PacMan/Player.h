@@ -70,7 +70,7 @@ private:
     SDL_FRect _collisionRect = { 0,0, PLAYER_WIDTH, PLAYER_HEIGHT };
 
     //Players texture
-    LTexture _PlayerTexture;
+    LTexture _playerSpriteSheet;
   
     //Spriteclips
     SDL_Rect _SpriteClips[PLAYER_ANIMATION_FRAMES];
