@@ -14,7 +14,6 @@
 #include <LTexture.h>
 #include <LWindow.h>
 #include <LTimer.h>
-#include <Tile.h>
 
 class LevelScene : public IScene
 {

@@ -7,30 +7,29 @@
 #include <GlobalData.h>
 #include <Utils.h>
 #include <LTexture.h>
-#include <Tile.h>
 
-constexpr float DOT_VEL = 1.0f;
-constexpr float DOT_WIDTH = 20;
-constexpr float DOT_HEIGHT = 20;
-class Dot
+constexpr float PLAYER_VEL = 1.0f;
+constexpr float PLAYER_WIDTH = 16;
+constexpr float PLAYER_HEIGHT = 16;
+class Player
 {
-    //This dot class has circilar collision detector
-    //The position of the dot is the center of the circle
+    //This Player class has circilar collision detector
+    //The position of the Player is the center of the circle
 public:
     //Initializes the variables
-    Dot();
+    Player();
 
-    //Init the dot
+    //Init the Player
     bool init(SDL_Renderer* renderer, SDL_Window* window);
 
-    //Takes key presses and adjusts the dot's velocity
+    //Takes key presses and adjusts the Player's velocity
     void handleEvent(SDL_Event& e);
 
-    //Moves the dot
-    void update(std::vector<Tile*>& tiles);
+    //Moves the Player
+    void update();
 
 
-    //Shows the dot on the screen
+    //Shows the Player on the screen
     void render(int camX, int camY);
 
     //getters
@@ -50,22 +49,22 @@ public:
     }
     
 private:
-    //Moves the collision circle relative to the dot's offset
+    //Moves the collision circle relative to the Player's offset
     void shiftColliders();
 private:
 
-    //The X and Y offsets of the dot
+    //The X and Y offsets of the Player
     float _xPos = 10;
     float _yPos = 10;
 
-    //The velocity of the dot
+    //The velocity of the Player
     float _xVel = 0;
     float _yVel = 0;
 
-    //Dots texture
-    LTexture _dotTexture;
+    //Players texture
+    LTexture _PlayerTexture;
 
-    //Dots collision circle
+    //Players collision circle
     Circle<float> _collisionCircle;
 
 };
