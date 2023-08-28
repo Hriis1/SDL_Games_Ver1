@@ -58,6 +58,9 @@ private:
 	//Player
 	Player _player;
 
+	//walls
+	std::vector<SDL_FRect> _walls;
+
 	//Quit flag
 	bool& _quitFlag;
 	

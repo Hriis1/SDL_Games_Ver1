@@ -3,6 +3,7 @@
 LevelScene::LevelScene(LWindow& win, bool& quitFlag)
     : _window(win), _quitFlag(quitFlag)
 {
+    _walls.push_back({ 100, 20, 200, 100 });
 }
 
 LevelScene::~LevelScene()
@@ -80,7 +81,7 @@ void LevelScene::update()
         float deltaTime = _deltaTimer.getTicks() / 1000.f;
 
         //Update
-        _player.update(deltaTime);
+        _player.update(deltaTime, _walls);
 
         //Restart step timer
         _deltaTimer.start();
