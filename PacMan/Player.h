@@ -13,8 +13,7 @@ constexpr float PLAYER_WIDTH = 16;
 constexpr float PLAYER_HEIGHT = 16;
 class Player
 {
-    //This Player class has circilar collision detector
-    //The position of the Player is the center of the circle
+    //This Player class has rect collision detector
 public:
     //Initializes the variables
     Player();
@@ -33,9 +32,9 @@ public:
     void render(int camX, int camY);
 
     //getters
-    const Circle<float>& getCollider() const
+    const SDL_FRect& getCollider() const
     {
-        return _collisionCircle;
+        return _collisionRect;
     }
 
     float getXPos() const
@@ -65,7 +64,7 @@ private:
     LTexture _PlayerTexture;
 
     //Players collision circle
-    Circle<float> _collisionCircle;
+    SDL_FRect _collisionRect = { 0,0, PLAYER_WIDTH, PLAYER_HEIGHT };
 
 };
 

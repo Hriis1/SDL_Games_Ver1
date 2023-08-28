@@ -2,9 +2,6 @@
 
 Player::Player()
 {
-    //Set collision circle size
-    _collisionCircle.r = PLAYER_WIDTH / 2;
-
     //Move collider relative to the circle
     shiftColliders();
 }
@@ -66,11 +63,11 @@ void Player::update()
 
 void Player::render(int camX, int camY)
 {
-    _PlayerTexture.render(_xPos - _collisionCircle.r - camX, _yPos - _collisionCircle.r - camY);
+    _PlayerTexture.render(_xPos - camX, _yPos - camY);
 }
 
 void Player::shiftColliders()
 {
-    _collisionCircle.x = _xPos;
-    _collisionCircle.y = _yPos;
+    _collisionRect.x = _xPos;
+    _collisionRect.y = _yPos;
 }
