@@ -143,11 +143,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Dot.cpp" />
     <ClCompile Include="LevelScene.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="Dot.h" />
     <ClInclude Include="LevelScene.h" />
     <ClInclude Include="PacManData.h" />
   </ItemGroup>
