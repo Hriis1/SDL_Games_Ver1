@@ -3,7 +3,13 @@
 LevelScene::LevelScene(LWindow& win, bool& quitFlag)
     : _window(win), _quitFlag(quitFlag)
 {
-    _walls.emplace_back(SDL_FRect{ 267, 20, 17, 257 });
+
+    //Outside walls
+    _walls.emplace_back(SDL_FRect{ 267, 18, 17, 257 });
+    _walls.emplace_back(SDL_FRect{ 996, 18, 17, 257 });
+    _walls.emplace_back(SDL_FRect{ 284, 18, 712, 15 });
+
+    //Inside walls
 }
 
 LevelScene::~LevelScene()
