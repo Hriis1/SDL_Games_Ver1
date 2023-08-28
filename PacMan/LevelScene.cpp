@@ -117,6 +117,15 @@ void LevelScene::draw()
     //Draw textures
     _bgTexture.render(0, 0);
 
+    //Draw the walls for testing
+    SDL_SetRenderDrawColor(_window.renderer, 255, 0, 0, 255);
+    for (size_t i = 0; i < _walls.size(); i++)
+    {
+        SDL_RenderDrawRectF(_window.renderer, &_walls[i]);
+    }
+   
+
+    //Draw the player
     _player.render(_camera.x, _camera.y);
     
 
