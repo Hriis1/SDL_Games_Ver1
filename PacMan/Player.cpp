@@ -67,7 +67,7 @@ void Player::handleEvent(SDL_Event& e)
     }
 }
 
-void Player::update(float  deltaTime)
+void Player::update(float  deltaTime, const std::vector<SDL_FRect>& walls)
 {
     updateDirection();
 
@@ -75,6 +75,57 @@ void Player::update(float  deltaTime)
     _xPos += _xVel * deltaTime;
     _yPos += _yVel * deltaTime;
     shiftColliders();
+
+    for (size_t i = 0; i < walls.size(); i++)
+    {
+        if (checkCollision(_collisionRect, walls[i]))
+        {
+            //Player box values
+            int playerleft = _collisionRect.x;
+            int playerRight = _collisionRect.x + _collisionRect.w;
+            int playerTop = _collisionRect.y;
+            int playerBot = _collisionRect.y + _collisionRect.h;
+
+            //wall box values
+            int wallleft = walls[i].x;
+            int wallRight = walls[i].x + walls[i].w;
+            int wallTop = walls[i].y;
+            int wallBot = walls[i].y + walls[i].h;
+
+            int horizontalDistance = std::min(std::abs(playerRight - wallleft),
+                std::abs(playerleft - wallRight));
+
+            int verticalDistance = std::min(std::abs(playerBot - wallTop),
+                std::abs(playerTop - wallBot));
+
+            if (horizontalDistance < verticalDistance) {
+                // Resolve horizontal collision
+                float box1CenterX = playerleft + (_collisionRect.w / 2.0f);
+                float box2CenterX = wallleft + (walls[i].w / 2.0f);
+                if (box1CenterX < box2CenterX) //coming from the left
+                {
+                    _xPos += wallleft - playerRight;
+                }
+                else if (box1CenterX > box2CenterX) {
+                    _xPos += wallRight - playerleft;
+                }
+            }
+            else if (horizontalDistance > verticalDistance) {
+                float box1CenterY = playerTop + (_collisionRect.h / 2.0f);
+                float box2CenterY = wallTop + (walls[i].h / 2.0f);
+                // Resolve vertical collision
+                if (box1CenterY < box2CenterY) //coming from the top
+                {
+                    _yPos = wallTop - _collisionRect.h;
+
+                }
+                else {
+                    _yPos = wallBot;
+                }
+            }
+            shiftColliders();
+        }
+    }
 
     
 }

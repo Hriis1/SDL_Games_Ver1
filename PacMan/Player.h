@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
@@ -23,7 +25,7 @@ public:
     void handleEvent(SDL_Event& e);
 
     //Moves the Player
-    void update(float  deltaTime);
+    void update(float  deltaTime, const std::vector<SDL_FRect>& walls = {});
 
 
     //Shows the Player on the screen
