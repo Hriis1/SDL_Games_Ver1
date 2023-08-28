@@ -39,10 +39,22 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        case SDLK_UP: _yVel -= PLAYER_VEL; break;
-        case SDLK_DOWN: _yVel += PLAYER_VEL; break;
-        case SDLK_LEFT: _xVel -= PLAYER_VEL; break;
-        case SDLK_RIGHT: _xVel += PLAYER_VEL; break;
+        case SDLK_UP:
+            _yVel -= PLAYER_VEL;
+            _direction = DIRECTION::UP;
+            break;
+        case SDLK_DOWN:
+            _yVel += PLAYER_VEL;
+            _direction = DIRECTION::DPWN;
+            break;
+        case SDLK_LEFT:
+            _xVel -= PLAYER_VEL;
+            _direction = DIRECTION::LEFT;
+            break;
+        case SDLK_RIGHT:
+            _xVel += PLAYER_VEL; 
+            _direction = DIRECTION::RIGHT;
+            break;
         }
     }
     //If a key was released
@@ -76,8 +88,17 @@ void Player::update(float  deltaTime)
 void Player::render(int camX, int camY)
 {
     SDL_Rect* currentClip = &_spriteClips[_animationFrame / 12];
-    _playerSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE);
 
+    
+    if (_direction == DIRECTION::LEFT)
+    {
+        _playerSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_HORIZONTAL);
+    }
+    else
+    {
+        _playerSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
+    }
+          
     //Go to next frame
     _animationFrame++;
 

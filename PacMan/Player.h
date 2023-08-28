@@ -1,12 +1,11 @@
 #pragma once
-#include <vector>
-
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
-#include <GlobalData.h>
 #include <Utils.h>
 #include <LTexture.h>
+
+#include "PacManData.h"
 
 const int PLAYER_ANIMATION_FRAMES = 8;
 
@@ -65,6 +64,9 @@ private:
     //The velocity of the Player
     float _xVel = 0;
     float _yVel = 0;
+
+    //The direction the player is facing
+    DIRECTION _direction = DIRECTION::RIGHT;
 
     //Players collision circle
     SDL_FRect _collisionRect = { 0,0, PLAYER_WIDTH, PLAYER_HEIGHT };
