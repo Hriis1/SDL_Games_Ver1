@@ -73,7 +73,8 @@ private:
     LTexture _playerSpriteSheet;
   
     //Spriteclips
-    SDL_Rect _SpriteClips[PLAYER_ANIMATION_FRAMES];
+    int _animationFrame = 0;
+    SDL_Rect _spriteClips[PLAYER_ANIMATION_FRAMES];
 
 };
 

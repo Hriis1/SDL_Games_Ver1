@@ -19,14 +19,14 @@ bool Player::init(SDL_Renderer* renderer, SDL_Window* window)
     //init spriteclips
     int textureWidth = PLAYER_WIDTH / TEXTURE_SCALE;
     int textureHeight = PLAYER_HEIGHT / TEXTURE_SCALE;
-    _SpriteClips[0] = { 0,0, textureWidth, textureHeight };
-    _SpriteClips[1] = { textureWidth,0, textureWidth, textureHeight };
-    _SpriteClips[2] = { textureWidth * 2,0, textureWidth, textureHeight };
-    _SpriteClips[3] = { textureWidth * 3,0, textureWidth, textureHeight };
-    _SpriteClips[4] = { textureWidth * 4,0, textureWidth, textureHeight };
-    _SpriteClips[5] = { textureWidth * 5,0, textureWidth, textureHeight };
-    _SpriteClips[6] = { textureWidth * 6,0, textureWidth, textureHeight };
-    _SpriteClips[7] = { textureWidth * 7,0, textureWidth, textureHeight };
+    _spriteClips[0] = { 0,0, textureWidth, textureHeight };
+    _spriteClips[1] = { textureWidth,0, textureWidth, textureHeight };
+    _spriteClips[2] = { textureWidth * 2,0, textureWidth, textureHeight };
+    _spriteClips[3] = { textureWidth * 3,0, textureWidth, textureHeight };
+    _spriteClips[4] = { textureWidth * 4,0, textureWidth, textureHeight };
+    _spriteClips[5] = { textureWidth * 5,0, textureWidth, textureHeight };
+    _spriteClips[6] = { textureWidth * 6,0, textureWidth, textureHeight };
+    _spriteClips[7] = { textureWidth * 7,0, textureWidth, textureHeight };
 
     return true;
 }
@@ -75,7 +75,8 @@ void Player::update(float  deltaTime)
 
 void Player::render(int camX, int camY)
 {
-    _playerSpriteSheet.render(_xPos - camX, _yPos - camY, &_SpriteClips[0], TEXTURE_SCALE);
+    SDL_Rect* currentClip = &_spriteClips[_animationFrame / 16];
+    _playerSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE);
 }
 
 void Player::shiftColliders()
