@@ -39,12 +39,6 @@ bool App::init()
         return false;
     }
 
-    if (!Tile::initTiles(_window.renderer, _window.getSDLWindow()))
-    {
-        printf("Could not init tiles\n");
-        return false;
-    }
-
     return true;
 }
 
