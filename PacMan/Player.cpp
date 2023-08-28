@@ -17,15 +17,16 @@ bool Player::init(SDL_Renderer* renderer, SDL_Window* window)
     }
 
     //init spriteclips
-    
-    _SpriteClips[0] = { 0,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
-    _SpriteClips[1] = { (int)PLAYER_WIDTH,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
-    _SpriteClips[2] = { (int)PLAYER_WIDTH * 2,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
-    _SpriteClips[3] = { (int)PLAYER_WIDTH * 3,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
-    _SpriteClips[4] = { (int)PLAYER_WIDTH * 4,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
-    _SpriteClips[5] = { (int)PLAYER_WIDTH * 5,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
-    _SpriteClips[6] = { (int)PLAYER_WIDTH * 6,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
-    _SpriteClips[7] = { (int)PLAYER_WIDTH * 7,0, (int)PLAYER_WIDTH, (int)PLAYER_HEIGHT };
+    int textureWidth = PLAYER_WIDTH / TEXTURE_SCALE;
+    int textureHeight = PLAYER_HEIGHT / TEXTURE_SCALE;
+    _SpriteClips[0] = { 0,0, textureWidth, textureHeight };
+    _SpriteClips[1] = { textureWidth,0, textureWidth, textureHeight };
+    _SpriteClips[2] = { textureWidth * 2,0, textureWidth, textureHeight };
+    _SpriteClips[3] = { textureWidth * 3,0, textureWidth, textureHeight };
+    _SpriteClips[4] = { textureWidth * 4,0, textureWidth, textureHeight };
+    _SpriteClips[5] = { textureWidth * 5,0, textureWidth, textureHeight };
+    _SpriteClips[6] = { textureWidth * 6,0, textureWidth, textureHeight };
+    _SpriteClips[7] = { textureWidth * 7,0, textureWidth, textureHeight };
 
     return true;
 }
