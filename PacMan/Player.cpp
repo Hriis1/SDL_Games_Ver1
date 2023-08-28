@@ -63,7 +63,7 @@ void Player::update()
 
 void Player::render(int camX, int camY)
 {
-    _PlayerTexture.render(_xPos - camX, _yPos - camY);
+    _PlayerTexture.render(_xPos - camX, _yPos - camY, 0, TEXTURE_SCALE);
 }
 
 void Player::shiftColliders()

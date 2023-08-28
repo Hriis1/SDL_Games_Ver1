@@ -8,9 +8,7 @@
 #include <Utils.h>
 #include <LTexture.h>
 
-constexpr float PLAYER_VEL = 1.0f;
-constexpr float PLAYER_WIDTH = 16;
-constexpr float PLAYER_HEIGHT = 16;
+
 class Player
 {
     //This Player class has rect collision detector
@@ -52,6 +50,12 @@ private:
     void shiftColliders();
 private:
 
+    //consts
+    const float TEXTURE_SCALE = 2.0f;
+    const float PLAYER_VEL = 1.0f;
+    const float PLAYER_WIDTH = 16 * TEXTURE_SCALE;
+    const float PLAYER_HEIGHT = 16 * TEXTURE_SCALE;
+
     //The X and Y offsets of the Player
     float _xPos = 10;
     float _yPos = 10;
@@ -63,6 +67,7 @@ private:
     //Players texture
     LTexture _PlayerTexture;
 
+    
     //Players collision circle
     SDL_FRect _collisionRect = { 0,0, PLAYER_WIDTH, PLAYER_HEIGHT };
 
