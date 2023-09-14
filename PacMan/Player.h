@@ -62,8 +62,8 @@ private:
     
 
     //The X and Y offsets of the Player
-    float _xPos = 10;
-    float _yPos = 10;
+    float _xPos = 300;
+    float _yPos = 100;
 
     //The velocity of the Player
     float _xVel = 0;
