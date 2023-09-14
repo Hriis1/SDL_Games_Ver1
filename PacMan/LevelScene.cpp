@@ -19,14 +19,14 @@ LevelScene::LevelScene(LWindow& win, bool& quitFlag)
     _walls.emplace_back(SDL_FRect{ 284, 319, 121, 15 });
     _walls.emplace_back(SDL_FRect{ 875, 319, 121, 15 });
 
-    _walls.emplace_back(SDL_FRect{ 284, 380, 121, 15 });
-    _walls.emplace_back(SDL_FRect{ 875, 380, 121, 15 });
+    _walls.emplace_back(SDL_FRect{ 284, 382, 121, 15 });
+    _walls.emplace_back(SDL_FRect{ 875, 382, 121, 15 });
 
-    /*_walls.emplace_back(SDL_FRect{ 388, 398, 17, 44 });
-    _walls.emplace_back(SDL_FRect{ 875, 398, 17, 44 });*/
+    _walls.emplace_back(SDL_FRect{ 388, 395, 17, 45 });
+    _walls.emplace_back(SDL_FRect{ 875, 395, 17, 45 });
 
-    _walls.emplace_back(SDL_FRect{ 284, 441, 121, 15 });
-    _walls.emplace_back(SDL_FRect{ 875, 441, 121, 15 });
+    _walls.emplace_back(SDL_FRect{ 284, 440, 121, 15 });
+    _walls.emplace_back(SDL_FRect{ 875, 440, 121, 15 });
 
     //Inside walls
 }
