@@ -34,6 +34,9 @@ LevelScene::LevelScene(LWindow& win, bool& quitFlag)
     _walls.emplace_back(SDL_FRect{ 350, 78, 580, 15 });
 
     _walls.emplace_back(SDL_FRect{ 632, 93, 17, 59 });
+
+    _walls.emplace_back(SDL_FRect{ 349, 140, 96, 13 });
+    _walls.emplace_back(SDL_FRect{ 835, 140, 96, 13 });
 }
 
 LevelScene::~LevelScene()
