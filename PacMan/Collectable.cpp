@@ -1,5 +1,8 @@
 #include "Collectable.h"
 
+LTexture Collectable::_smallCollectableSprite;
+LTexture Collectable::_bigCollectableSprite;
+
 Collectable::Collectable(float xPos, float yPos, CollectableType type)
 	: _xPos(xPos), _yPos(yPos), _type(type)
 {

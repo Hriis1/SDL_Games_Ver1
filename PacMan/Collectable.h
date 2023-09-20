@@ -49,9 +49,9 @@ public:
 private:
 
     //consts
-    const float TEXTURE_SCALE = 2.0f;
-    const float Collectable_WIDTH = 16 * TEXTURE_SCALE;
-    const float Collectable_HEIGHT = 16 * TEXTURE_SCALE;
+    const float TEXTURE_SCALE = 1.0f;
+    const float COLLECTABLE_WIDTH = 16 * TEXTURE_SCALE;
+    const float COLLECTABLE_HEIGHT = 16 * TEXTURE_SCALE;
 
     //The X and Y offsets of the Collectable
     float _xPos = 0;
@@ -61,10 +61,11 @@ private:
     CollectableType _type;
 
     //Collectables collision circle
-    SDL_FRect _collisionRect = { 0,0, Collectable_WIDTH, Collectable_HEIGHT };
+    SDL_FRect _collisionRect = { 0,0, COLLECTABLE_WIDTH, COLLECTABLE_HEIGHT };
 
     //Collectables texture
-    LTexture _collectableSprite;
+    static LTexture _smallCollectableSprite;
+    static LTexture _bigCollectableSprite;
 
 
 };
