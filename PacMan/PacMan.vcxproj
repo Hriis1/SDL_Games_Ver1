@@ -143,12 +143,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Collectable.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="LevelScene.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="Collectable.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="LevelScene.h" />
     <ClInclude Include="PacManData.h" />
