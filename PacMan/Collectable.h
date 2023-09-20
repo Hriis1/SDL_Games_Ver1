@@ -66,8 +66,8 @@ private:
     SDL_FRect _collisionRect = { 0,0, COLLECTABLE_WIDTH, COLLECTABLE_HEIGHT };
 
     //Collectables texture
-    static LTexture _smallCollectableSprite;
-    static LTexture _bigCollectableSprite;
+    static LTexture _smallCollectableSpriteSheet;
+    static LTexture _bigCollectableSpriteSheet;
 
     //Spriteclips
     int _animationFrame = 0;

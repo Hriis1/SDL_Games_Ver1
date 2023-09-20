@@ -1,7 +1,7 @@
 #include "Collectable.h"
 
-LTexture Collectable::_smallCollectableSprite;
-LTexture Collectable::_bigCollectableSprite;
+LTexture Collectable::_smallCollectableSpriteSheet;
+LTexture Collectable::_bigCollectableSpriteSheet;
 
 Collectable::Collectable(float xPos, float yPos, CollectableType type)
 	: _xPos(xPos), _yPos(yPos), _type(type)
@@ -11,15 +11,15 @@ Collectable::Collectable(float xPos, float yPos, CollectableType type)
 bool Collectable::init(SDL_Renderer* renderer, SDL_Window* window)
 {
     //init texture
-    _smallCollectableSprite.initRenderer(renderer);
-    _bigCollectableSprite.initRenderer(renderer);
+    _smallCollectableSpriteSheet.initRenderer(renderer);
+    _bigCollectableSpriteSheet.initRenderer(renderer);
 
-    if (!_smallCollectableSprite.loadFromFile("Assets/Textures/Coin.png", window))
+    if (!_smallCollectableSpriteSheet.loadFromFile("Assets/Textures/Coin.png", window))
     {
         printf("Could not load small coin texture\n");
         return false;
     }
-    if (!_bigCollectableSprite.loadFromFile("Assets/Textures/BigCoin.png", window))
+    if (!_bigCollectableSpriteSheet.loadFromFile("Assets/Textures/BigCoin.png", window))
     {
         printf("Could not load small coin texture\n");
         return false;
@@ -42,4 +42,23 @@ bool Collectable::init(SDL_Renderer* renderer, SDL_Window* window)
 
 void Collectable::render(int camX, int camY)
 {
+    SDL_Rect* currentClip = &_spriteClips[_animationFrame / 12];
+
+    if (_type == CollectableType::SMALL)
+    {
+        _smallCollectableSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
+    }
+    else //if the type is BIG
+    {
+        _bigCollectableSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
+    }
+
+    //Go to next frame
+    _animationFrame++;
+
+    //Cycle animation
+    if (_animationFrame / 12 >= COLLECTABLE_ANIMATION_FRAMES)
+    {
+        _animationFrame = 0;
+    }
 }
