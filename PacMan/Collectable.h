@@ -22,7 +22,7 @@ public:
     
 public:
     //Initializes the variables
-    Collectable(CollectableType type ,float xPos, float yPos);
+    Collectable(float xPos, float yPos, CollectableType type = CollectableType::SMALL);
 
     //Init the Collectable textures
     bool init(SDL_Renderer* renderer, SDL_Window* window);
