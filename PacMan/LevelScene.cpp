@@ -18,6 +18,12 @@ bool LevelScene::init()
         std::cout << "Coild not init player!" << std::endl;
         return false;
     }
+
+    if (!Collectable::init(_window.renderer, _window.getSDLWindow()))
+    {
+        std::cout << "Coild not init collectables!" << std::endl;
+        return false;
+    }
     return true;
 }
 

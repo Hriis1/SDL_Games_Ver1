@@ -16,6 +16,7 @@
 #include <LTimer.h>
 
 #include "Player.h"
+#include "Collectable.h"
 
 class LevelScene : public IScene
 {
@@ -63,6 +64,9 @@ private:
 
 	//walls
 	std::vector<SDL_FRect> _walls;
+
+	//Coins
+	std::vector<Collectable> _coins;
 
 	//Quit flag
 	bool& _quitFlag;

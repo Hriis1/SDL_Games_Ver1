@@ -1,7 +1,11 @@
 #include "Collectable.h"
 
+const float Collectable::TEXTURE_SCALE = 1.0f;
+const float Collectable::COLLECTABLE_HEIGHT = 16 * Collectable::TEXTURE_SCALE;
+const float Collectable::COLLECTABLE_WIDTH = 16 * Collectable::TEXTURE_SCALE;
 LTexture Collectable::_smallCollectableSpriteSheet;
 LTexture Collectable::_bigCollectableSpriteSheet;
+SDL_Rect Collectable::_spriteClips[COLLECTABLE_ANIMATION_FRAMES];
 
 Collectable::Collectable(float xPos, float yPos, CollectableType type)
 	: _xPos(xPos), _yPos(yPos), _type(type)
