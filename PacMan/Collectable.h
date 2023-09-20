@@ -10,6 +10,8 @@
 
 #include "PacManData.h"
 
+const int COLLECTABLE_ANIMATION_FRAMES = 8;
+
 enum class CollectableType
 {
     SMALL = 0, BIG
@@ -67,6 +69,9 @@ private:
     static LTexture _smallCollectableSprite;
     static LTexture _bigCollectableSprite;
 
+    //Spriteclips
+    int _animationFrame = 0;
+    SDL_Rect _spriteClips[COLLECTABLE_ANIMATION_FRAMES];
 
 };
 
