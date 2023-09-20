@@ -32,6 +32,9 @@ public:
 	void quit() override;
 
 	void restart();
+
+private:
+	void initWalls();
 	
 
 private:
