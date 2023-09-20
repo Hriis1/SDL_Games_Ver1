@@ -53,12 +53,12 @@ private:
     const float Collectable_WIDTH = 16 * TEXTURE_SCALE;
     const float Collectable_HEIGHT = 16 * TEXTURE_SCALE;
 
-    //The type of the collectable
-    CollectableType _type;
-
     //The X and Y offsets of the Collectable
     float _xPos = 0;
     float _yPos = 0;
+
+    //The type of the collectable
+    CollectableType _type;
 
     //Collectables collision circle
     SDL_FRect _collisionRect = { 0,0, Collectable_WIDTH, Collectable_HEIGHT };
