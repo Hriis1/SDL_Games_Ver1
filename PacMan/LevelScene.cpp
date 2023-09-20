@@ -231,4 +231,5 @@ void LevelScene::initWalls()
 void LevelScene::initCollectables()
 {
     _coins.emplace_back(0.0f, 0.0f, CollectableType::SMALL);
+    _coins.emplace_back(20.0f, 0.0f, CollectableType::BIG);
 }
