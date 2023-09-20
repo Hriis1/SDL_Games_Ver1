@@ -36,8 +36,8 @@ public:
 
 private:
 	void initWalls();
+	void initCollectables();
 	
-
 private:
 
 	//Custom windows

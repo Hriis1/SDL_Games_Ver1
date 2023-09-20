@@ -221,3 +221,8 @@ void LevelScene::initWalls()
     _walls.emplace_back(SDL_FRect{ 566, 382, 43, 13 });
     _walls.emplace_back(SDL_FRect{ 672, 382, 43, 13 });
 }
+
+void LevelScene::initCollectables()
+{
+    _coins.emplace_back(0.0f, 0.0f, CollectableType::SMALL);
+}
