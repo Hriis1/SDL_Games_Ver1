@@ -1,6 +1,6 @@
 #include "Collectable.h"
 
-const float Collectable::TEXTURE_SCALE = 1.0f;
+const float Collectable::TEXTURE_SCALE = 2.0f;
 const float Collectable::COLLECTABLE_HEIGHT = 16 * Collectable::TEXTURE_SCALE;
 const float Collectable::COLLECTABLE_WIDTH = 16 * Collectable::TEXTURE_SCALE;
 LTexture Collectable::_smallCollectableSpriteSheet;

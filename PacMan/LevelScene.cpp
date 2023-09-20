@@ -5,6 +5,7 @@ LevelScene::LevelScene(LWindow& win, bool& quitFlag)
 {
 
     initWalls(); //Init th=e walls physics objects
+    initCollectables(); //Init the coins
 }
 
 LevelScene::~LevelScene()
@@ -131,6 +132,11 @@ void LevelScene::draw()
         SDL_RenderDrawRectF(_window.renderer, &_walls[i]);
     }
    
+    //Draw coins
+    for (size_t i = 0; i < _coins.size(); i++)
+    {
+        _coins[i].render(_camera.x, _camera.y);
+    }
 
     //Draw the player
     _player.render(_camera.x, _camera.y);
