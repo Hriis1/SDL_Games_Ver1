@@ -15,9 +15,9 @@ class Collectable
     //This Collectable class has rect collision detector
 public:
     //Initializes the variables
-    Collectable();
+    Collectable(float xPos, float yPos);
 
-    //Init the Collectable
+    //Init the Collectable textures
     bool init(SDL_Renderer* renderer, SDL_Window* window);
 
 
