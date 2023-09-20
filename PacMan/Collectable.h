@@ -10,12 +10,19 @@
 
 #include "PacManData.h"
 
+enum class CollectableType
+{
+    SMALL = 0, BIG
+};
+
 class Collectable
 {
     //This Collectable class has rect collision detector
 public:
+    
+public:
     //Initializes the variables
-    Collectable(float xPos, float yPos);
+    Collectable(CollectableType type ,float xPos, float yPos);
 
     //Init the Collectable textures
     bool init(SDL_Renderer* renderer, SDL_Window* window);
@@ -46,6 +53,8 @@ private:
     const float Collectable_WIDTH = 16 * TEXTURE_SCALE;
     const float Collectable_HEIGHT = 16 * TEXTURE_SCALE;
 
+    //The type of the collectable
+    CollectableType _type;
 
     //The X and Y offsets of the Collectable
     float _xPos = 0;
