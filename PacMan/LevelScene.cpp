@@ -263,4 +263,14 @@ void LevelScene::initCollectables()
             _coins.emplace_back(i, 224.0f, CollectableType::SMALL);
     }
 
+    //5th row
+    _coins.emplace_back(425.0f, 286.0f, CollectableType::SMALL);
+    _coins.emplace_back(500.0f, 286.0f, CollectableType::SMALL);
+    _coins.emplace_back(575.0f, 286.0f, CollectableType::SMALL);
+    _coins.emplace_back(625.0f, 286.0f, CollectableType::SMALL);
+    _coins.emplace_back(675.0f, 286.0f, CollectableType::SMALL);
+    _coins.emplace_back(750.0f, 286.0f, CollectableType::SMALL);
+    _coins.emplace_back(825.0f, 286.0f, CollectableType::SMALL);
+
+
 }
