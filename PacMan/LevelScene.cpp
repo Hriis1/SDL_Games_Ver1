@@ -237,8 +237,11 @@ void LevelScene::initCollectables()
     _coins.emplace_back(950.0f, 642.0f, CollectableType::BIG);
 
     //Small coins
-    for (size_t i = 340; i <= 904; i+=47)
+
+    //1st row
+    for (size_t i = 350; i <= 900; i+=50)
     {
         _coins.emplace_back(i, 38.0f, CollectableType::SMALL);
     }
+
 }
