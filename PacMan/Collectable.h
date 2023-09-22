@@ -45,6 +45,11 @@ public:
         return _yPos;
     }
 
+    CollectableType getType()
+    {
+        return _type;
+    }
+
     //static
     //Init the Collectable textures
     static bool init(SDL_Renderer* renderer, SDL_Window* window);
