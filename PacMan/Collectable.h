@@ -53,6 +53,11 @@ public:
     //static
     //Init the Collectable textures
     static bool init(SDL_Renderer* renderer, SDL_Window* window);
+
+private:
+    //Moves the collision rect relative to the Player's offset
+    void shiftColliders();
+
 private:
 
     

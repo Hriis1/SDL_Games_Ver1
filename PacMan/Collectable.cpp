@@ -10,6 +10,7 @@ SDL_Rect Collectable::_spriteClips[COLLECTABLE_ANIMATION_FRAMES];
 Collectable::Collectable(float xPos, float yPos, CollectableType type)
 	: _xPos(xPos), _yPos(yPos), _type(type)
 {
+    shiftColliders();
 }
 
 bool Collectable::init(SDL_Renderer* renderer, SDL_Window* window)
@@ -65,4 +66,10 @@ void Collectable::render(int camX, int camY)
     {
         _animationFrame = 0;
     }
+}
+
+void Collectable::shiftColliders()
+{
+    _collisionRect.x = _xPos;
+    _collisionRect.y = _yPos;
 }
