@@ -67,7 +67,7 @@ void Player::handleEvent(SDL_Event& e)
     }
 }
 
-void Player::update(float  deltaTime, const std::vector<SDL_FRect>& walls, const std::vector<Collectable>& collectables)
+void Player::update(float  deltaTime, std::vector<Collectable>& collectables, const std::vector<SDL_FRect>& walls)
 {
     updateDirection();
 
@@ -131,6 +131,17 @@ void Player::update(float  deltaTime, const std::vector<SDL_FRect>& walls, const
     //Collide with coins
     for (auto coinIt = collectables.begin(); coinIt != collectables.end(); coinIt++)
     {
+        if (checkCollision(_collisionRect, coinIt->getCollider())) //if the player is colliding with coin
+        {
+            if (coinIt->getType() == CollectableType::BIG)
+            {
+                //Trigger eating mode
+            }
+
+            //Update the score (maybe)
+
+            coinIt = collectables.erase(coinIt); //Remove the coin on collision
+        }
     }
 
     

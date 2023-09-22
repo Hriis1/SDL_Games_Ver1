@@ -45,7 +45,7 @@ public:
         return _yPos;
     }
 
-    CollectableType getType()
+    CollectableType getType() const
     {
         return _type;
     }
