@@ -8,6 +8,7 @@
 #include <LTexture.h>
 
 #include "PacManData.h"
+#include "Collectable.h"
 
 const int PLAYER_ANIMATION_FRAMES = 8;
 
@@ -25,7 +26,7 @@ public:
     void handleEvent(SDL_Event& e);
 
     //Moves the Player
-    void update(float  deltaTime, const std::vector<SDL_FRect>& walls = {});
+    void update(float  deltaTime, const std::vector<SDL_FRect>& walls = {}, const std::vector<Collectable>& collectables = {});
 
 
     //Shows the Player on the screen

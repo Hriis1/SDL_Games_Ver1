@@ -67,7 +67,7 @@ void Player::handleEvent(SDL_Event& e)
     }
 }
 
-void Player::update(float  deltaTime, const std::vector<SDL_FRect>& walls)
+void Player::update(float  deltaTime, const std::vector<SDL_FRect>& walls, const std::vector<Collectable>& collectables)
 {
     updateDirection();
 
@@ -76,6 +76,7 @@ void Player::update(float  deltaTime, const std::vector<SDL_FRect>& walls)
     _yPos += _yVel * deltaTime;
     shiftColliders();
 
+    //Collide with walls
     for (size_t i = 0; i < walls.size(); i++)
     {
         if (checkCollision(_collisionRect, walls[i]))
