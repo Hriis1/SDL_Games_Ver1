@@ -256,4 +256,11 @@ void LevelScene::initCollectables()
         _coins.emplace_back(i, 162.0f, CollectableType::SMALL);
     }
 
+    //4th row
+    for (size_t i = 300; i <= 950; i += 50)
+    {
+        if(i!=450 && i != 800)
+            _coins.emplace_back(i, 224.0f, CollectableType::SMALL);
+    }
+
 }
