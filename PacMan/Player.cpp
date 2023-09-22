@@ -128,6 +128,11 @@ void Player::update(float  deltaTime, const std::vector<SDL_FRect>& walls, const
         }
     }
 
+    //Collide with coins
+    for (auto coinIt = collectables.begin(); coinIt != collectables.end(); coinIt++)
+    {
+    }
+
     
 }
 
