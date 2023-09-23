@@ -71,7 +71,7 @@ private:
     GhostType _type;
 
     //Ghosts collision circle
-    SDL_FRect _collisionRect = { 0,0, Ghost_WIDTH, Ghost_HEIGHT };
+    SDL_FRect _collisionRect = { 0,0, GHOST_WIDTH, GHOST_HEIGHT };
 
     //animation frames
     int _animationFrame = 0;
@@ -79,8 +79,8 @@ private:
     //static
     //consts
     static const float TEXTURE_SCALE;
-    static const float Ghost_WIDTH;
-    static const float Ghost_HEIGHT;
+    static const float GHOST_WIDTH;
+    static const float GHOST_HEIGHT;
 
     //sprite clips
     static SDL_Rect _spriteClips[Ghost_ANIMATION_FRAMES];

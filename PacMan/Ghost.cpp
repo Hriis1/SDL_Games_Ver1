@@ -52,8 +52,8 @@ bool Ghost::init(SDL_Renderer* renderer, SDL_Window* window)
     }
 
     //init spriteclips
-    int textureWidth = Ghost_WIDTH / TEXTURE_SCALE;
-    int textureHeight = Ghost_HEIGHT / TEXTURE_SCALE;
+    int textureWidth = GHOST_WIDTH / TEXTURE_SCALE;
+    int textureHeight = GHOST_HEIGHT / TEXTURE_SCALE;
     _spriteClips[0] = { 0,0, textureWidth, textureHeight };
     _spriteClips[1] = { textureWidth,0, textureWidth, textureHeight };
     _spriteClips[2] = { textureWidth * 2,0, textureWidth, textureHeight };
