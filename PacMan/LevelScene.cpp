@@ -6,6 +6,7 @@ LevelScene::LevelScene(LWindow& win, bool& quitFlag)
 
     initWalls(); //Init th=e walls physics objects
     initCollectables(); //Init the coins
+    initGhosts(); //Init the ghosts
 }
 
 LevelScene::~LevelScene()
