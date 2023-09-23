@@ -15,7 +15,7 @@ const int Ghost_ANIMATION_FRAMES = 8;
 
 enum class GhostType
 {
-    SMALL = 0, BIG
+    RED = 0, GREEN, BLUE, ORANGE, YELLOW
 };
 
 class Ghost
@@ -25,7 +25,7 @@ public:
 
 public:
     //Initializes the variables
-    Ghost(float xPos, float yPos, GhostType type = GhostType::SMALL);
+    Ghost(float xPos, float yPos, GhostType type = GhostType::RED);
 
     //Shows the Ghost on the screen
     void render(int camX, int camY);

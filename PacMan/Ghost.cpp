@@ -1,8 +1,8 @@
 #include "Ghost.h"
 
 const float Ghost::TEXTURE_SCALE = 2.0f;
-const float Ghost::Ghost_HEIGHT = 16 * Ghost::TEXTURE_SCALE;
-const float Ghost::Ghost_WIDTH = 16 * Ghost::TEXTURE_SCALE;
+const float Ghost::GHOST_HEIGHT = 16 * Ghost::TEXTURE_SCALE;
+const float Ghost::GHOST_WIDTH = 16 * Ghost::TEXTURE_SCALE;
 LTexture Ghost::_redGhostSpriteSheet;
 LTexture Ghost::_greenGhostSpriteSheet;
 LTexture Ghost::_blueGhostSpriteSheet;
@@ -70,13 +70,25 @@ void Ghost::render(int camX, int camY)
 {
     SDL_Rect* currentClip = &_spriteClips[_animationFrame / 12];
 
-    if (_type == GhostType::SMALL)
+    if (_type == GhostType::RED)
     {
-        _smallGhostSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
+        _redGhostSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
     }
-    else //if the type is BIG
+    else if(_type == GhostType::GREEN)
     {
-        _bigGhostSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
+        _greenGhostSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
+    }
+    else if (_type == GhostType::BLUE)
+    {
+        _blueGhostSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
+    }
+    else if (_type == GhostType::ORANGE)
+    {
+        _orangeGhostSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
+    }
+    else if (_type == GhostType::YELLOW)
+    {
+        _yellowGhostSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
     }
 
     //Go to next frame
