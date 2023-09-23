@@ -86,8 +86,12 @@ private:
     static SDL_Rect _spriteClips[Ghost_ANIMATION_FRAMES];
 
     //Ghosts texture
-    static LTexture _smallGhostSpriteSheet;
-    static LTexture _bigGhostSpriteSheet;
+    static LTexture _redGhostSpriteSheet;
+    static LTexture _greenGhostSpriteSheet;
+    static LTexture _blueGhostSpriteSheet;
+    static LTexture _orangeGhostSpriteSheet;
+    static LTexture _yellowGhostSpriteSheet;
+
 
 };
 
