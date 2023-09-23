@@ -144,6 +144,12 @@ void LevelScene::draw()
         _coins[i].render(_camera.x, _camera.y);
     }
 
+    //Draw ghosts
+    for (size_t i = 0; i < _ghosts.size(); i++)
+    {
+        _ghosts[i].render(_camera.x, _camera.y);
+    }
+
     //Draw the player
     _player.render(_camera.x, _camera.y);
     
