@@ -323,3 +323,8 @@ void LevelScene::initCollectables()
 
 
 }
+
+void LevelScene::initGhosts()
+{
+    _ghosts.emplace_back(0.0f, 0.0f, GhostType::RED);
+}

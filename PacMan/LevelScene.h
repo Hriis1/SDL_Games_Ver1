@@ -38,6 +38,7 @@ public:
 private:
 	void initWalls();
 	void initCollectables();
+	void initGhosts();
 	
 private:
 
