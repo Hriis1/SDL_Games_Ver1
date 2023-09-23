@@ -17,6 +17,7 @@
 
 #include "Player.h"
 #include "Collectable.h"
+#include "Ghost.h"
 
 class LevelScene : public IScene
 {
@@ -67,6 +68,9 @@ private:
 
 	//Coins
 	std::vector<Collectable> _coins;
+
+	//ghosts
+	std::vector<Ghost> _ghosts;
 
 	//Quit flag
 	bool& _quitFlag;

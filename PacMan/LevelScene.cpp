@@ -25,6 +25,12 @@ bool LevelScene::init()
         std::cout << "Coild not init collectables!" << std::endl;
         return false;
     }
+
+    if (!Ghost::init(_window.renderer, _window.getSDLWindow()))
+    {
+        std::cout << "Coild not init ghosts!" << std::endl;
+        return false;
+    }
     return true;
 }
 
