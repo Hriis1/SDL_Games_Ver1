@@ -25,27 +25,27 @@ bool Ghost::init(SDL_Renderer* renderer, SDL_Window* window)
     _orangeGhostSpriteSheet.initRenderer(renderer);
     _yellowGhostSpriteSheet.initRenderer(renderer);
 
-    if (!_redGhostSpriteSheet.loadFromFile("Assets/Textures/Coin.png", window))
+    if (!_redGhostSpriteSheet.loadFromFile("Assets/Textures/redGhost.png", window))
     {
         printf("Could not load red ghost texture\n");
         return false;
     }
-    if (!_greenGhostSpriteSheet.loadFromFile("Assets/Textures/BigCoin.png", window))
+    if (!_greenGhostSpriteSheet.loadFromFile("Assets/Textures/greenGhost.png", window))
     {
         printf("Could not load green ghost texture\n");
         return false;
     }
-    if (!_blueGhostSpriteSheet.loadFromFile("Assets/Textures/BigCoin.png", window))
+    if (!_blueGhostSpriteSheet.loadFromFile("Assets/Textures/blueGhost.png", window))
     {
         printf("Could not load blue ghost texture\n");
         return false;
     }
-    if (!_orangeGhostSpriteSheet.loadFromFile("Assets/Textures/BigCoin.png", window))
+    if (!_orangeGhostSpriteSheet.loadFromFile("Assets/Textures/orangeGhost.png", window))
     {
         printf("Could not load orange ghost texture\n");
         return false;
     }
-    if (!_yellowGhostSpriteSheet.loadFromFile("Assets/Textures/BigCoin.png", window))
+    if (!_yellowGhostSpriteSheet.loadFromFile("Assets/Textures/yellowGhost.png", window))
     {
         printf("Could not load yellow ghost texture\n");
         return false;
