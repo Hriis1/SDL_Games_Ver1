@@ -334,7 +334,7 @@ void LevelScene::initCollectables()
 void LevelScene::initGhosts()
 {
     _ghosts.emplace_back(575.0f, 286.0f, GhostType::RED);
-    _ghosts.emplace_back(40.0f, 20.0f, GhostType::GREEN);
+    _ghosts.emplace_back(675.0f, 286.0f, GhostType::GREEN);
     _ghosts.emplace_back(80.0f, 20.0f, GhostType::BLUE);
     _ghosts.emplace_back(120.0f, 20.0f, GhostType::ORANGE);
     _ghosts.emplace_back(160.0f, 20.0f, GhostType::YELLOW);
