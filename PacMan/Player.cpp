@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 Player::Player()
 {
@@ -140,6 +141,9 @@ void Player::update(float  deltaTime, float& score, std::vector<Collectable>& co
 
             //Update the score
             score += coinIt->getScoreWorth();
+
+            //print the score for testing
+            std::cout << score << std::endl;
 
             coinIt = collectables.erase(coinIt); //Remove the coin on collision
         }
