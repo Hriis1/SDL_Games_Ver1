@@ -75,6 +75,9 @@ private:
 
 	//Quit flag
 	bool& _quitFlag;
+
+	//the current score
+	float _score = 0.0f;
 	
 
 };
