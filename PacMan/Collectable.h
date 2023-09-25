@@ -50,6 +50,11 @@ public:
         return _type;
     }
 
+    float getScoreWorth() const
+    {
+        return _scoreWorth;
+    }
+
     //static
     //Init the Collectable textures
     static bool init(SDL_Renderer* renderer, SDL_Window* window);
