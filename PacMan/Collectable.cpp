@@ -11,6 +11,14 @@ Collectable::Collectable(float xPos, float yPos, CollectableType type)
 	: _xPos(xPos), _yPos(yPos), _type(type)
 {
     shiftColliders();
+    if (_type == CollectableType::SMALL)
+    {
+        _scoreWorth = 100.0f;
+    }
+    else //if the collectable is BIG
+    {
+        _scoreWorth = 500.0f;
+    }
 }
 
 bool Collectable::init(SDL_Renderer* renderer, SDL_Window* window)

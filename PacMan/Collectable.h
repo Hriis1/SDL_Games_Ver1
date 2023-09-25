@@ -60,8 +60,6 @@ private:
 
 private:
 
-    
-
     //The X and Y offsets of the Collectable
     float _xPos = 0;
     float _yPos = 0;
@@ -74,6 +72,9 @@ private:
 
     //animation frames
     int _animationFrame = 0;
+
+    //How much score the collectable gives
+    float _scoreWorth;
 
     //static
     //consts
