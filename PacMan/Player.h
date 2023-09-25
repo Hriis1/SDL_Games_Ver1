@@ -26,7 +26,7 @@ public:
     void handleEvent(SDL_Event& e);
 
     //Moves the Player
-    void update(float  deltaTime, std::vector<Collectable>& collectables, const std::vector<SDL_FRect>& walls = {});
+    void update(float  deltaTime, float& score, std::vector<Collectable>& collectables, const std::vector<SDL_FRect>& walls = {});
 
 
     //Shows the Player on the screen
