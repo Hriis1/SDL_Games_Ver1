@@ -96,7 +96,7 @@ void LevelScene::update()
         float deltaTime = _deltaTimer.getTicks() / 1000.f;
 
         //Update
-        _player.update(deltaTime, _coins ,_walls);
+        _player.update(deltaTime, _score, _coins ,_walls);
 
         //Restart step timer
         _deltaTimer.start();
