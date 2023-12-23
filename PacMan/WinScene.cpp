@@ -116,6 +116,8 @@ void WinScene::draw()
 void WinScene::quit()
 {
     //Free fonts
+    TTF_CloseFont(_font);
+    _font = NULL;
 }
 
 void WinScene::restart()
