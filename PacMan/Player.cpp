@@ -153,6 +153,9 @@ void Player::reset()
     //Reset position
     _xPos = X_START_POS;
     _yPos = Y_START_POS;
+
+    //Reset direction
+    _direction = DIRECTION::RIGHT;
 }
 
 void Player::render(int camX, int camY)
