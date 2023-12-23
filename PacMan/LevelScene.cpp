@@ -58,7 +58,10 @@ void LevelScene::handleEvents(SDL_Event& e)
         //Only while debugging/developing
         if (DEVELOPER_MODE)
         {
+            if (e.type == SDL_KEYDOWN)
+            {
 
+            }
         }
 
         if (e.type == SDL_QUIT)
@@ -88,6 +91,14 @@ void LevelScene::handleEvents(SDL_Event& e)
                 if (e.key.keysym.sym == SDLK_SPACE && e.key.repeat == 0)
                 {
                     _gameState = GameState::GO_TO_NEXT_SCENE;
+                }
+            }
+            else if (_gameState == GameState::RUNNING) //If game is won
+            {
+                //If R is pressed
+                if (e.key.keysym.sym == SDLK_r && e.key.repeat == 0)
+                {
+                    restart();
                 }
             }
         }
