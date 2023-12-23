@@ -374,4 +374,9 @@ void LevelScene::reset()
 
     //Reset the player
     _player.reset();
+
+    //Reinit objects
+    initWalls();
+    initCollectables();
+    initGhosts();
 }
