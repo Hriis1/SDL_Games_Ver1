@@ -40,10 +40,7 @@ static bool checkCollision(const SDL_Rect& a, const SDL_Rect& b)
     bottomB = b.y + b.h;
 
     //The actual collision check
-    if (rightA >= leftB && leftA <= rightB && bottomA >= topB && topA <= bottomB)
-        return true;
-
-    return false;
+    return (rightA >= leftB && leftA <= rightB && bottomA >= topB && topA <= bottomB);
 }
 
 static bool checkCollision(const SDL_FRect& a, const SDL_FRect& b)
