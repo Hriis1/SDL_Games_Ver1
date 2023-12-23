@@ -121,6 +121,12 @@ void LevelScene::update()
         //Update
         _player.update(deltaTime, _score, _coins ,_walls);
 
+        //Check the win condition
+        if (_coins.size() == 0)
+        {
+            _gameState = GameState::GO_TO_NEXT_SCENE;
+        }
+
         //Restart step timer
         _deltaTimer.start();
 

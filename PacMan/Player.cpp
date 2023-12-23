@@ -142,6 +142,12 @@ void Player::update(float  deltaTime, float& score, std::vector<Collectable>& co
             score += coinIt->getScoreWorth();
 
             coinIt = collectables.erase(coinIt); //Remove the coin on collision
+
+            //Resolves a crash on collecting the last added coin
+            if (coinIt == collectables.end())
+            {
+                break;
+            }
         }
     }
 
