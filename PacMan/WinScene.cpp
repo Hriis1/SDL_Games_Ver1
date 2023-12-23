@@ -18,6 +18,12 @@ bool WinScene::init()
 bool WinScene::loadMedia()
 {
     //Load fonts
+    _font = TTF_OpenFont("../_Engine/fonts/lazy.ttf", 50);
+    if (_font == NULL)
+    {
+        printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
+        return false;
+    }
 
     //Load textures
     _bgTexture.initRenderer(_window.renderer);
@@ -27,6 +33,12 @@ bool WinScene::loadMedia()
     }
 
     //Load text textures
+    _gameWonText.initRenderer(_window.renderer);
+    if (!_gameWonText.loadFromRenderedText("You win, gj :)!", { 0, 0 , 255 }, _font))
+    {
+        printf("Failed to load _gameWonText! SDL_image Error: %s\n", IMG_GetError());
+        return false;
+    }
 
     return true;
 }

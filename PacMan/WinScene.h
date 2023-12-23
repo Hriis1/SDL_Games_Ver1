@@ -47,6 +47,7 @@ private:
 	LWindow& _window;
 
 	//Fonts
+	TTF_Font* _font = NULL;
 
 	//Text colors
 	SDL_Color _textColor = { 0, 0, 0, 0xFF };
@@ -58,6 +59,7 @@ private:
 	LTexture _bgTexture;
 
 	//Text textures
+	LTexture _gameWonText;
 
 	//The camera area
 	SDL_FRect _camera = { 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
