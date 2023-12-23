@@ -55,6 +55,12 @@ void LevelScene::handleEvents(SDL_Event& e)
 {
     while (SDL_PollEvent(&e))
     {
+        //Only while debugging/developing
+        if (DEVELOPER_MODE)
+        {
+
+        }
+
         if (e.type == SDL_QUIT)
             _quitFlag = true;
 

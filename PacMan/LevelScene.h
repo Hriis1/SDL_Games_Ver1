@@ -15,6 +15,7 @@
 #include <LWindow.h>
 #include <LTimer.h>
 
+#include "Flags.h"
 #include "Player.h"
 #include "Collectable.h"
 #include "Ghost.h"
