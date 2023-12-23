@@ -106,6 +106,8 @@ void WinScene::draw()
     //Draw textures
     _bgTexture.render(0, 0);
 
+    _gameWonText.render(SCREEN_WIDTH / 2 - _gameWonText.getWidth() / 2, SCREEN_HEIGHT / 2 - _gameWonText.getHeight() / 2.0f);
+
 
     //Update screen
     SDL_RenderPresent(_window.renderer);
