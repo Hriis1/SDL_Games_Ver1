@@ -167,6 +167,7 @@ void LevelScene::quit()
 void LevelScene::restart()
 {
     _gameState = GameState::RUNNING;
+    reset();
 }
 
 void LevelScene::initWalls()
@@ -338,4 +339,22 @@ void LevelScene::initGhosts()
     _ghosts.emplace_back(575.0f, 396.0f, GhostType::BLUE);
     _ghosts.emplace_back(675.0f, 396.0f, GhostType::ORANGE);
     _ghosts.emplace_back(625.0f, 340.0f, GhostType::YELLOW);
+}
+
+void LevelScene::reset()
+{
+    //Empty walls
+    _walls.clear();
+
+    //Empty coins
+    _coins.clear();
+
+    //Empty ghosts
+    _ghosts.clear();
+
+    //Reset the score
+    _score = 0.0f;
+
+    //Reset the player
+    _player.reset();
 }

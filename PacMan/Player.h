@@ -28,6 +28,9 @@ public:
     //Moves the Player
     void update(float  deltaTime, float& score, std::vector<Collectable>& collectables, const std::vector<SDL_FRect>& walls = {});
 
+    //reset the player to init condition
+    void reset();
+
 
     //Shows the Player on the screen
     void render(int camX, int camY);
@@ -60,11 +63,13 @@ private:
     const float PLAYER_VEL = 160.0f;
     const float PLAYER_WIDTH = 16 * TEXTURE_SCALE;
     const float PLAYER_HEIGHT = 16 * TEXTURE_SCALE;
+    const float X_START_POS = 300.0f;
+    const float Y_START_POS = 100.0f;
     
 
     //The X and Y offsets of the Player
-    float _xPos = 300;
-    float _yPos = 100;
+    float _xPos = X_START_POS;
+    float _yPos = Y_START_POS;
 
     //The velocity of the Player
     float _xVel = 0;

@@ -148,6 +148,13 @@ void Player::update(float  deltaTime, float& score, std::vector<Collectable>& co
     
 }
 
+void Player::reset()
+{
+    //Reset position
+    _xPos = X_START_POS;
+    _yPos = Y_START_POS;
+}
+
 void Player::render(int camX, int camY)
 {
     SDL_Rect* currentClip = &_spriteClips[_animationFrame / 12];

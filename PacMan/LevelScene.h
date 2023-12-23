@@ -39,6 +39,9 @@ private:
 	void initWalls();
 	void initCollectables();
 	void initGhosts();
+
+	//Resets all objects to their original state
+	void reset();
 	
 private:
 
