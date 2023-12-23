@@ -61,6 +61,12 @@ void LevelScene::handleEvents(SDL_Event& e)
             if (e.type == SDL_KEYDOWN)
             {
 
+                //If X is pressed
+                if (e.key.keysym.sym == SDLK_x && e.key.repeat == 0)
+                {
+                    //toggle developer vision
+                    _developerVision = !_developerVision;
+                }
             }
         }
 
