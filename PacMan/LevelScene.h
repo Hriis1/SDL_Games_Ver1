@@ -82,6 +82,9 @@ private:
 
 	//the current score
 	float _score = 0.0f;
+
+	//Flag for things only developers should see
+	bool _developerVision = DEVELOPER_MODE;
 	
 
 };

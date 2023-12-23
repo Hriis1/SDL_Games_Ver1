@@ -150,7 +150,7 @@ void LevelScene::draw()
     _bgTexture.render(0, 0);
 
     //Draw the walls for testing
-    if (DEVELOPER_MODE)
+    if (_developerVision)
     {
         SDL_SetRenderDrawColor(_window.renderer, 255, 0, 0, 255);
         for (size_t i = 0; i < _walls.size(); i++)
