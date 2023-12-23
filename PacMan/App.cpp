@@ -19,7 +19,7 @@ bool App::init()
     }
 
     //Initialize PNG  and JPG loading
-    int imgFlags = IMG_INIT_PNG;
+    int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
     if (!(IMG_Init(imgFlags) & imgFlags))
     {
         printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());

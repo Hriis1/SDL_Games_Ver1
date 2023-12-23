@@ -21,7 +21,7 @@ bool WinScene::loadMedia()
 
     //Load textures
     _bgTexture.initRenderer(_window.renderer);
-    if (!_bgTexture.loadFromFile("Assets/Textures/map.png", _window.getSDLWindow(), 255, 0, 255))
+    if (!_bgTexture.loadFromFile("Assets/Textures/blackbg.jpg", _window.getSDLWindow(), 255, 0, 255))
     {
         std::cout << "Couldnt open map.png. Error: " << IMG_GetError() << std::endl;
     }
