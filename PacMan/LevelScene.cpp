@@ -150,10 +150,13 @@ void LevelScene::draw()
     _bgTexture.render(0, 0);
 
     //Draw the walls for testing
-    SDL_SetRenderDrawColor(_window.renderer, 255, 0, 0, 255);
-    for (size_t i = 0; i < _walls.size(); i++)
+    if (DEVELOPER_MODE)
     {
-        SDL_RenderDrawRectF(_window.renderer, &_walls[i]);
+        SDL_SetRenderDrawColor(_window.renderer, 255, 0, 0, 255);
+        for (size_t i = 0; i < _walls.size(); i++)
+        {
+            SDL_RenderDrawRectF(_window.renderer, &_walls[i]);
+        }
     }
    
     //Draw coins
