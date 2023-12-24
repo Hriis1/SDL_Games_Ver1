@@ -28,7 +28,7 @@ public:
     Ghost(float xPos, float yPos, GhostType type = GhostType::RED);
 
     //update the ghost
-    void update();
+    void update(float deltaTime);
 
     //Shows the Ghost on the screen
     void render(int camX, int camY);

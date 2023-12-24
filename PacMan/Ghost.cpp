@@ -17,8 +17,9 @@ Ghost::Ghost(float xPos, float yPos, GhostType type)
     shiftColliders();
 }
 
-void Ghost::update()
+void Ghost::update(float deltaTime)
 {
+    _xPos += GHOST_VEL * deltaTime;
 }
 
 bool Ghost::init(SDL_Renderer* renderer, SDL_Window* window)

@@ -119,7 +119,15 @@ void LevelScene::update()
         float deltaTime = _deltaTimer.getTicks() / 1000.f;
 
         //Update
+
+        //Update player
         _player.update(deltaTime, _score, _coins ,_walls);
+
+        //Update ghosts
+        for (size_t i = 0; i < _ghosts.size(); i++)
+        {
+            _ghosts[i].update(deltaTime);
+        }
 
         //Check the win condition
         if (_coins.size() == 0)
