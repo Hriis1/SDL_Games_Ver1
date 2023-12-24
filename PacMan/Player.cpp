@@ -67,7 +67,7 @@ void Player::handleEvent(SDL_Event& e)
     }
 }
 
-void Player::update(float  deltaTime, float& score, std::vector<Collectable>& collectables, const std::vector<SDL_FRect>& walls)
+void Player::update(float  deltaTime, float& score, std::vector<Collectable>& collectables, const std::vector<SDL_FRect>& level)
 {
     updateDirection();
 
@@ -76,10 +76,10 @@ void Player::update(float  deltaTime, float& score, std::vector<Collectable>& co
     _yPos += _yVel * deltaTime;
     shiftColliders();
 
-    //Collide with walls
-    for (size_t i = 0; i < walls.size(); i++)
+    //Collide with level
+    for (size_t i = 0; i < level.size(); i++)
     {
-        if (checkCollision(_collisionRect, walls[i]))
+        if (checkCollision(_collisionRect, level[i]))
         {
             //Player box values
             int playerleft = _collisionRect.x;
@@ -88,10 +88,10 @@ void Player::update(float  deltaTime, float& score, std::vector<Collectable>& co
             int playerBot = _collisionRect.y + _collisionRect.h;
 
             //wall box values
-            int wallleft = walls[i].x;
-            int wallRight = walls[i].x + walls[i].w;
-            int wallTop = walls[i].y;
-            int wallBot = walls[i].y + walls[i].h;
+            int wallleft = level[i].x;
+            int wallRight = level[i].x + level[i].w;
+            int wallTop = level[i].y;
+            int wallBot = level[i].y + level[i].h;
 
             int horizontalDistance = std::min(std::abs(playerRight - wallleft),
                 std::abs(playerleft - wallRight));
@@ -102,7 +102,7 @@ void Player::update(float  deltaTime, float& score, std::vector<Collectable>& co
             if (horizontalDistance < verticalDistance) {
                 // Resolve horizontal collision
                 float box1CenterX = playerleft + (_collisionRect.w / 2.0f);
-                float box2CenterX = wallleft + (walls[i].w / 2.0f);
+                float box2CenterX = wallleft + (level[i].w / 2.0f);
                 if (box1CenterX < box2CenterX) //coming from the left
                 {
                     _xPos += wallleft - playerRight;
@@ -113,7 +113,7 @@ void Player::update(float  deltaTime, float& score, std::vector<Collectable>& co
             }
             else if (horizontalDistance > verticalDistance) {
                 float box1CenterY = playerTop + (_collisionRect.h / 2.0f);
-                float box2CenterY = wallTop + (walls[i].h / 2.0f);
+                float box2CenterY = wallTop + (level[i].h / 2.0f);
                 // Resolve vertical collision
                 if (box1CenterY < box2CenterY) //coming from the top
                 {

@@ -17,16 +17,16 @@ Ghost::Ghost(float xPos, float yPos, GhostType type)
     shiftColliders();
 }
 
-void Ghost::update(float deltaTime, const std::vector<SDL_FRect>& walls)
+void Ghost::update(float deltaTime, const std::vector<SDL_FRect>& level)
 {
     //Update position
     _xPos += GHOST_VEL * deltaTime;
     shiftColliders();
 
-    //Collide with walls
-    for (size_t i = 0; i < walls.size(); i++)
+    //Collide with level
+    for (size_t i = 0; i < level.size(); i++)
     {
-        if (checkCollision(_collisionRect, walls[i]))
+        if (checkCollision(_collisionRect, level[i]))
         {
             //Ghost box values
             int ghostleft = _collisionRect.x;
@@ -35,10 +35,10 @@ void Ghost::update(float deltaTime, const std::vector<SDL_FRect>& walls)
             int ghostBot = _collisionRect.y + _collisionRect.h;
 
             //wall box values
-            int wallleft = walls[i].x;
-            int wallRight = walls[i].x + walls[i].w;
-            int wallTop = walls[i].y;
-            int wallBot = walls[i].y + walls[i].h;
+            int wallleft = level[i].x;
+            int wallRight = level[i].x + level[i].w;
+            int wallTop = level[i].y;
+            int wallBot = level[i].y + level[i].h;
 
             int horizontalDistance = std::min(std::abs(ghostRight - wallleft),
                 std::abs(ghostleft - wallRight));
@@ -49,7 +49,7 @@ void Ghost::update(float deltaTime, const std::vector<SDL_FRect>& walls)
             if (horizontalDistance < verticalDistance) {
                 // Resolve horizontal collision
                 float box1CenterX = ghostleft + (_collisionRect.w / 2.0f);
-                float box2CenterX = wallleft + (walls[i].w / 2.0f);
+                float box2CenterX = wallleft + (level[i].w / 2.0f);
                 if (box1CenterX < box2CenterX) //coming from the left
                 {
                     _xPos += wallleft - ghostRight;
@@ -60,7 +60,7 @@ void Ghost::update(float deltaTime, const std::vector<SDL_FRect>& walls)
             }
             else if (horizontalDistance > verticalDistance) {
                 float box1CenterY = ghostTop + (_collisionRect.h / 2.0f);
-                float box2CenterY = wallTop + (walls[i].h / 2.0f);
+                float box2CenterY = wallTop + (level[i].h / 2.0f);
                 // Resolve vertical collision
                 if (box1CenterY < box2CenterY) //coming from the top
                 {

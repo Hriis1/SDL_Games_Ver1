@@ -68,8 +68,8 @@ private:
 	//Player
 	Player _player;
 
-	//walls
-	std::vector<SDL_FRect> _walls;
+	//The colliders of the level
+	std::vector<SDL_FRect> _level;
 
 	//Coins
 	std::vector<Collectable> _coins;
