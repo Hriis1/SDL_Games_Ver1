@@ -28,7 +28,7 @@ public:
     Ghost(float xPos, float yPos, GhostType type = GhostType::RED);
 
     //update the ghost
-    void update(float deltaTime);
+    void update(float deltaTime, const std::vector<SDL_FRect>& walls = {});
 
     //Shows the Ghost on the screen
     void render(int camX, int camY);

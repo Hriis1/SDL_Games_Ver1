@@ -17,9 +17,63 @@ Ghost::Ghost(float xPos, float yPos, GhostType type)
     shiftColliders();
 }
 
-void Ghost::update(float deltaTime)
+void Ghost::update(float deltaTime, const std::vector<SDL_FRect>& walls)
 {
+    //Update position
     _xPos += GHOST_VEL * deltaTime;
+    shiftColliders();
+
+    //Collide with walls
+    for (size_t i = 0; i < walls.size(); i++)
+    {
+        if (checkCollision(_collisionRect, walls[i]))
+        {
+            //Ghost box values
+            int ghostleft = _collisionRect.x;
+            int ghostRight = _collisionRect.x + _collisionRect.w;
+            int ghostTop = _collisionRect.y;
+            int ghostBot = _collisionRect.y + _collisionRect.h;
+
+            //wall box values
+            int wallleft = walls[i].x;
+            int wallRight = walls[i].x + walls[i].w;
+            int wallTop = walls[i].y;
+            int wallBot = walls[i].y + walls[i].h;
+
+            int horizontalDistance = std::min(std::abs(ghostRight - wallleft),
+                std::abs(ghostleft - wallRight));
+
+            int verticalDistance = std::min(std::abs(ghostBot - wallTop),
+                std::abs(ghostTop - wallBot));
+
+            if (horizontalDistance < verticalDistance) {
+                // Resolve horizontal collision
+                float box1CenterX = ghostleft + (_collisionRect.w / 2.0f);
+                float box2CenterX = wallleft + (walls[i].w / 2.0f);
+                if (box1CenterX < box2CenterX) //coming from the left
+                {
+                    _xPos += wallleft - ghostRight;
+                }
+                else if (box1CenterX > box2CenterX) {
+                    _xPos += wallRight - ghostleft;
+                }
+            }
+            else if (horizontalDistance > verticalDistance) {
+                float box1CenterY = ghostTop + (_collisionRect.h / 2.0f);
+                float box2CenterY = wallTop + (walls[i].h / 2.0f);
+                // Resolve vertical collision
+                if (box1CenterY < box2CenterY) //coming from the top
+                {
+                    _yPos = wallTop - _collisionRect.h;
+
+                }
+                else {
+                    _yPos = wallBot;
+                }
+            }
+            shiftColliders();
+        }
+    }
 }
 
 bool Ghost::init(SDL_Renderer* renderer, SDL_Window* window)
