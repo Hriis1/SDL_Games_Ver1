@@ -27,6 +27,9 @@ public:
     //Initializes the variables
     Ghost(float xPos, float yPos, GhostType type = GhostType::RED);
 
+    //update the ghost
+    void update();
+
     //Shows the Ghost on the screen
     void render(int camX, int camY);
 

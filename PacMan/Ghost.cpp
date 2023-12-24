@@ -16,6 +16,10 @@ Ghost::Ghost(float xPos, float yPos, GhostType type)
     shiftColliders();
 }
 
+void Ghost::update()
+{
+}
+
 bool Ghost::init(SDL_Renderer* renderer, SDL_Window* window)
 {
     //init texture
