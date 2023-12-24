@@ -1,4 +1,5 @@
 #include "Collectable.h"
+#include <Utils.h>
 
 const float Collectable::TEXTURE_SCALE = 2.0f;
 const float Collectable::COLLECTABLE_HEIGHT = 16 * Collectable::TEXTURE_SCALE;

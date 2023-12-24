@@ -170,4 +170,58 @@ static bool checkCollision(Circle<T>& a, const SDL_Rect& b)
     return false;
 }
 
+static void collideWithLevel(const SDL_FRect& _collisionRect, float& _xPos, float& _yPos, const std::vector<SDL_FRect>& level)
+{
+    for (size_t i = 0; i < level.size(); i++)
+    {
+        if (checkCollision(_collisionRect, level[i]))
+        {
+            //Player box values
+            int playerleft = _collisionRect.x;
+            int playerRight = _collisionRect.x + _collisionRect.w;
+            int playerTop = _collisionRect.y;
+            int playerBot = _collisionRect.y + _collisionRect.h;
+
+            //wall box values
+            int wallleft = level[i].x;
+            int wallRight = level[i].x + level[i].w;
+            int wallTop = level[i].y;
+            int wallBot = level[i].y + level[i].h;
+
+            int horizontalDistance = std::min(std::abs(playerRight - wallleft),
+                std::abs(playerleft - wallRight));
+
+            int verticalDistance = std::min(std::abs(playerBot - wallTop),
+                std::abs(playerTop - wallBot));
+
+            if (horizontalDistance < verticalDistance) {
+                // Resolve horizontal collision
+                float box1CenterX = playerleft + (_collisionRect.w / 2.0f);
+                float box2CenterX = wallleft + (level[i].w / 2.0f);
+                if (box1CenterX < box2CenterX) //coming from the left
+                {
+                    _xPos += wallleft - playerRight;
+                }
+                else if (box1CenterX > box2CenterX) {
+                    _xPos += wallRight - playerleft;
+                }
+            }
+            else if (horizontalDistance > verticalDistance) {
+                float box1CenterY = playerTop + (_collisionRect.h / 2.0f);
+                float box2CenterY = wallTop + (level[i].h / 2.0f);
+                // Resolve vertical collision
+                if (box1CenterY < box2CenterY) //coming from the top
+                {
+                    _yPos = wallTop - _collisionRect.h;
+
+                }
+                else {
+                    _yPos = wallBot;
+                }
+            }
+
+        }
+    }
+}
+
 

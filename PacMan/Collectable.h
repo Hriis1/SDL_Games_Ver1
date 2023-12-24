@@ -5,7 +5,6 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
-#include <Utils.h>
 #include <LTexture.h>
 
 #include "PacManData.h"
