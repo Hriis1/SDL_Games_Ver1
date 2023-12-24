@@ -64,8 +64,6 @@ private:
 
 private:
 
-
-
     //The X and Y offsets of the Ghost
     float _xPos = 0;
     float _yPos = 0;
@@ -84,6 +82,7 @@ private:
     static const float TEXTURE_SCALE;
     static const float GHOST_WIDTH;
     static const float GHOST_HEIGHT;
+    static const float GHOST_VEL;
 
     //sprite clips
     static SDL_Rect _spriteClips[Ghost_ANIMATION_FRAMES];
