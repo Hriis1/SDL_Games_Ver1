@@ -51,17 +51,8 @@ void App::initScenes()
 
 void App::run()
 {
-    if (!_scenes[_currentScene]->loadMedia())
-    {
-        printf("Could not initial scene\n");
-        return;
-    }
-
-    if (!_scenes[_currentScene]->init())
-    {
-        printf("Could not init initial scene\n");
-        return;
-    }
+    //Load the initial scene
+    loadCurrScene();
 
     //Start the game loop and poll events
     SDL_Event e;
@@ -81,17 +72,10 @@ void App::run()
             {
                 _scenes[_currentScene]->quit();
 
+                //Load the next scene
                 _currentScene++;
-                if (!_scenes[_currentScene]->loadMedia())
-                {
-                    printf("Could not load media of next scene\n");
-                    return;
-                }
-                if (!_scenes[_currentScene]->init())
-                {
-                    printf("Could not init next scene\n");
-                    return;
-                }
+                loadCurrScene();
+
                 continue;
             }
 
@@ -110,4 +94,19 @@ void App::quit()
     Mix_Quit();
     IMG_Quit();
     SDL_Quit();
+}
+
+void App::loadCurrScene()
+{
+    if (!_scenes[_currentScene]->loadMedia())
+    {
+        printf("Could not load media of scene with idx: %d\n", _currentScene);
+        return;
+    }
+
+    if (!_scenes[_currentScene]->init())
+    {
+        printf("Could not init scene with idx: %d\n", _currentScene);
+        return;
+    }
 }

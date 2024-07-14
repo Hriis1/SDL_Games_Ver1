@@ -22,6 +22,9 @@ public:
 	void initScenes();
 	void run();
 	void quit();
+
+private:
+	void loadCurrScene();
 private:
 	std::vector<std::unique_ptr<IScene>> _scenes;
 
