@@ -66,14 +66,45 @@ void App::run()
         {
             _scenes[_currentScene]->update();
             
-            //Check if we have to go to next scene
+            //Check for scene change
             GameState currentSceneState = _scenes[_currentScene]->getGameState();
-            if (_scenes[_currentScene]->getGameState() == GameState::GO_TO_NEXT_SCENE)
+            if (currentSceneState == GameState::GO_TO_NEXT_SCENE)
             {
+                //Quit the curr scene
                 _scenes[_currentScene]->quit();
 
-                //Load the next scene
+                //Load the chosen scene
                 _currentScene++;
+                loadCurrScene();
+
+                continue;
+            }
+            else if (currentSceneState == GameState::GO_TO_PREV_SCENE)
+            {
+                //Quit the curr scene
+                _scenes[_currentScene]->quit();
+
+                //Load the chosen scene
+                _currentScene--;
+                loadCurrScene();
+
+                continue;
+            }
+            else if (currentSceneState == GameState::GO_TO_CHOSEN_SCENE)
+            {
+                //Get the scene idx
+                int sceneIdx = _scenes[_currentScene]->getChosenSceneIdx();
+                if (sceneIdx < 0 || sceneIdx >= _scenes.size()) //If the sceenIdx is not valid
+                {
+                    printf("Tried to load sceen with invalid idx: %d\n", sceneIdx);
+                    printf("There are currently %d scenes!\n", (int)_scenes.size());
+                }
+
+                //Quit the curr scene
+                _scenes[_currentScene]->quit();
+
+                //Load the chosen scene
+                _currentScene = sceneIdx;
                 loadCurrScene();
 
                 continue;
