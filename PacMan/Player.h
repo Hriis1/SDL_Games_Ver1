@@ -11,6 +11,11 @@
 
 const int PLAYER_ANIMATION_FRAMES = 8;
 
+enum PLAYER_MOVEMENT_FLAGS
+{
+    LEFT = 1, RIGHT = 2, UP = 4, DOWN = 8
+};
+
 class Player
 {
     //This Player class has rect collision detector
@@ -73,6 +78,9 @@ private:
     //The velocity of the Player
     float _xVel = 0;
     float _yVel = 0;
+
+    //flag for player movement
+    int _playerMovementFlag = 0;
 
     //The direction the player is facing
     DIRECTION _direction = DIRECTION::RIGHT;

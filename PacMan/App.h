@@ -31,7 +31,7 @@ private:
 	//Custom windows
 	LWindow _window;
 
-	int _currentScene = 0;
+	int _currentScene = 1;
 	bool _quit = false;
 	
 };

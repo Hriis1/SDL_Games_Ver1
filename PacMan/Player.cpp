@@ -34,6 +34,13 @@ bool Player::init(SDL_Renderer* renderer, SDL_Window* window)
 
 void Player::handleEvent(SDL_Event& e)
 {
+    //Check if none of the movement keys are pressed
+   /* const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+    if (!currentKeyStates[SDL_SCANCODE_RIGHT] && !currentKeyStates[SDL_SCANCODE_LEFT] && !currentKeyStates[SDL_SCANCODE_DOWN] && !currentKeyStates[SDL_SCANCODE_UP]) {
+        _playerMoving = false;
+
+    }*/
+
     //If a key was pressed
     if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
     {
@@ -42,15 +49,19 @@ void Player::handleEvent(SDL_Event& e)
         {
         case SDLK_UP:
             _yVel -= PLAYER_VEL;
+            _playerMovementFlag |= PLAYER_MOVEMENT_FLAGS::UP;
             break;
         case SDLK_DOWN:
             _yVel += PLAYER_VEL;
+            _playerMovementFlag |= PLAYER_MOVEMENT_FLAGS::DOWN;
             break;
         case SDLK_LEFT:
             _xVel -= PLAYER_VEL;
+            _playerMovementFlag |= PLAYER_MOVEMENT_FLAGS::LEFT;
             break;
         case SDLK_RIGHT:
-            _xVel += PLAYER_VEL; 
+            _playerMovementFlag |= PLAYER_MOVEMENT_FLAGS::RIGHT;
+            _xVel += PLAYER_VEL;
             break;
         }
     }
@@ -60,12 +71,32 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch (e.key.keysym.sym)
         {
-        case SDLK_UP: _yVel += PLAYER_VEL; break;
-        case SDLK_DOWN: _yVel -= PLAYER_VEL; break;
-        case SDLK_LEFT: _xVel += PLAYER_VEL; break;
-        case SDLK_RIGHT: _xVel -= PLAYER_VEL; break;
+        case SDLK_UP: 
+            if (_playerMovementFlag & PLAYER_MOVEMENT_FLAGS::UP) {
+                _yVel += PLAYER_VEL;
+                _playerMovementFlag &= ~PLAYER_MOVEMENT_FLAGS::UP;
+                break;
+            }
+        case SDLK_DOWN: 
+            if (_playerMovementFlag & PLAYER_MOVEMENT_FLAGS::DOWN) {
+                _yVel -= PLAYER_VEL;
+                _playerMovementFlag &= ~PLAYER_MOVEMENT_FLAGS::DOWN;
+                break;
+            }
+        case SDLK_LEFT: 
+            if (_playerMovementFlag& PLAYER_MOVEMENT_FLAGS::LEFT) {
+                _xVel += PLAYER_VEL;
+                _playerMovementFlag &= ~PLAYER_MOVEMENT_FLAGS::LEFT;
+                break;
+            }
+        case SDLK_RIGHT: 
+            if (_playerMovementFlag & PLAYER_MOVEMENT_FLAGS::RIGHT) {
+                _xVel -= PLAYER_VEL;
+                _playerMovementFlag &= ~PLAYER_MOVEMENT_FLAGS::RIGHT;
+                break;
+            }
         }
-    }
+    }   
 }
 
 void Player::update(float  deltaTime, float& score, std::vector<Collectable>& collectables, const std::vector<SDL_FRect>& level)
@@ -115,6 +146,13 @@ void Player::reset()
 
     //Reset direction
     _direction = DIRECTION::RIGHT;
+
+    //Reset velocity
+    _xVel = 0;
+    _yVel = 0;
+
+    //Reset flags
+    _playerMovementFlag = 0;
 }
 
 void Player::render(int camX, int camY)

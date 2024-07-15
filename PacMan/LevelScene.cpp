@@ -3,10 +3,6 @@
 LevelScene::LevelScene(LWindow& win, bool& quitFlag)
     : _window(win), _quitFlag(quitFlag)
 {
-
-    initWalls(); //Init th=e walls physics objects
-    initCollectables(); //Init the coins
-    initGhosts(); //Init the ghosts
 }
 
 LevelScene::~LevelScene()
@@ -32,6 +28,12 @@ bool LevelScene::init()
         std::cout << "Coild not init ghosts!" << std::endl;
         return false;
     }
+
+    _player.reset();
+    initWalls(); //Init th=e walls physics objects
+    initCollectables(); //Init the coins
+    initGhosts(); //Init the ghosts
+
     return true;
 }
 
