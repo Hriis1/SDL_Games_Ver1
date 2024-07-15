@@ -99,7 +99,7 @@ void LevelScene::handleEvents(SDL_Event& e)
                     _gameState = GameState::GO_TO_NEXT_SCENE;
                 }
             }
-            else if (_gameState == GameState::RUNNING) //If game is won
+            else if (_gameState == GameState::RUNNING) //If game isrunning
             {
                 //If R is pressed
                 if (e.key.keysym.sym == SDLK_r && e.key.repeat == 0)
@@ -206,8 +206,31 @@ void LevelScene::quit()
 
 void LevelScene::restart()
 {
+    //Reset the game state
     _gameState = GameState::RUNNING;
-    reset();
+
+    //Reset chosen scene idx
+    _chosenSceneIdx = -1;
+
+    //Empty walls
+    _level.clear();
+
+    //Empty coins
+    _coins.clear();
+
+    //Empty ghosts
+    _ghosts.clear();
+
+    //Reset the score
+    _score = 0.0f;
+
+    //Reset the player
+    _player.reset();
+
+    //Reinit objects
+    initWalls();
+    initCollectables();
+    initGhosts();
 }
 
 void LevelScene::initWalls()
@@ -379,27 +402,4 @@ void LevelScene::initGhosts()
     _ghosts.emplace_back(575.0f, 396.0f, GhostType::BLUE);
     _ghosts.emplace_back(675.0f, 396.0f, GhostType::ORANGE);
     _ghosts.emplace_back(625.0f, 340.0f, GhostType::YELLOW);*/
-}
-
-void LevelScene::reset()
-{
-    //Empty walls
-    _level.clear();
-
-    //Empty coins
-    _coins.clear();
-
-    //Empty ghosts
-    _ghosts.clear();
-
-    //Reset the score
-    _score = 0.0f;
-
-    //Reset the player
-    _player.reset();
-
-    //Reinit objects
-    initWalls();
-    initCollectables();
-    initGhosts();
 }

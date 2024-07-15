@@ -72,6 +72,15 @@ void WinScene::handleEvents(SDL_Event& e)
         //Special key input
         if (e.type == SDL_KEYDOWN)
         {
+            //If Space or R are pressed
+            if ((e.key.keysym.sym == SDLK_r || e.key.keysym.sym == SDLK_SPACE) && e.key.repeat == 0)
+            {
+                //Go to prev scene
+                _gameState = GameState::GO_TO_PREV_SCENE;
+            }
+
+
+
             if (_gameState == GameState::GAME_LOST) //If game is lost
             {
                 
@@ -81,7 +90,7 @@ void WinScene::handleEvents(SDL_Event& e)
                 //If space is pressed while game is won
                
             }
-            else if (_gameState == GameState::RUNNING) //If game is won
+            else if (_gameState == GameState::RUNNING) //If game is running
             {
            
             }
@@ -122,12 +131,9 @@ void WinScene::quit()
 
 void WinScene::restart()
 {
+    //Reset the game state
     _gameState = GameState::RUNNING;
-    reset();
-}
 
-
-
-void WinScene::reset()
-{
+    //Reset chosen scene idx
+    _chosenSceneIdx = -1;
 }
