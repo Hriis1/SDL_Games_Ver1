@@ -1,5 +1,6 @@
 #include "Ghost.h"
 #include <Utils.h>
+#include <iostream>
 
 const float Ghost::TEXTURE_SCALE = 2.0f;
 const float Ghost::GHOST_HEIGHT = 16 * Ghost::TEXTURE_SCALE;
