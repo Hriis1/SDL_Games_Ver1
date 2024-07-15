@@ -127,9 +127,20 @@ void WinScene::quit()
     //Free fonts
     TTF_CloseFont(_font);
     _font = NULL;
+
+    //Return the objs to original state
+    reset();
 }
 
 void WinScene::restart()
+{
+    //Return the objs to original state
+    reset();
+
+    //Reinit objects
+}
+
+void WinScene::reset()
 {
     //Reset the game state
     _gameState = GameState::RUNNING;

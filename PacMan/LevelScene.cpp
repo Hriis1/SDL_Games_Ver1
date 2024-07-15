@@ -132,7 +132,7 @@ void LevelScene::update()
         //Check the win condition
         if (_coins.size() == 0)
         {
-            _gameState = GameState::GO_TO_NEXT_SCENE;
+            _gameState = GameState::GAME_WON;
         }
 
         //Restart step timer
@@ -202,30 +202,15 @@ void LevelScene::draw()
 void LevelScene::quit()
 {
     //Free fonts
+    
+    //Return the objs to original state
+    reset();
 }
 
 void LevelScene::restart()
 {
-    //Reset the game state
-    _gameState = GameState::RUNNING;
-
-    //Reset chosen scene idx
-    _chosenSceneIdx = -1;
-
-    //Empty walls
-    _level.clear();
-
-    //Empty coins
-    _coins.clear();
-
-    //Empty ghosts
-    _ghosts.clear();
-
-    //Reset the score
-    _score = 0.0f;
-
-    //Reset the player
-    _player.reset();
+    //Return the objs to original state
+    reset();
 
     //Reinit objects
     initWalls();
@@ -402,4 +387,28 @@ void LevelScene::initGhosts()
     _ghosts.emplace_back(575.0f, 396.0f, GhostType::BLUE);
     _ghosts.emplace_back(675.0f, 396.0f, GhostType::ORANGE);
     _ghosts.emplace_back(625.0f, 340.0f, GhostType::YELLOW);*/
+}
+
+void LevelScene::reset()
+{
+    //Reset the game state
+    _gameState = GameState::RUNNING;
+
+    //Reset chosen scene idx
+    _chosenSceneIdx = -1;
+
+    //Empty walls
+    _level.clear();
+
+    //Empty coins
+    _coins.clear();
+
+    //Empty ghosts
+    _ghosts.clear();
+
+    //Reset the score
+    _score = 0.0f;
+
+    //Reset the player
+    _player.reset();
 }

@@ -38,6 +38,9 @@ public:
 
 private:
 
+	//Resets all objects to their original state
+	void reset();
+
 private:
 
 	//Custom windows
