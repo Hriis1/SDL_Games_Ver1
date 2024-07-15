@@ -3,7 +3,8 @@
 
 enum class GameState
 {
-	INVALID = 0, RUNNING, GAME_LOST, GAME_WON, GO_TO_NEXT_SCENE
+	INVALID = 0, RUNNING, GAME_LOST, GAME_WON, 
+	GO_TO_NEXT_SCENE, GO_TO_PREV_SCENE, GO_TO_CHOSEN_SCENE
 };
 
 class IScene
@@ -21,8 +22,14 @@ public:
 		return _gameState;
 	}
 
+	int getChosenSceneIdx() const 
+	{
+		return _chosenSceneIdx;
+	}
+
 protected:
 	GameState _gameState = GameState::RUNNING;
+	int _chosenSceneIdx = -1;
 
 };
 
