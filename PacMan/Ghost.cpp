@@ -24,6 +24,7 @@ void Ghost::update(float deltaTime, const std::vector<SDL_FRect>& level)
     //Update position
     _xPos += GHOST_VEL * deltaTime;
     shiftColliders();
+    std::cout << " Delta time: " << deltaTime << " ---- Pos: " << _xPos;
 
     //Collide with level
     collideWithLevel(_collisionRect, _xPos, _yPos, level);
