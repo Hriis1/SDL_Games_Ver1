@@ -61,16 +61,10 @@ void LWindow::handleEvent(SDL_Event& e)
     {
         switch (e.window.event)
         {
-            //Wubdiw us being resized
-        case SDL_WINDOWEVENT_RESIZED:
-            _paused = true;
-            break;
-
-            //Window is being moved
+            //Window moved
         case SDL_WINDOWEVENT_MOVED:
             _windowDisplayID = SDL_GetWindowDisplayIndex(_window);
             updateCaption = true;
-            _paused = true;
             break;
 
             //Window appeared
@@ -87,13 +81,11 @@ void LWindow::handleEvent(SDL_Event& e)
         case SDL_WINDOWEVENT_SIZE_CHANGED:
             _width = e.window.data1;
             _height = e.window.data2;
-            _paused = false;
             SDL_RenderPresent(renderer);
             break;
 
             //Repaint on exposure
         case SDL_WINDOWEVENT_EXPOSED:
-            _paused = false;
             SDL_RenderPresent(renderer);
             break;
 

@@ -58,11 +58,6 @@ public:
         return _shown;
     }
 
-    bool isPaused() const
-    {
-        return _paused;
-    }
-
 public:
 
     //The renderer for the window
@@ -88,6 +83,5 @@ private:
     bool _fullScreen = false;
     bool _minimized = false;
     bool _shown = false;
-    bool _paused = false;
 };
 
