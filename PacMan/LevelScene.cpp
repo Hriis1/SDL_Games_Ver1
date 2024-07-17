@@ -120,9 +120,10 @@ void LevelScene::update()
         //Calculate time step
         float deltaTime = _deltaTimer.getTicks() / 1000.f;
 
-        //Update
+       
         if (deltaTime <= 0.1f) //Only update if last update was less than 0.1 secs ago
         {
+            //Update
             //Update player
             _player.update(deltaTime, _score, _coins, _level);
 
