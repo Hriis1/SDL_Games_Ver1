@@ -102,7 +102,19 @@ void WinScene::update()
 {
     if (_gameState == GameState::RUNNING)
     {
-        
+        //Calculate time step
+        float deltaTime = _deltaTimer.getTicks() / 1000.f;
+
+        //Update
+        if (deltaTime <= 0.1f) //Only update if last update was less than 0.1 secs ago
+        {
+
+        }
+        else //if last update was more than 0.1 secs ago just reset the timer
+        {
+            //Restart step timer
+            _deltaTimer.start();
+        }
     }
 }
 

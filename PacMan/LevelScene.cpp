@@ -121,43 +121,50 @@ void LevelScene::update()
         float deltaTime = _deltaTimer.getTicks() / 1000.f;
 
         //Update
-
-        //Update player
-        _player.update(deltaTime, _score, _coins ,_level);
-
-        //Update ghosts
-        for (size_t i = 0; i < _ghosts.size(); i++)
+        if (deltaTime <= 0.1f) //Only update if last update was less than 0.1 secs ago
         {
-            _ghosts[i].update(deltaTime, _level);
+            //Update player
+            _player.update(deltaTime, _score, _coins, _level);
+
+            //Update ghosts
+            for (size_t i = 0; i < _ghosts.size(); i++)
+            {
+                _ghosts[i].update(deltaTime, _level);
+            }
+
+            //Check the win condition
+            if (_coins.size() == 0)
+            {
+                _gameState = GameState::GAME_WON;
+            }
+
+            //Restart step timer
+            _deltaTimer.start();
+
+            //Center the camera over the player
+
+            //Keep the camera in bounds 
+            if (_camera.x < 0)
+            {
+                _camera.x = 0;
+            }
+            if (_camera.y < 0)
+            {
+                _camera.y = 0;
+            }
+            if (_camera.x > LEVEL_WIDTH - _camera.w)
+            {
+                _camera.x = LEVEL_WIDTH - _camera.w;
+            }
+            if (_camera.y > LEVEL_HEIGHT - _camera.h)
+            {
+                _camera.y = LEVEL_HEIGHT - _camera.h;
+            }
         }
-
-        //Check the win condition
-        if (_coins.size() == 0)
+        else //if last update was more than 0.1 secs ago just reset the timer
         {
-            _gameState = GameState::GAME_WON;
-        }
-
-        //Restart step timer
-        _deltaTimer.start();
-
-        //Center the camera over the player
-
-        //Keep the camera in bounds 
-        if (_camera.x < 0)
-        {
-            _camera.x = 0;
-        }
-        if (_camera.y < 0)
-        {
-            _camera.y = 0;
-        }
-        if (_camera.x > LEVEL_WIDTH - _camera.w)
-        {
-            _camera.x = LEVEL_WIDTH - _camera.w;
-        }
-        if (_camera.y > LEVEL_HEIGHT - _camera.h)
-        {
-            _camera.y = LEVEL_HEIGHT - _camera.h;
+            //Restart step timer
+            _deltaTimer.start();
         }
     }
 }
