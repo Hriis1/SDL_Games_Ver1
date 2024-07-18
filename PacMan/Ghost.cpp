@@ -21,9 +21,19 @@ Ghost::Ghost(float xPos, float yPos, GhostType type)
 
 void Ghost::update(float deltaTime, const std::vector<SDL_FRect>& level)
 {
+    
     //Update position
-    _xPos += GHOST_VEL * deltaTime;
-    shiftColliders();
+    SDL_FRect futurePos = { _xPos + 10.0f, _yPos, GHOST_WIDTH, GHOST_HEIGHT }; //Potential new pos after moving to the right
+    if (checkCollisionWithLevel(futurePos, level)) //if new pos is coliding move up instead
+    {
+        _yPos -= GHOST_VEL * deltaTime;
+    }
+    else //Move right
+    {
+        _xPos += GHOST_VEL * deltaTime;
+       
+    }
+    shiftColliders(); //Shift colliders afrer movement
 
     //Collide with level
     collideWithLevel(_collisionRect, _xPos, _yPos, level);

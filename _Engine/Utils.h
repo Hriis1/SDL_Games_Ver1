@@ -170,6 +170,15 @@ static bool checkCollision(Circle<T>& a, const SDL_Rect& b)
     return false;
 }
 
+static bool checkCollisionWithLevel(const SDL_FRect& _collisionRect, const std::vector<SDL_FRect>& level)
+{
+    for (size_t i = 0; i < level.size(); i++)
+        if (checkCollision(_collisionRect, level[i]))
+            return true;
+
+    return false;
+}
+
 static void collideWithLevel(const SDL_FRect& _collisionRect, float& _xPos, float& _yPos, const std::vector<SDL_FRect>& level)
 {
     for (size_t i = 0; i < level.size(); i++)

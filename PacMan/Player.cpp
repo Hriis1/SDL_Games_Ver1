@@ -34,13 +34,6 @@ bool Player::init(SDL_Renderer* renderer, SDL_Window* window)
 
 void Player::handleEvent(SDL_Event& e)
 {
-    //Check if none of the movement keys are pressed
-   /* const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
-    if (!currentKeyStates[SDL_SCANCODE_RIGHT] && !currentKeyStates[SDL_SCANCODE_LEFT] && !currentKeyStates[SDL_SCANCODE_DOWN] && !currentKeyStates[SDL_SCANCODE_UP]) {
-        _playerMoving = false;
-
-    }*/
-
     //If a key was pressed
     if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
     {
