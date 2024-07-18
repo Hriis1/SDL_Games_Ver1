@@ -1,6 +1,6 @@
 #include "Ghost.h"
 #include <Utils.h>
-//#include <iostream>
+#include <iostream>
 
 const float Ghost::TEXTURE_SCALE = 2.0f;
 const float Ghost::GHOST_HEIGHT = 16 * Ghost::TEXTURE_SCALE;
@@ -40,7 +40,8 @@ void Ghost::update(float deltaTime, const Player& player, const std::vector<SDL_
     
     //Update position
     SDL_FRect futurePos = { _xPos + (xDir * 10.0f), _yPos, GHOST_WIDTH, GHOST_HEIGHT }; //Potential new pos after moving to the xDir
-    if (checkCollisionWithLevel(futurePos, level)) //if new pos is coliding move up instead
+    SDL_FRect futureIntersection = getIntersectionWithLevel(futurePos, level);
+    if (futureIntersection.w > 0.0f && futureIntersection.h > 0.0f) //if new pos is coliding move up instead
     {
         _yPos += yDir * GHOST_VEL * deltaTime;
     }

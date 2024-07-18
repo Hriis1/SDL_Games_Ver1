@@ -179,6 +179,22 @@ static bool checkCollisionWithLevel(const SDL_FRect& _collisionRect, const std::
     return false;
 }
 
+static SDL_FRect getIntersectionWithLevel(const SDL_FRect& _collisionRect, const std::vector<SDL_FRect>& level)
+{
+    SDL_FRect intersection = { 0, 0, 0, 0 };
+
+    for (size_t i = 0; i < level.size(); i++)
+    {
+        if (SDL_IntersectFRect(&_collisionRect, &level[i], &intersection))
+        {
+            return intersection;
+        }
+    }
+
+    return intersection;
+
+}
+
 static void collideWithLevel(const SDL_FRect& _collisionRect, float& _xPos, float& _yPos, const std::vector<SDL_FRect>& level)
 {
     for (size_t i = 0; i < level.size(); i++)
