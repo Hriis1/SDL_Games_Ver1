@@ -21,17 +21,32 @@ Ghost::Ghost(float xPos, float yPos, GhostType type)
 
 void Ghost::update(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
 {
+    SDL_FPoint playerPos = player.getPos(); //Get the player pos
+
+    //Define base dirs: right and up
+    int xDir = 1;
+    int yDir = -1;
+    //Determine x dir
+    if (_xPos > playerPos.x) //player is on the left of the ghost
+    {
+        xDir = -1;
+    }
+
+    //Determine y dir
+    if (_yPos < playerPos.y) //if player is down relative to the ghost
+    {
+        yDir = 1;
+    }
     
     //Update position
-    SDL_FRect futurePos = { _xPos + 10.0f, _yPos, GHOST_WIDTH, GHOST_HEIGHT }; //Potential new pos after moving to the right
+    SDL_FRect futurePos = { _xPos + (xDir * 10.0f), _yPos, GHOST_WIDTH, GHOST_HEIGHT }; //Potential new pos after moving to the xDir
     if (checkCollisionWithLevel(futurePos, level)) //if new pos is coliding move up instead
     {
-        _yPos -= GHOST_VEL * deltaTime;
+        _yPos += yDir * GHOST_VEL * deltaTime;
     }
     else //Move right
     {
-        _xPos += GHOST_VEL * deltaTime;
-       
+        _xPos += xDir * GHOST_VEL * deltaTime;
     }
     shiftColliders(); //Shift colliders afrer movement
 

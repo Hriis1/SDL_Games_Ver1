@@ -45,6 +45,11 @@ public:
         return _collisionRect;
     }
 
+    SDL_FPoint getPos() const
+    {
+        return SDL_FPoint{ _xPos, _yPos };
+    }
+
     float getXPos() const
     {
         return _xPos;
