@@ -65,6 +65,7 @@ public:
     static bool init(SDL_Renderer* renderer, SDL_Window* window);
 
 private:
+    void chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
     //Moves the collision rect relative to the Player's offset
     void shiftColliders();
 

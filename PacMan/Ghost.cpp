@@ -22,45 +22,7 @@ Ghost::Ghost(float xPos, float yPos, GhostType type)
 
 void Ghost::update(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
 {
-    SDL_FPoint playerPos = player.getPos(); //the player pos
-    float xDist = std::abs(_xPos - playerPos.x); //the x distance between the ghost and the player
-
-    //Define base dirs: right and up
-    int xDir = 1;
-    int yDir = -1;
-    //Determine x dir
-    if (_xPos > playerPos.x) //player is on the left of the ghost
-    {
-        xDir = -1;
-    }
-
-    //Determine y dir
-    if (_yPos < playerPos.y) //if player is down relative to the ghost
-    {
-        yDir = 1;
-    }
-    
-    //Update position
-    SDL_FRect futurePos = { _xPos + (xDir * 9), _yPos, GHOST_WIDTH, GHOST_HEIGHT }; //Potential new pos after moving to the xDir
-    SDL_FRect futureIntersection = getIntersectionWithLevel(futurePos, level);
-    if ((futureIntersection.w > 0.0f && futureIntersection.h > 0.0f) || xDist <= 1.0f) //if new pos is coliding or the xDist is almsot identical move to yDir
-    {
-        futurePos = { _xPos, _yPos + (yDir * 9), GHOST_WIDTH, GHOST_HEIGHT };
-        futureIntersection = getIntersectionWithLevel(futurePos, level);
-        if (futureIntersection.w > 0.0f && futureIntersection.h > 0.0f)
-        {
-            if(xDist > 1.0f)
-                _yDirReversal = -1;
-        }
-
-        _yPos += _yDirReversal * yDir * GHOST_VEL * deltaTime;
-    }
-    else //Move to xDir
-    {
-        _yDirReversal = 1;
-        _xPos += xDir * GHOST_VEL * deltaTime;
-    }
-    shiftColliders(); //Shift colliders afrer movement
+    chasePlayer(deltaTime, player, level); //Go after the player
 
     //Collide with level
     collideWithLevel(_collisionRect, _xPos, _yPos, level);
@@ -150,6 +112,49 @@ void Ghost::render(int camX, int camY)
     {
         _animationFrame = 0;
     }
+}
+
+void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
+{
+    SDL_FPoint playerPos = player.getPos(); //the player pos
+    float xDist = std::abs(_xPos - playerPos.x); //the x distance between the ghost and the player
+
+    //Define base dirs: right and up
+    int xDir = 1;
+    int yDir = -1;
+    //Determine x dir
+    if (_xPos > playerPos.x) //player is on the left of the ghost
+    {
+        xDir = -1;
+    }
+
+    //Determine y dir
+    if (_yPos < playerPos.y) //if player is down relative to the ghost
+    {
+        yDir = 1;
+    }
+
+    //Update position
+    SDL_FRect futurePos = { _xPos + (xDir * 9), _yPos, GHOST_WIDTH, GHOST_HEIGHT }; //Potential new pos after moving to the xDir
+    SDL_FRect futureIntersection = getIntersectionWithLevel(futurePos, level);
+    if ((futureIntersection.w > 0.0f && futureIntersection.h > 0.0f) || xDist <= 1.0f) //if new pos is coliding or the xDist is almsot identical move to yDir
+    {
+        futurePos = { _xPos, _yPos + (yDir * 9), GHOST_WIDTH, GHOST_HEIGHT };
+        futureIntersection = getIntersectionWithLevel(futurePos, level);
+        if (futureIntersection.w > 0.0f && futureIntersection.h > 0.0f)
+        {
+            if (xDist > 1.0f)
+                _yDirReversal = -1;
+        }
+
+        _yPos += _yDirReversal * yDir * GHOST_VEL * deltaTime;
+    }
+    else //Move to xDir
+    {
+        _yDirReversal = 1;
+        _xPos += xDir * GHOST_VEL * deltaTime;
+    }
+    shiftColliders(); //Shift colliders afrer movement
 }
 
 void Ghost::shiftColliders()
