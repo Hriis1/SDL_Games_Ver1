@@ -74,6 +74,9 @@ private:
     float _xPos = 0;
     float _yPos = 0;
 
+    //Reverse the y dir when you cant go ydir and xdir
+    int _yDirReversal = 1;
+
     //The type of the Ghost
     GhostType _type;
 

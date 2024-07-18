@@ -41,14 +41,23 @@ void Ghost::update(float deltaTime, const Player& player, const std::vector<SDL_
     }
     
     //Update position
-    SDL_FRect futurePos = { _xPos + (xDir * 10.0f), _yPos, GHOST_WIDTH, GHOST_HEIGHT }; //Potential new pos after moving to the xDir
+    SDL_FRect futurePos = { _xPos + (xDir * 9), _yPos, GHOST_WIDTH, GHOST_HEIGHT }; //Potential new pos after moving to the xDir
     SDL_FRect futureIntersection = getIntersectionWithLevel(futurePos, level);
     if ((futureIntersection.w > 0.0f && futureIntersection.h > 0.0f) || xDist <= 1.0f) //if new pos is coliding or the xDist is almsot identical move to yDir
     {
-        _yPos += yDir * GHOST_VEL * deltaTime;
+        futurePos = { _xPos, _yPos + (yDir * 9), GHOST_WIDTH, GHOST_HEIGHT };
+        futureIntersection = getIntersectionWithLevel(futurePos, level);
+        if (futureIntersection.w > 0.0f && futureIntersection.h > 0.0f)
+        {
+            if(xDist > 1.0f)
+                _yDirReversal = -1;
+        }
+
+        _yPos += _yDirReversal * yDir * GHOST_VEL * deltaTime;
     }
     else //Move to xDir
     {
+        _yDirReversal = 1;
         _xPos += xDir * GHOST_VEL * deltaTime;
     }
     shiftColliders(); //Shift colliders afrer movement
