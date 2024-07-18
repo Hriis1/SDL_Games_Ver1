@@ -9,12 +9,19 @@
 #include <LTexture.h>
 
 #include "PacManData.h"
+#include "Player.h"
 
 const int Ghost_ANIMATION_FRAMES = 8;
 
 enum class GhostType
 {
     RED = 0, GREEN, BLUE, ORANGE, YELLOW
+};
+
+enum GhostMovementDir
+{
+    GHOST_RIGHT = 1, GHOST_LEFT = 10,
+    GHOST_TOP = 2, GHOST_BOTTOM = 20
 };
 
 class Ghost
@@ -27,7 +34,7 @@ public:
     Ghost(float xPos, float yPos, GhostType type = GhostType::RED);
 
     //update the ghost
-    void update(float deltaTime, const std::vector<SDL_FRect>& level = {});
+    void update(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level = {});
 
     //Shows the Ghost on the screen
     void render(int camX, int camY);

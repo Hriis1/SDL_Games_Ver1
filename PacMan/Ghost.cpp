@@ -19,7 +19,7 @@ Ghost::Ghost(float xPos, float yPos, GhostType type)
     shiftColliders();
 }
 
-void Ghost::update(float deltaTime, const std::vector<SDL_FRect>& level)
+void Ghost::update(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
 {
     
     //Update position
