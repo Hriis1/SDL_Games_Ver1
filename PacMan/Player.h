@@ -69,7 +69,7 @@ private:
 
     //consts
     const float TEXTURE_SCALE = 2.0f;
-    const float PLAYER_VEL = 160.0f;
+    const float PLAYER_VEL = 200.0f;
     const float PLAYER_WIDTH = 16 * TEXTURE_SCALE;
     const float PLAYER_HEIGHT = 16 * TEXTURE_SCALE;
     const float X_START_POS = 300.0f;
