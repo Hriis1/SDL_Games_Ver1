@@ -1,6 +1,7 @@
 #include "Ghost.h"
 #include <Utils.h>
-#include <iostream>
+#include <cmath>
+//#include <iostream>
 
 const float Ghost::TEXTURE_SCALE = 2.0f;
 const float Ghost::GHOST_HEIGHT = 16 * Ghost::TEXTURE_SCALE;
@@ -21,7 +22,8 @@ Ghost::Ghost(float xPos, float yPos, GhostType type)
 
 void Ghost::update(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
 {
-    SDL_FPoint playerPos = player.getPos(); //Get the player pos
+    SDL_FPoint playerPos = player.getPos(); //the player pos
+    float xDist = std::abs(_xPos - playerPos.x); //the x distance between the ghost and the player
 
     //Define base dirs: right and up
     int xDir = 1;
@@ -41,11 +43,11 @@ void Ghost::update(float deltaTime, const Player& player, const std::vector<SDL_
     //Update position
     SDL_FRect futurePos = { _xPos + (xDir * 10.0f), _yPos, GHOST_WIDTH, GHOST_HEIGHT }; //Potential new pos after moving to the xDir
     SDL_FRect futureIntersection = getIntersectionWithLevel(futurePos, level);
-    if (futureIntersection.w > 0.0f && futureIntersection.h > 0.0f) //if new pos is coliding move up instead
+    if ((futureIntersection.w > 0.0f && futureIntersection.h > 0.0f) || xDist <= 1.0f) //if new pos is coliding or the xDist is almsot identical move to yDir
     {
         _yPos += yDir * GHOST_VEL * deltaTime;
     }
-    else //Move right
+    else //Move to xDir
     {
         _xPos += xDir * GHOST_VEL * deltaTime;
     }
