@@ -181,19 +181,17 @@ void LevelScene::draw()
 
    //Draw test tiles
     SDL_SetRenderDrawColor(_window.renderer, 0, 255, 0, 255);
-    /*SDL_RenderDrawLine(_window.renderer, 268, 0, 268, _window.getHeight());
-    SDL_RenderDrawLine(_window.renderer, 1012, 0, 1012, _window.getHeight());*/
 
     //Horizontal lines
    for (int i = 264; i <= 1033; i += 21)
    {
-       SDL_RenderDrawLine(_window.renderer, i, 12, i, 1033);
+       SDL_RenderDrawLine(_window.renderer, i, 12, i, 705);
    }
 
    //Vertical lines
-   for (int i = 12; i <= 1012; i += 21)
+   for (int i = 12; i <= 705; i += 21)
    {
-       SDL_RenderDrawLine(_window.renderer, 264, i, 1012, i);
+       SDL_RenderDrawLine(_window.renderer, 264, i, 1020, i);
    }
 
     //Draw the walls for testing
