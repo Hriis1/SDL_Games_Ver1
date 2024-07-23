@@ -38,7 +38,6 @@ public:
 	void restart();
 
 private:
-	void initWalls();
 	void initCollectables();
 	void initGhosts();
 
