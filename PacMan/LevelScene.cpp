@@ -30,6 +30,7 @@ bool LevelScene::init()
     }
 
     _player.reset();
+    _level.init();
     initWalls(); //Init th=e walls physics objects
     initCollectables(); //Init the coins
     initGhosts(); //Init the ghosts
@@ -124,13 +125,14 @@ void LevelScene::update()
         if (deltaTime <= 0.1f) //Only update if last update was less than 0.1 secs ago
         {
             //Update
+            std::vector<SDL_FRect> _levelCollidors = _level.getCollisionWalls();
             //Update player
-            _player.update(deltaTime, _score, _coins, _level);
+            _player.update(deltaTime, _score, _coins, _levelCollidors);
 
             //Update ghosts
             for (size_t i = 0; i < _ghosts.size(); i++)
             {
-                _ghosts[i].update(deltaTime, _player, _level);
+                _ghosts[i].update(deltaTime, _player, _levelCollidors);
             }
 
             //Check the win condition
@@ -198,9 +200,11 @@ void LevelScene::draw()
     if (_developerVision)
     {
         SDL_SetRenderDrawColor(_window.renderer, 255, 0, 0, 255);
-        for (size_t i = 0; i < _level.size(); i++)
+
+        std::vector<SDL_FRect> _levelCollidors = _level.getCollisionWalls();
+        for (size_t i = 0; i < _levelCollidors.size(); i++)
         {
-            SDL_RenderDrawRectF(_window.renderer, &_level[i]);
+            SDL_RenderDrawRectF(_window.renderer, &_levelCollidors[i]);
         }
     }
    
@@ -238,7 +242,7 @@ void LevelScene::restart()
     reset();
 
     //Reinit objects
-    initWalls();
+    _level.init();
     initCollectables();
     initGhosts();
 }
@@ -246,73 +250,73 @@ void LevelScene::restart()
 void LevelScene::initWalls()
 {
     //Outside walls
-    _level.emplace_back(SDL_FRect{ 284, 18, 712, 15 });
+    //_level.emplace_back(SDL_FRect{ 284, 18, 712, 15 });
 
-    _level.emplace_back(SDL_FRect{ 996, 18, 17, 680 });
-    _level.emplace_back(SDL_FRect{ 267, 18, 17, 680 });
+    //_level.emplace_back(SDL_FRect{ 996, 18, 17, 680 });
+    //_level.emplace_back(SDL_FRect{ 267, 18, 17, 680 });
 
-    _level.emplace_back(SDL_FRect{ 284, 260, 121, 15 });
-    _level.emplace_back(SDL_FRect{ 875, 260, 121, 15 });
+    //_level.emplace_back(SDL_FRect{ 284, 260, 121, 15 });
+    //_level.emplace_back(SDL_FRect{ 875, 260, 121, 15 });
 
-    _level.emplace_back(SDL_FRect{ 388, 275, 17, 44 });
-    _level.emplace_back(SDL_FRect{ 875, 275, 17, 44 });
+    //_level.emplace_back(SDL_FRect{ 388, 275, 17, 44 });
+    //_level.emplace_back(SDL_FRect{ 875, 275, 17, 44 });
 
-    _level.emplace_back(SDL_FRect{ 284, 319, 121, 15 });
-    _level.emplace_back(SDL_FRect{ 875, 319, 121, 15 });
+    //_level.emplace_back(SDL_FRect{ 284, 319, 121, 15 });
+    //_level.emplace_back(SDL_FRect{ 875, 319, 121, 15 });
 
-    _level.emplace_back(SDL_FRect{ 284, 382, 121, 15 });
-    _level.emplace_back(SDL_FRect{ 875, 382, 121, 15 });
+    //_level.emplace_back(SDL_FRect{ 284, 382, 121, 15 });
+    //_level.emplace_back(SDL_FRect{ 875, 382, 121, 15 });
 
-    _level.emplace_back(SDL_FRect{ 388, 395, 17, 45 });
-    _level.emplace_back(SDL_FRect{ 875, 395, 17, 45 });
+    //_level.emplace_back(SDL_FRect{ 388, 395, 17, 45 });
+    //_level.emplace_back(SDL_FRect{ 875, 395, 17, 45 });
 
-    _level.emplace_back(SDL_FRect{ 284, 440, 121, 15 });
-    _level.emplace_back(SDL_FRect{ 875, 440, 121, 15 });
+    //_level.emplace_back(SDL_FRect{ 284, 440, 121, 15 });
+    //_level.emplace_back(SDL_FRect{ 875, 440, 121, 15 });
 
-    _level.emplace_back(SDL_FRect{ 284, 684, 712, 15 });
+    //_level.emplace_back(SDL_FRect{ 284, 684, 712, 15 });
 
-    //Inside walls
-    _level.emplace_back(SDL_FRect{ 349, 78, 582, 15 });
-    _level.emplace_back(SDL_FRect{ 349, 623, 582, 15 });
+    ////Inside walls
+    //_level.emplace_back(SDL_FRect{ 349, 78, 582, 15 });
+    //_level.emplace_back(SDL_FRect{ 349, 623, 582, 15 });
 
-    _level.emplace_back(SDL_FRect{ 632, 93, 17, 59 });
-    _level.emplace_back(SDL_FRect{ 632, 564, 17, 59 });
+    //_level.emplace_back(SDL_FRect{ 632, 93, 17, 59 });
+    //_level.emplace_back(SDL_FRect{ 632, 564, 17, 59 });
 
-    _level.emplace_back(SDL_FRect{ 349, 140, 96, 13 });
-    _level.emplace_back(SDL_FRect{ 835, 140, 96, 13 });
-    _level.emplace_back(SDL_FRect{ 349, 563, 96, 13 });
-    _level.emplace_back(SDL_FRect{ 835, 563, 96, 13 });
+    //_level.emplace_back(SDL_FRect{ 349, 140, 96, 13 });
+    //_level.emplace_back(SDL_FRect{ 835, 140, 96, 13 });
+    //_level.emplace_back(SDL_FRect{ 349, 563, 96, 13 });
+    //_level.emplace_back(SDL_FRect{ 835, 563, 96, 13 });
 
-    _level.emplace_back(SDL_FRect{ 510, 140, 59, 13 });
-    _level.emplace_back(SDL_FRect{ 713, 140, 59, 13 });
-    _level.emplace_back(SDL_FRect{ 510, 563, 59, 13 });
-    _level.emplace_back(SDL_FRect{ 713, 563, 59, 13 });
+    //_level.emplace_back(SDL_FRect{ 510, 140, 59, 13 });
+    //_level.emplace_back(SDL_FRect{ 713, 140, 59, 13 });
+    //_level.emplace_back(SDL_FRect{ 510, 563, 59, 13 });
+    //_level.emplace_back(SDL_FRect{ 713, 563, 59, 13 });
 
-    _level.emplace_back(SDL_FRect{ 389, 153, 17, 60 });
-    _level.emplace_back(SDL_FRect{ 875, 153, 17, 60 });
-    _level.emplace_back(SDL_FRect{ 389, 503, 17, 60 });
-    _level.emplace_back(SDL_FRect{ 875, 503, 17, 60 });
+    //_level.emplace_back(SDL_FRect{ 389, 153, 17, 60 });
+    //_level.emplace_back(SDL_FRect{ 875, 153, 17, 60 });
+    //_level.emplace_back(SDL_FRect{ 389, 503, 17, 60 });
+    //_level.emplace_back(SDL_FRect{ 875, 503, 17, 60 });
 
-    _level.emplace_back(SDL_FRect{ 470, 200, 17, 134 });
-    _level.emplace_back(SDL_FRect{ 794, 200, 17, 134 });
-    _level.emplace_back(SDL_FRect{ 470, 382, 17, 134 });
-    _level.emplace_back(SDL_FRect{ 794, 382, 17, 134 });
+    //_level.emplace_back(SDL_FRect{ 470, 200, 17, 134 });
+    //_level.emplace_back(SDL_FRect{ 794, 200, 17, 134 });
+    //_level.emplace_back(SDL_FRect{ 470, 382, 17, 134 });
+    //_level.emplace_back(SDL_FRect{ 794, 382, 17, 134 });
 
-    _level.emplace_back(SDL_FRect{ 551, 201, 180, 13 });
-    _level.emplace_back(SDL_FRect{ 551, 504, 180, 13 });
+    //_level.emplace_back(SDL_FRect{ 551, 201, 180, 13 });
+    //_level.emplace_back(SDL_FRect{ 551, 504, 180, 13 });
 
-    _level.emplace_back(SDL_FRect{ 632, 214, 17, 59 });
-    _level.emplace_back(SDL_FRect{ 632, 444, 17, 59 });
+    //_level.emplace_back(SDL_FRect{ 632, 214, 17, 59 });
+    //_level.emplace_back(SDL_FRect{ 632, 444, 17, 59 });
 
-    _level.emplace_back(SDL_FRect{ 551, 261, 17, 73 });
-    _level.emplace_back(SDL_FRect{ 713, 261, 17, 73 });
-    _level.emplace_back(SDL_FRect{ 551, 382, 17, 73 });
-    _level.emplace_back(SDL_FRect{ 713, 382, 17, 73 });
+    //_level.emplace_back(SDL_FRect{ 551, 261, 17, 73 });
+    //_level.emplace_back(SDL_FRect{ 713, 261, 17, 73 });
+    //_level.emplace_back(SDL_FRect{ 551, 382, 17, 73 });
+    //_level.emplace_back(SDL_FRect{ 713, 382, 17, 73 });
 
-    _level.emplace_back(SDL_FRect{ 566, 321, 43, 13 });
-    _level.emplace_back(SDL_FRect{ 672, 321, 43, 13 });
-    _level.emplace_back(SDL_FRect{ 566, 382, 43, 13 });
-    _level.emplace_back(SDL_FRect{ 672, 382, 43, 13 });
+    //_level.emplace_back(SDL_FRect{ 566, 321, 43, 13 });
+    //_level.emplace_back(SDL_FRect{ 672, 321, 43, 13 });
+    //_level.emplace_back(SDL_FRect{ 566, 382, 43, 13 });
+    //_level.emplace_back(SDL_FRect{ 672, 382, 43, 13 });
 }
 
 void LevelScene::initCollectables()
@@ -421,9 +425,6 @@ void LevelScene::reset()
 
     //Reset chosen scene idx
     _chosenSceneIdx = -1;
-
-    //Empty walls
-    _level.clear();
 
     //Empty coins
     _coins.clear();

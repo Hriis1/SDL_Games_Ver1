@@ -15,6 +15,7 @@
 #include <LWindow.h>
 #include <LTimer.h>
 
+#include "Level.h"
 #include "Flags.h"
 #include "Player.h"
 #include "Collectable.h"
@@ -68,8 +69,8 @@ private:
 	//Player
 	Player _player;
 
-	//The colliders of the level
-	std::vector<SDL_FRect> _level;
+	//Level data
+	Level _level;
 
 	//Coins
 	std::vector<Collectable> _coins;
