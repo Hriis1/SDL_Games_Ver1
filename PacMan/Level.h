@@ -17,6 +17,33 @@ public:
 	{
 		return _collisionWalls;
 	}
+	const std::vector<int>& getTileMap() const
+	{
+		return _tileMap;
+	}
+	size_t getTileSize() const
+	{
+		return _tileSize;
+	}
+	size_t getTileMapWidth() const
+	{
+		return _tileMapWidth;
+	}
+	size_t getTileMapHeight() const
+	{
+		return _tileMapHeight;
+	}
+	int getTile(size_t x, size_t y) const
+	{
+		int pos = _tileMapWidth * y + x;
+		if (_tileMap.size() <= pos)
+		{
+			return -1;
+		}
+		
+		return _tileMap[pos];
+
+	}
 
 private:
 	void initColliders();
