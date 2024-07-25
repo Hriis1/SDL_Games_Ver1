@@ -1,12 +1,18 @@
 #include "Level.h"
+#include <iostream>
 
 Level::Level()
 {
 }
 
-void Level::init()
+void Level::init(int tileSize, const std::string& mapFile)
 {
+    //Colliders
     initColliders();
+
+    //Tiles
+    _tileSize = tileSize;
+    loadTileMap(mapFile);
 }
 
 void Level::initColliders()
@@ -82,5 +88,34 @@ void Level::initColliders()
         _collisionWalls.emplace_back(SDL_FRect{ 672, 321, 43, 13 });
         _collisionWalls.emplace_back(SDL_FRect{ 566, 382, 43, 13 });
         _collisionWalls.emplace_back(SDL_FRect{ 672, 382, 43, 13 });
+    }
+}
+
+void Level::loadTileMap(const std::string& filename) {
+
+    if (_tileMap.size() == 0) //check if the map has already been inited
+    {
+        std::ifstream file(filename);
+        if (!file.is_open()) {
+            std::cerr << "Unable to open file";
+            return;
+        }
+
+        std::string line;
+        // Read the first line to get width and height
+        if (std::getline(file, line)) {
+            std::istringstream ss(line);
+            char delimiter;
+            ss >> _tileMapWidth >> delimiter >> _tileMapHeight;
+        }
+
+        // Read the rest of the file to get the tile map
+        while (std::getline(file, line)) {
+            for (char ch : line) {
+                _tileMap.push_back(ch - '0'); // Convert char to int
+            }
+        }
+
+        file.close();
     }
 }
