@@ -10,7 +10,7 @@ class Level
 public:
 	Level();
 
-	void init(int tileSize, const std::string& mapFile);
+	void init(size_t tileSize, const std::string& mapFile);
 
 	//getters
 	const std::vector<SDL_FRect>& getCollisionWalls() const
@@ -28,9 +28,9 @@ private:
 	std::vector<SDL_FRect> _collisionWalls;
 
 	//Tiles for pathfinding
-	int _tileSize = 0;
-	int _tileMapWidth = 0;
-	int _tileMapHeight = 0;
+	size_t _tileSize = 0;
+	size_t _tileMapWidth = 0;
+	size_t _tileMapHeight = 0;
 	std::vector<int> _tileMap;
 
 };

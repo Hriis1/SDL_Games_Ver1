@@ -5,7 +5,7 @@ Level::Level()
 {
 }
 
-void Level::init(int tileSize, const std::string& mapFile)
+void Level::init(size_t tileSize, const std::string& mapFile)
 {
     //Colliders
     initColliders();
@@ -110,9 +110,12 @@ void Level::loadTileMap(const std::string& filename) {
         }
 
         // Read the rest of the file to get the tile map
+        _tileMap.resize(_tileMapWidth * _tileMapHeight);
+        size_t idx = 0;
         while (std::getline(file, line)) {
             for (char ch : line) {
-                _tileMap.push_back(ch - '0'); // Convert char to int
+                _tileMap[idx] = (ch - '0'); // Convert char to int
+                idx++;
             }
         }
 
