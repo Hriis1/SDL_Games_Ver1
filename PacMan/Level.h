@@ -12,7 +12,7 @@ class Level
 public:
 	Level();
 
-	void renderDebugGrid(const LWindow& _window);
+	void drawTileGrid(const LWindow& _window);
 
 	void init(size_t tileSize, const std::string& mapFile);
 

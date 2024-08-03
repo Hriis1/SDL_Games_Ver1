@@ -180,12 +180,16 @@ void LevelScene::draw()
     //Draw textures
     _bgTexture.render(0, 0);
 
-   //Draw test tiles
-    SDL_SetRenderDrawColor(_window.renderer, 0, 255, 0, 255);
+   
 
     //Draw the walls for testing
     if (_developerVision)
     {
+        //Draw test tiles
+        SDL_SetRenderDrawColor(_window.renderer, 0, 255, 0, 255);
+        _level.drawTileGrid(_window);
+
+        //Draw walls
         SDL_SetRenderDrawColor(_window.renderer, 255, 0, 0, 255);
 
         std::vector<SDL_FRect> _levelCollidors = _level.getCollisionWalls();

@@ -5,16 +5,16 @@ Level::Level()
 {
 }
 
-void Level::renderDebugGrid(const LWindow& _window)
+void Level::drawTileGrid(const LWindow& _window)
 {
     //Horizontal lines
-    for (int i = x; i <= x + _tileMapWidth; i += _tileSize)
+    for (int i = x; i <= x + _tileMapWidth * _tileSize; i += _tileSize)
     {
         SDL_RenderDrawLine(_window.renderer, i, 12, i, 705);
     }
 
     //Vertical lines
-    for (int i = y; i <= y + _tileMapHeight; i += _tileSize)
+    for (int i = y; i <= y + _tileMapHeight * _tileSize; i += _tileSize)
     {
         SDL_RenderDrawLine(_window.renderer, 264, i, 1020, i);
     }
