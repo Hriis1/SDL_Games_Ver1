@@ -183,18 +183,6 @@ void LevelScene::draw()
    //Draw test tiles
     SDL_SetRenderDrawColor(_window.renderer, 0, 255, 0, 255);
 
-    //Horizontal lines
-   for (int i = 264; i <= 1020; i += 21)
-   {
-       SDL_RenderDrawLine(_window.renderer, i, 12, i, 705);
-   }
-
-   //Vertical lines
-   for (int i = 12; i <= 705; i += 21)
-   {
-       SDL_RenderDrawLine(_window.renderer, 264, i, 1020, i);
-   }
-
     //Draw the walls for testing
     if (_developerVision)
     {

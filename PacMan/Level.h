@@ -5,10 +5,14 @@
 #include <sstream>
 
 #include <SDL/SDL.h>
+#include <LWindow.h>
+
 class Level
 {
 public:
 	Level();
+
+	void renderDebugGrid(const LWindow& _window);
 
 	void init(size_t tileSize, const std::string& mapFile);
 
@@ -49,10 +53,17 @@ private:
 	void initColliders();
 	void loadTileMap(const std::string& filename);
 
+public:
+	//Where grid starts(top left)
+	const int x = 264;
+	const int y = 12;
+
 private:
 
 	//The colliders of the level
 	std::vector<SDL_FRect> _collisionWalls;
+
+	
 
 	//Tiles for pathfinding
 	size_t _tileSize = 0;

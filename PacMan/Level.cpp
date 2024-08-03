@@ -5,6 +5,21 @@ Level::Level()
 {
 }
 
+void Level::renderDebugGrid(const LWindow& _window)
+{
+    //Horizontal lines
+    for (int i = x; i <= x + _tileMapWidth; i += _tileSize)
+    {
+        SDL_RenderDrawLine(_window.renderer, i, 12, i, 705);
+    }
+
+    //Vertical lines
+    for (int i = y; i <= y + _tileMapHeight; i += _tileSize)
+    {
+        SDL_RenderDrawLine(_window.renderer, 264, i, 1020, i);
+    }
+}
+
 void Level::init(size_t tileSize, const std::string& mapFile)
 {
     //Colliders
