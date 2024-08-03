@@ -22,9 +22,11 @@ void Level::drawTileGrid(const LWindow& _window)
 
 void Level::fillPlayerTile(const LWindow& _window, const Player& player)
 {
-    int playerX = player.getXPos();
-    int playerY = player.getYPos();
+    auto playerGridPos = getPlayerGridPos(player);
 
+    SDL_Rect tile = {x + playerGridPos.x * _tileSize, y + playerGridPos.y * _tileSize, _tileSize, _tileSize};
+
+    SDL_RenderFillRect(_window.renderer, &tile);
 }
 
 void Level::init(size_t tileSize, const std::string& mapFile)

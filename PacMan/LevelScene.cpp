@@ -199,7 +199,7 @@ void LevelScene::draw()
         }
 
         //Fill the players tile
-        auto playerGridPos = _level.getPlayerGridPos(_player);
+        _level.fillPlayerTile(_window, _player);
     }
    
     //Draw coins
