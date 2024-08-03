@@ -20,6 +20,13 @@ void Level::drawTileGrid(const LWindow& _window)
     }
 }
 
+void Level::fillPlayerTile(const LWindow& _window, const Player& player)
+{
+    int playerX = player.getXPos();
+    int playerY = player.getYPos();
+
+}
+
 void Level::init(size_t tileSize, const std::string& mapFile)
 {
     //Colliders
@@ -28,6 +35,17 @@ void Level::init(size_t tileSize, const std::string& mapFile)
     //Tiles
     _tileSize = tileSize;
     loadTileMap(mapFile);
+}
+
+SDL_Point Level::getPlayerGridPos(const Player& player)
+{
+    int playerX = player.getXPos();
+    int playerY = player.getYPos();
+
+    int tileX = (playerX - x) / (int)_tileSize;
+    int tileY = (playerY - y) / (int)_tileSize;
+
+    return SDL_Point{ tileX, tileY };
 }
 
 void Level::initColliders()

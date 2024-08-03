@@ -197,6 +197,9 @@ void LevelScene::draw()
         {
             SDL_RenderDrawRectF(_window.renderer, &_levelCollidors[i]);
         }
+
+        //Fill the players tile
+        auto playerGridPos = _level.getPlayerGridPos(_player);
     }
    
     //Draw coins
