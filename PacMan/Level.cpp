@@ -20,11 +20,9 @@ void Level::drawTileGrid(const LWindow& _window)
     }
 }
 
-void Level::fillPlayerTile(const LWindow& _window, const Player& player)
+void Level::fillTile(const LWindow& _window, const SDL_Point& tilePos)
 {
-    auto playerGridPos = getPlayerGridPos(player);
-
-    SDL_Rect tile = {x + playerGridPos.x * _tileSize, y + playerGridPos.y * _tileSize, _tileSize, _tileSize};
+    SDL_Rect tile = { x + tilePos.x * _tileSize, y + tilePos.y * _tileSize, _tileSize, _tileSize };
 
     SDL_RenderFillRect(_window.renderer, &tile);
 }
@@ -39,13 +37,10 @@ void Level::init(size_t tileSize, const std::string& mapFile)
     loadTileMap(mapFile);
 }
 
-SDL_Point Level::getPlayerGridPos(const Player& player)
+SDL_Point Level::getGridPos(const SDL_Point& worldPos)
 {
-    int playerX = player.getXPos();
-    int playerY = player.getYPos();
-
-    int tileX = (playerX - x) / (int)_tileSize;
-    int tileY = (playerY - y) / (int)_tileSize;
+    int tileX = (worldPos.x - x) / (int)_tileSize;
+    int tileY = (worldPos.y - y) / (int)_tileSize;
 
     return SDL_Point{ tileX, tileY };
 }

@@ -199,7 +199,8 @@ void LevelScene::draw()
         }
 
         //Fill the players tile
-        _level.fillPlayerTile(_window, _player);
+        auto playerPos = _level.getGridPos(SDL_Point{(int)_player.getXPos(), (int)_player.getYPos()});
+        _level.fillTile(_window, playerPos);
     }
    
     //Draw coins

@@ -7,8 +7,6 @@
 #include <SDL/SDL.h>
 #include <LWindow.h>
 
-#include "Player.h"
-
 class Level
 {
 public:
@@ -16,12 +14,12 @@ public:
 
 	void drawTileGrid(const LWindow& _window);
 
-	void fillPlayerTile(const LWindow& _window, const Player& player);
+	void fillTile(const LWindow& _window, const SDL_Point& tilePos);
 
 	void init(size_t tileSize, const std::string& mapFile);
 
 	//getters
-	SDL_Point getPlayerGridPos(const Player& player);
+	SDL_Point getGridPos(const SDL_Point& worldPos);
 
 	const std::vector<SDL_FRect>& getCollisionWalls() const
 	{
