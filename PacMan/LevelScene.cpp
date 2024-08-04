@@ -199,6 +199,7 @@ void LevelScene::draw()
         }
 
         //Fill the players tile
+        SDL_SetRenderDrawColor(_window.renderer, 255, 0, 255, 255);
         auto playerPos = _level.getGridPos(SDL_Point{(int)_player.getXPos(), (int)_player.getYPos()});
         _level.fillTile(_window, playerPos);
     }
