@@ -122,6 +122,34 @@ void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
     A_Point playerGridAPos = { playerGridPos.x, playerGridPos.y };
     SDL_Point ghostGridPos = level.getGridPos({(int)_xPos, (int)_yPos});
     A_Point ghostGridAPos = { ghostGridPos.x, ghostGridPos.y };
+
+    //The isWalkable function ptr
+    auto isWalkable = std::bind(&Level::isWalkable, &level, std::placeholders::_1, std::placeholders::_2);
+
+    //Get the path
+    size_t mapWidth = level.getTileMapWidth();
+    size_t mapHright = level.getTileMapHeight();
+    auto path = aStar({ 2,3 }, { 24, 28 }, mapWidth, isWalkable);
+
+    /*for (size_t i = 1; i < path.size() - 1; i++)
+    {
+        if (map.tileMap[path[i].y * mapWidth + path[i].x] == 1)
+        {
+            std::cout << "ERRORRRRRRRRRRRRRRRRRRRRR" << std::endl;
+            return;
+        }
+        map.tileMap[path[i].y * map.WIDTH + path[i].x] = 3;
+
+    }
+
+    for (size_t i = 0; i < mapHright; i++)
+    {
+        for (size_t j = 0; j < mapWidth; j++)
+        {
+            std::cout << map.getTile(j, i) << ' ';
+        }
+        std::cout << std::endl;
+    }*/
 }
 
 void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
