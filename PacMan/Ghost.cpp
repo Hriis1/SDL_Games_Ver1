@@ -131,14 +131,16 @@ void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
     size_t mapHright = level.getTileMapHeight();
     auto path = aStar({ 2,3 }, { 24, 28 }, mapWidth, isWalkable);
 
-    /*for (size_t i = 1; i < path.size() - 1; i++)
+    //Print the path for debuging purposes
+    std::vector<int> tileMapCopy = level.getTileMapCopy();
+    for (size_t i = 1; i < path.size() - 1; i++)
     {
-        if (map.tileMap[path[i].y * mapWidth + path[i].x] == 1)
+        if (tileMapCopy[path[i].y * mapWidth + path[i].x] == 1)
         {
             std::cout << "ERRORRRRRRRRRRRRRRRRRRRRR" << std::endl;
             return;
         }
-        map.tileMap[path[i].y * map.WIDTH + path[i].x] = 3;
+        tileMapCopy[path[i].y * mapWidth + path[i].x] = 3;
 
     }
 
@@ -146,10 +148,10 @@ void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
     {
         for (size_t j = 0; j < mapWidth; j++)
         {
-            std::cout << map.getTile(j, i) << ' ';
+            std::cout << level.getTile(j, i) << ' ';
         }
         std::cout << std::endl;
-    }*/
+    }
 }
 
 void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
