@@ -2,6 +2,7 @@
 #pragma once
 #pragma once
 #include <vector>
+#include <functional>
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
@@ -10,6 +11,7 @@
 
 #include "PacManData.h"
 #include "Player.h"
+#include "Level.h"
 
 const int Ghost_ANIMATION_FRAMES = 8;
 
@@ -64,8 +66,13 @@ public:
     //Init the Ghost textures
     static bool init(SDL_Renderer* renderer, SDL_Window* window);
 
+public:
+    //Pathfinding and chasing the player
+    void pathFindToPlayerAStar(const Level& level, const Player& player);
 private:
     void chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
+    void chasePlayerAStar(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
+
     //Moves the collision rect relative to the Player's offset
     void shiftColliders();
 

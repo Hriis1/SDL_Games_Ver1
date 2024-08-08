@@ -1,5 +1,6 @@
 #include "Ghost.h"
 #include <Utils.h>
+#include <A_Star.h>
 #include <cmath>
 //#include <iostream>
 
@@ -114,6 +115,11 @@ void Ghost::render(int camX, int camY)
     }
 }
 
+void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
+{
+    SDL_Point playerGridPos = level.getGridPos(player.getPos());
+}
+
 void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
 {
     SDL_FPoint playerPos = player.getPos(); //the player pos
@@ -155,6 +161,10 @@ void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector
         _xPos += xDir * GHOST_VEL * deltaTime;
     }
     shiftColliders(); //Shift colliders afrer movement
+}
+
+void Ghost::chasePlayerAStar(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
+{
 }
 
 void Ghost::shiftColliders()

@@ -37,7 +37,7 @@ void Level::init(size_t tileSize, const std::string& mapFile)
     loadTileMap(mapFile);
 }
 
-SDL_Point Level::getGridPos(const SDL_Point& worldPos)
+SDL_Point Level::getGridPos(const SDL_Point& worldPos) const
 {
     int tileX = (worldPos.x - x) / (int)_tileSize;
     int tileY = (worldPos.y - y) / (int)_tileSize;

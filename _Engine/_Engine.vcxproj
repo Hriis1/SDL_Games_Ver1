@@ -144,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="A_Star.h" />
     <ClInclude Include="GlobalData.h" />
     <ClInclude Include="LBitmapFont.h" />
     <ClInclude Include="LButton.h" />

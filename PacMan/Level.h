@@ -19,7 +19,7 @@ public:
 	void init(size_t tileSize, const std::string& mapFile);
 
 	//getters
-	SDL_Point getGridPos(const SDL_Point& worldPos);
+	SDL_Point getGridPos(const SDL_Point& worldPos) const;
 
 	const std::vector<SDL_FRect>& getCollisionWalls() const
 	{
@@ -51,6 +51,13 @@ public:
 		
 		return _tileMap[pos];
 
+	}
+	bool isWalkable(int x, int y) const 
+	{
+		if (x < 0 || y < 0 || x >= _tileMapWidth || y >= _tileMapHeight) 
+			return false;
+
+		return _tileMap[y * _tileMapWidth + x] != 1;
 	}
 
 private:
