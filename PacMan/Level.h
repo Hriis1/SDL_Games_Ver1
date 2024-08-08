@@ -29,6 +29,10 @@ public:
 	{
 		return _tileMap;
 	}
+	std::vector<int> getTileMapCopy() const
+	{
+		return _tileMap;
+	}
 	size_t getTileSize() const
 	{
 		return _tileSize;
