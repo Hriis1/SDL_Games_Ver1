@@ -45,6 +45,22 @@ SDL_Point Level::getGridPos(const SDL_Point& worldPos) const
     return SDL_Point{ tileX, tileY };
 }
 
+SDL_Point Level::getWalkableGridPos(const SDL_Point& worldPos) const
+{
+    int tileX = (worldPos.x - x) / (int)_tileSize;
+    int tileY = (worldPos.y - y) / (int)_tileSize;
+
+    //If position is not walkable take right then down then down right
+    if(isWalkable(tileX, tileY))
+        return SDL_Point{ tileX, tileY };
+    if (isWalkable(tileX + 1, tileY))
+        return SDL_Point{ tileX + 1, tileY };
+    if (isWalkable(tileX, tileY + 1))
+        return SDL_Point{ tileX, tileY + 1 };
+
+    return SDL_Point{ tileX + 1, tileY + 1 };
+}
+
 void Level::initColliders()
 {
 

@@ -21,6 +21,9 @@ public:
 	//getters
 	SDL_Point getGridPos(const SDL_Point& worldPos) const;
 
+	//For player or ghost
+	SDL_Point getWalkableGridPos(const SDL_Point& worldPos) const;
+
 	const std::vector<SDL_FRect>& getCollisionWalls() const
 	{
 		return _collisionWalls;

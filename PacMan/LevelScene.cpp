@@ -206,12 +206,12 @@ void LevelScene::draw()
 
         //Fill the players tile
         SDL_SetRenderDrawColor(_window.renderer, 255, 0, 255, 255);
-        auto playerPos = _level.getGridPos(SDL_Point{(int)_player.getXPos(), (int)_player.getYPos()});
+        auto playerPos = _level.getWalkableGridPos(SDL_Point{(int)_player.getXPos(), (int)_player.getYPos()});
         _level.fillTile(_window, playerPos);
 
         //Fill the ghost tile
         SDL_SetRenderDrawColor(_window.renderer, 255, 0, 0, 255);
-        auto ghostPos = _level.getGridPos(SDL_Point{ (int)_ghosts[0].getXPos(), (int)_ghosts[0].getYPos() });
+        auto ghostPos = _level.getWalkableGridPos(SDL_Point{ (int)_ghosts[0].getXPos(), (int)_ghosts[0].getYPos() });
         _level.fillTile(_window, ghostPos);
     }
    
