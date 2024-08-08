@@ -45,9 +45,10 @@ public:
         return _collisionRect;
     }
 
-    SDL_FPoint getPos() const
+    template<typename PointT, typename VarT>
+    PointT getPos() const
     {
-        return SDL_FPoint{ _xPos, _yPos };
+        return PointT{ (VarT)_xPos, (VarT)_yPos };
     }
 
     float getXPos() const
