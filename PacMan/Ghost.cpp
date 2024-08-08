@@ -2,7 +2,7 @@
 #include <Utils.h>
 #include <A_Star.h>
 #include <cmath>
-//#include <iostream>
+#include <iostream>
 
 const float Ghost::TEXTURE_SCALE = 2.0f;
 const float Ghost::GHOST_HEIGHT = 16 * Ghost::TEXTURE_SCALE;
@@ -21,9 +21,24 @@ Ghost::Ghost(float xPos, float yPos, GhostType type)
     shiftColliders();
 }
 
+void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
+{
+    //If a key was pressed
+    if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
+    {
+        //Adjust the velocity
+        switch (e.key.keysym.sym)
+        {
+        case SDLK_g:
+            pathFindToPlayerAStar(level, player);
+            break;
+        }
+    }
+}
+
 void Ghost::update(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
 {
-    chasePlayer(deltaTime, player, level); //Go after the player
+    //chasePlayer(deltaTime, player, level); //Go after the player
 
     //Collide with level
     collideWithLevel(_collisionRect, _xPos, _yPos, level);
@@ -129,11 +144,11 @@ void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
     //Get the path
     size_t mapWidth = level.getTileMapWidth();
     size_t mapHright = level.getTileMapHeight();
-    auto path = aStar({ 2,3 }, { 24, 28 }, mapWidth, isWalkable);
+    auto path = aStar(ghostGridAPos, playerGridAPos, mapWidth, isWalkable);
 
     //Print the path for debuging purposes
     std::vector<int> tileMapCopy = level.getTileMapCopy();
-    for (size_t i = 1; i < path.size() - 1; i++)
+    for (size_t i = 0; i < path.size(); i++)
     {
         if (tileMapCopy[path[i].y * mapWidth + path[i].x] == 1)
         {
@@ -148,10 +163,12 @@ void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
     {
         for (size_t j = 0; j < mapWidth; j++)
         {
-            std::cout << level.getTile(j, i) << ' ';
+            std::cout << tileMapCopy[i * mapWidth + j] << ' ';
         }
         std::cout << std::endl;
     }
+
+    return;
 }
 
 void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)

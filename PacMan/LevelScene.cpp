@@ -78,9 +78,15 @@ void LevelScene::handleEvents(SDL_Event& e)
         //Handle window events
         _window.handleEvent(e);
 
-        //Handle input for the player
         if (_gameState == GameState::RUNNING)
+        {
+            //Handle plyer input
             _player.handleEvent(e);
+
+            //Handle ghost input(debugging)
+            if (DEVELOPER_MODE)
+                _ghosts[0].handleEvent(e, _level, _player);
+        }
 
         //Special key input
         if (e.type == SDL_KEYDOWN)

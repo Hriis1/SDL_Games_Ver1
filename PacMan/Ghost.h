@@ -35,6 +35,9 @@ public:
     //Initializes the variables
     Ghost(float xPos, float yPos, GhostType type = GhostType::RED);
 
+    //Handles ghost input(debugging)
+    void handleEvent(SDL_Event& e, const Level& level, const Player& player);
+
     //update the ghost
     void update(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level = {});
 
