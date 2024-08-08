@@ -133,9 +133,9 @@ void Ghost::render(int camX, int camY)
 void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
 {
     //Get the positions of the player and ghost
-    SDL_Point playerGridPos = level.getGridPos(player.getPos<SDL_Point, int>());
+    SDL_Point playerGridPos = level.getWalkableGridPos(player.getPos<SDL_Point, int>());
     A_Point playerGridAPos = { playerGridPos.x, playerGridPos.y };
-    SDL_Point ghostGridPos = level.getGridPos({(int)_xPos, (int)_yPos});
+    SDL_Point ghostGridPos = level.getWalkableGridPos({(int)_xPos, (int)_yPos});
     A_Point ghostGridAPos = { ghostGridPos.x, ghostGridPos.y };
 
     //The isWalkable function ptr
@@ -167,8 +167,7 @@ void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
         }
         std::cout << std::endl;
     }
-
-    return;
+    std::cout << std::endl << std::endl << std::endl << std::endl;
 }
 
 void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
