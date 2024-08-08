@@ -117,7 +117,11 @@ void Ghost::render(int camX, int camY)
 
 void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
 {
+    //Get the positions of the player and ghost
     SDL_Point playerGridPos = level.getGridPos(player.getPos<SDL_Point, int>());
+    A_Point playerGridAPos = { playerGridPos.x, playerGridPos.y };
+    SDL_Point ghostGridPos = level.getGridPos({(int)_xPos, (int)_yPos});
+    A_Point ghostGridAPos = { ghostGridPos.x, ghostGridPos.y };
 }
 
 void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
