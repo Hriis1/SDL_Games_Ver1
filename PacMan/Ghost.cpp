@@ -43,28 +43,8 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
         //Find path to player
         _pathToFollow = pathFindToPlayerAStar(level, player);
 
-        //Print the path for debuging purposes
-        std::vector<int> tileMapCopy = level.getTileMapCopy();
-        for (size_t i = 0; i < _pathToFollow.size(); i++)
-        {
-            if (tileMapCopy[_pathToFollow[i].y * level.getTileMapWidth() + _pathToFollow[i].x] == 1)
-            {
-                std::cout << "ERRORRRRRRRRRRRRRRRRRRRRR" << std::endl;
-                return;
-            }
-            tileMapCopy[_pathToFollow[i].y * level.getTileMapWidth() + _pathToFollow[i].x] = 3;
-
-        }
-
-        for (size_t i = 0; i < level.getTileMapHeight(); i++)
-        {
-            for (size_t j = 0; j < level.getTileMapWidth(); j++)
-            {
-                std::cout << tileMapCopy[i * level.getTileMapWidth() + j] << ' ';
-            }
-            std::cout << std::endl;
-        }
-        std::cout << std::endl << std::endl << std::endl << std::endl;
+        //Print the path for debug
+        printPath(level, _pathToFollow);
 
         //Restart the timer
         _pathFindTimer.start();
@@ -226,6 +206,31 @@ void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector
 
 void Ghost::chasePlayerAStar(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
 {
+}
+
+void Ghost::printPath(const Level& level, const std::vector<A_Point>& path)
+{
+    std::vector<int> tileMapCopy = level.getTileMapCopy();
+    for (size_t i = 0; i < _pathToFollow.size(); i++)
+    {
+        if (tileMapCopy[_pathToFollow[i].y * level.getTileMapWidth() + _pathToFollow[i].x] == 1)
+        {
+            std::cout << "ERRORRRRRRRRRRRRRRRRRRRRR" << std::endl;
+            return;
+        }
+        tileMapCopy[_pathToFollow[i].y * level.getTileMapWidth() + _pathToFollow[i].x] = 3;
+
+    }
+
+    for (size_t i = 0; i < level.getTileMapHeight(); i++)
+    {
+        for (size_t j = 0; j < level.getTileMapWidth(); j++)
+        {
+            std::cout << tileMapCopy[i * level.getTileMapWidth() + j] << ' ';
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl << std::endl << std::endl << std::endl;
 }
 
 void Ghost::shiftColliders()
