@@ -12,6 +12,22 @@
 struct A_Point {
     int x, y;
     A_Point(int x, int y) : x(x), y(y) {}
+
+    //operators
+    bool operator<(const A_Point& other) const
+    {
+        return x + y < other.x + other.y;
+    }
+
+    bool operator>(const A_Point& other) const
+    {
+        return !(*this < other);
+    }
+
+    bool operator==(const A_Point& other) const
+    {
+        return x == other.x && y == other.y;
+    }
 };
 
 struct A_Node {
