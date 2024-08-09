@@ -5,6 +5,13 @@
 
 template <typename T>
 inline int binarySearch(const std::vector<T>& arr, T target) {
+
+    //Checks for when array is of size 0 and 1
+    if (arr.size() == 0)
+        return -1;
+    if (arr.size() == 1)
+        return arr[0] == target ? 0 : -1;
+
     int left = 0, right = arr.size() - 1;
 
     // Determine if the array is sorted in ascending or descending order

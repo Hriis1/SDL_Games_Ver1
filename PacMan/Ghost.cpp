@@ -45,23 +45,6 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
         //Find path to player
         _pathToFollow = pathFindToPlayerAStar(level, player);
 
-        //get the grid pos
-        SDL_Point gridPos = level.getGridPos({ (int)_xPos, (int)_yPos }); 
-        A_Point gridAPoint = { gridPos.x, gridPos.y };
-
-        //Determine the moving direction
-        if (_pathToFollow.size() >= 2)
-        {
-            if (_pathToFollow[1].x > _pathToFollow[0].x)
-                _ghostMovementDir = { 1, 0 }; //Right
-            else if (_pathToFollow[1].x < _pathToFollow[0].x)
-                _ghostMovementDir = { -1, 0 }; //Left
-            else if (_pathToFollow[1].y > _pathToFollow[0].y)
-                _ghostMovementDir = { 0, 1 }; //Bot
-            else
-                _ghostMovementDir = { 0, -1 }; //Top
-        }
-
         //Print the path for debug
         //printPath(level, _pathToFollow);
 
@@ -69,8 +52,29 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
         _pathFindTimer.start();
     }
 
+    //get the grid pos
+    SDL_Point gridPos = level.getGridPos({ (int)(_xPos + GHOST_WIDTH / 2), (int)(_yPos + GHOST_HEIGHT / 2) });
+    A_Point gridAPoint = { gridPos.x, gridPos.y };
+
+    int pathPosIdx = binarySearch(_pathToFollow, gridAPoint);
+
+    if (pathPosIdx != -1)
+    {
+        //Determine the moving direction
+        if (_pathToFollow.size() > pathPosIdx + 1)
+        {
+            if (_pathToFollow[pathPosIdx + 1].x > _pathToFollow[pathPosIdx].x)
+                _ghostMovementDir = { 1, 0 }; //Right
+            else if (_pathToFollow[pathPosIdx + 1].x < _pathToFollow[pathPosIdx].x)
+                _ghostMovementDir = { -1, 0 }; //Left
+            else if (_pathToFollow[pathPosIdx + 1].y > _pathToFollow[pathPosIdx].y)
+                _ghostMovementDir = { 0, 1 }; //Bot
+            else
+                _ghostMovementDir = { 0, -1 }; //Top
+        }
+    }
+
     ghostMove(deltaTime, _ghostMovementDir); //Move the ghost at the direction determined by the path
-    //chasePlayer(deltaTime, player, level); //Go after the player
 
     //Collide with level
     collideWithLevel(_collisionRect, _xPos, _yPos, level.getCollisionWalls());
