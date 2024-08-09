@@ -91,6 +91,9 @@ private:
     //Reverse the y dir when you cant go ydir and xdir
     int _yDirReversal = 1;
 
+    //Dir that the ghost should move to
+    GhostMovementDir _ghostMovementDir = GhostMovementDir::GHOST_TOP;
+
     //The type of the Ghost
     GhostType _type;
 

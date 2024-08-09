@@ -11,6 +11,7 @@
 
 struct A_Point {
     int x, y;
+    A_Point() : x(0), y(0) {}
     A_Point(int x, int y) : x(x), y(y) {}
 
     //operators

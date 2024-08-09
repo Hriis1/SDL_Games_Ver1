@@ -1,7 +1,9 @@
 #include "Ghost.h"
-#include <Utils.h>
 #include <cmath>
 #include <iostream>
+
+#include <Utils.h>
+#include <LBinarySearch.h>
 
 const float Ghost::TEXTURE_SCALE = 2.0f;
 const float Ghost::GHOST_HEIGHT = 16 * Ghost::TEXTURE_SCALE;
@@ -17,8 +19,8 @@ SDL_Rect Ghost::_spriteClips[Ghost_ANIMATION_FRAMES];
 Ghost::Ghost(float xPos, float yPos, GhostType type)
     : _xPos(xPos), _yPos(yPos), _type(type)
 {
-    shiftColliders();
-    _pathFindTimer.start();
+    _pathFindTimer.start(); //Start the pathfinding timer
+    shiftColliders(); //Shift colliders
 }
 
 void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
@@ -38,10 +40,27 @@ void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
 
 void Ghost::update(float deltaTime, const Level& level, const Player& player)
 {
-    if (_pathFindTimer.getTicks() > 2000.0f) //Executes every 2 secs
+    if (_pathFindTimer.getTicks() > 1500.0f) //Executes every 1.5 secs
     {
         //Find path to player
         _pathToFollow = pathFindToPlayerAStar(level, player);
+
+        //get the grid pos
+        SDL_Point gridPos = level.getGridPos({ (int)_xPos, (int)_yPos }); 
+        A_Point gridAPoint = { gridPos.x, gridPos.y };
+
+        //Determine the moving direction
+        if (_pathToFollow.size() >= 2)
+        {
+            if (_pathToFollow[1].x > _pathToFollow[0].x)
+                _ghostMovementDir = GhostMovementDir::GHOST_RIGHT;
+            else if (_pathToFollow[1].x < _pathToFollow[0].x)
+                _ghostMovementDir = GhostMovementDir::GHOST_LEFT;
+            else if (_pathToFollow[1].y > _pathToFollow[0].y)
+                _ghostMovementDir = GhostMovementDir::GHOST_BOTTOM;
+            else
+                _ghostMovementDir = GhostMovementDir::GHOST_TOP;
+        }
 
         //Print the path for debug
         //printPath(level, _pathToFollow);
