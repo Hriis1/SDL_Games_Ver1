@@ -38,12 +38,37 @@ void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
 
 void Ghost::update(float deltaTime, const Level& level, const Player& player)
 {
-    if (_pathFindTimer.getTicks() > 2000.0f)
+    if (_pathFindTimer.getTicks() > 2000.0f) //Executes every 2 secs
     {
-        std::cout << "2 sec passed" << std::endl;
+        //Find path to player
+        _pathToFollow = pathFindToPlayerAStar(level, player);
+
+        //Print the path for debuging purposes
+        std::vector<int> tileMapCopy = level.getTileMapCopy();
+        for (size_t i = 0; i < _pathToFollow.size(); i++)
+        {
+            if (tileMapCopy[_pathToFollow[i].y * level.getTileMapWidth() + _pathToFollow[i].x] == 1)
+            {
+                std::cout << "ERRORRRRRRRRRRRRRRRRRRRRR" << std::endl;
+                return;
+            }
+            tileMapCopy[_pathToFollow[i].y * level.getTileMapWidth() + _pathToFollow[i].x] = 3;
+
+        }
+
+        for (size_t i = 0; i < level.getTileMapHeight(); i++)
+        {
+            for (size_t j = 0; j < level.getTileMapWidth(); j++)
+            {
+                std::cout << tileMapCopy[i * level.getTileMapWidth() + j] << ' ';
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl << std::endl << std::endl << std::endl;
+
+        //Restart the timer
         _pathFindTimer.start();
     }
-    //pathFindToPlayerAStar(level, player);
 
     //chasePlayer(deltaTime, player, level); //Go after the player
 
@@ -154,29 +179,6 @@ std::vector<A_Point> Ghost::pathFindToPlayerAStar(const Level& level, const Play
     auto path = aStar(ghostGridAPos, playerGridAPos, mapWidth, isWalkable);
 
     return path;
-
-    //Print the path for debuging purposes
-    /*std::vector<int> tileMapCopy = level.getTileMapCopy();
-    for (size_t i = 0; i < path.size(); i++)
-    {
-        if (tileMapCopy[path[i].y * mapWidth + path[i].x] == 1)
-        {
-            std::cout << "ERRORRRRRRRRRRRRRRRRRRRRR" << std::endl;
-            return;
-        }
-        tileMapCopy[path[i].y * mapWidth + path[i].x] = 3;
-
-    }
-
-    for (size_t i = 0; i < mapHright; i++)
-    {
-        for (size_t j = 0; j < mapWidth; j++)
-        {
-            std::cout << tileMapCopy[i * mapWidth + j] << ' ';
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl << std::endl << std::endl << std::endl;*/
 }
 
 void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)

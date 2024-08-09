@@ -101,7 +101,7 @@ private:
 
     //Stuff for pathfinding
     LTimer _pathFindTimer;
-    std::vector<A_Point> _path;
+    std::vector<A_Point> _pathToFollow;
 
     //static
     //consts
