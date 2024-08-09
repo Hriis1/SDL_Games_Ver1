@@ -167,7 +167,7 @@ std::vector<A_Point> Ghost::pathFindToPlayerAStar(const Level& level, const Play
     //Get the positions of the player and ghost
     SDL_Point playerGridPos = level.getWalkableGridPos(player.getPos<SDL_Point, int>());
     A_Point playerGridAPos = { playerGridPos.x, playerGridPos.y };
-    SDL_Point ghostGridPos = level.getWalkableGridPos({(int)_xPos, (int)_yPos});
+    SDL_Point ghostGridPos = level.getWalkableGridPos({ (int)(_xPos + GHOST_WIDTH / 2), (int)(_yPos + GHOST_HEIGHT / 2) });
     A_Point ghostGridAPos = { ghostGridPos.x, ghostGridPos.y };
 
     //The isWalkable function ptr

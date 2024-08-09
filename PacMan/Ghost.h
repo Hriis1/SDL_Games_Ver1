@@ -71,6 +71,15 @@ public:
     //Init the Ghost textures
     static bool init(SDL_Renderer* renderer, SDL_Window* window);
 
+    static float GET_WIDTH()
+    {
+        return GHOST_WIDTH;
+    }
+    static float GET_HEIGHT()
+    {
+        return GHOST_HEIGHT;
+    }
+
 public:
     //Pathfinding and chasing the player
     std::vector<A_Point> pathFindToPlayerAStar(const Level& level, const Player& player);
