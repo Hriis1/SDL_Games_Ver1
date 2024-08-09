@@ -18,6 +18,7 @@ Ghost::Ghost(float xPos, float yPos, GhostType type)
     : _xPos(xPos), _yPos(yPos), _type(type)
 {
     shiftColliders();
+    _pathFindTimer.start();
 }
 
 void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
@@ -37,6 +38,11 @@ void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
 
 void Ghost::update(float deltaTime, const Level& level, const Player& player)
 {
+    if (_pathFindTimer.getTicks() > 2000.0f)
+    {
+        std::cout << "2 sec passed" << std::endl;
+        _pathFindTimer.start();
+    }
     //pathFindToPlayerAStar(level, player);
 
     //chasePlayer(deltaTime, player, level); //Go after the player

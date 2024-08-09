@@ -7,6 +7,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
+#include <LTimer.h>
 #include <LTexture.h>
 #include <A_Star.h>
 
@@ -97,6 +98,10 @@ private:
 
     //animation frames
     int _animationFrame = 0;
+
+    //Stuff for pathfinding
+    LTimer _pathFindTimer;
+    std::vector<A_Point> _path;
 
     //static
     //consts
