@@ -40,7 +40,7 @@ void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
 
 void Ghost::update(float deltaTime, const Level& level, const Player& player)
 {
-    if (_pathFindTimer.getTicks() > 1500.0f) //Executes every 1.5 secs
+    if (_pathFindTimer.getTicks() > 500.0f) //Executes every 1 secs
     {
         //Find path to player
         _pathToFollow = pathFindToPlayerAStar(level, player);
@@ -53,13 +53,13 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
         if (_pathToFollow.size() >= 2)
         {
             if (_pathToFollow[1].x > _pathToFollow[0].x)
-                _ghostMovementDir = GhostMovementDir::GHOST_RIGHT;
+                _ghostMovementDir = { 1, 0 }; //Right
             else if (_pathToFollow[1].x < _pathToFollow[0].x)
-                _ghostMovementDir = GhostMovementDir::GHOST_LEFT;
+                _ghostMovementDir = { -1, 0 }; //Left
             else if (_pathToFollow[1].y > _pathToFollow[0].y)
-                _ghostMovementDir = GhostMovementDir::GHOST_BOTTOM;
+                _ghostMovementDir = { 0, 1 }; //Bot
             else
-                _ghostMovementDir = GhostMovementDir::GHOST_TOP;
+                _ghostMovementDir = { 0, -1 }; //Top
         }
 
         //Print the path for debug
@@ -69,6 +69,7 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
         _pathFindTimer.start();
     }
 
+    ghostMove(deltaTime, _ghostMovementDir); //Move the ghost at the direction determined by the path
     //chasePlayer(deltaTime, player, level); //Go after the player
 
     //Collide with level
@@ -178,6 +179,15 @@ std::vector<A_Point> Ghost::pathFindToPlayerAStar(const Level& level, const Play
     auto path = aStar(ghostGridAPos, playerGridAPos, mapWidth, isWalkable);
 
     return path;
+}
+
+void Ghost::ghostMove(float deltaTime, SDL_Point movementDir)
+{
+    //Move ghost
+    _xPos += movementDir.x * GHOST_VEL * deltaTime;
+    _yPos += movementDir.y * GHOST_VEL * deltaTime;
+    
+    shiftColliders(); //Shift colliders afrer movement
 }
 
 void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)

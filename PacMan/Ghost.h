@@ -75,6 +75,7 @@ public:
     //Pathfinding and chasing the player
     std::vector<A_Point> pathFindToPlayerAStar(const Level& level, const Player& player);
 private:
+    void ghostMove(float deltaTime, SDL_Point movementDir);
     void chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
     void chasePlayerAStar(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
     void printPath(const Level& level, const std::vector<A_Point>& path);
@@ -92,7 +93,7 @@ private:
     int _yDirReversal = 1;
 
     //Dir that the ghost should move to
-    GhostMovementDir _ghostMovementDir = GhostMovementDir::GHOST_TOP;
+    SDL_Point _ghostMovementDir = {0, 0};
 
     //The type of the Ghost
     GhostType _type;
