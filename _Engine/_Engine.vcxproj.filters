@@ -51,6 +51,9 @@
     <ClInclude Include="A_Star.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LBinarySearch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LBitmapFont.cpp">
