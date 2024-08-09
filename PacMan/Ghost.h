@@ -8,6 +8,7 @@
 #include <SDL/SDL_image.h>
 
 #include <LTexture.h>
+#include <A_Star.h>
 
 #include "PacManData.h"
 #include "Player.h"
@@ -39,7 +40,7 @@ public:
     void handleEvent(SDL_Event& e, const Level& level, const Player& player);
 
     //update the ghost
-    void update(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level = {});
+    void update(float deltaTime, const Level& level, const Player& player);
 
     //Shows the Ghost on the screen
     void render(int camX, int camY);
@@ -71,7 +72,7 @@ public:
 
 public:
     //Pathfinding and chasing the player
-    void pathFindToPlayerAStar(const Level& level, const Player& player);
+    std::vector<A_Point> pathFindToPlayerAStar(const Level& level, const Player& player);
 private:
     void chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
     void chasePlayerAStar(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);

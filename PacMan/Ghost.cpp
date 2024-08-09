@@ -1,6 +1,5 @@
 #include "Ghost.h"
 #include <Utils.h>
-#include <A_Star.h>
 #include <cmath>
 #include <iostream>
 
@@ -30,18 +29,20 @@ void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
         switch (e.key.keysym.sym)
         {
         case SDLK_g:
-            pathFindToPlayerAStar(level, player);
+            //pathFindToPlayerAStar(level, player);
             break;
         }
     }
 }
 
-void Ghost::update(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)
+void Ghost::update(float deltaTime, const Level& level, const Player& player)
 {
+    //pathFindToPlayerAStar(level, player);
+
     //chasePlayer(deltaTime, player, level); //Go after the player
 
     //Collide with level
-    collideWithLevel(_collisionRect, _xPos, _yPos, level);
+    collideWithLevel(_collisionRect, _xPos, _yPos, level.getCollisionWalls());
     shiftColliders();
 }
 
@@ -130,7 +131,7 @@ void Ghost::render(int camX, int camY)
     }
 }
 
-void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
+std::vector<A_Point> Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
 {
     //Get the positions of the player and ghost
     SDL_Point playerGridPos = level.getWalkableGridPos(player.getPos<SDL_Point, int>());
@@ -146,8 +147,10 @@ void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
     size_t mapHright = level.getTileMapHeight();
     auto path = aStar(ghostGridAPos, playerGridAPos, mapWidth, isWalkable);
 
+    return path;
+
     //Print the path for debuging purposes
-    std::vector<int> tileMapCopy = level.getTileMapCopy();
+    /*std::vector<int> tileMapCopy = level.getTileMapCopy();
     for (size_t i = 0; i < path.size(); i++)
     {
         if (tileMapCopy[path[i].y * mapWidth + path[i].x] == 1)
@@ -167,7 +170,7 @@ void Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
         }
         std::cout << std::endl;
     }
-    std::cout << std::endl << std::endl << std::endl << std::endl;
+    std::cout << std::endl << std::endl << std::endl << std::endl;*/
 }
 
 void Ghost::chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level)

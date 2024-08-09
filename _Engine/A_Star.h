@@ -1,3 +1,6 @@
+#ifndef ASTAR_H
+#define ASTAR_H
+
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -25,11 +28,11 @@ struct CompareNodes {
     }
 };
 
-int heuristic(const A_Point& a, const A_Point& b) {
+inline int heuristic(const A_Point& a, const A_Point& b) {
     return abs(a.x - b.x) + abs(a.y - b.y);
 }
 
-std::vector<A_Point> getNeighbors(const A_Point& p, const std::function<bool(int, int)>& isWalkable) {
+inline std::vector<A_Point> getNeighbors(const A_Point& p, const std::function<bool(int, int)>& isWalkable) {
     std::vector<A_Point> neighbors;
     std::vector<A_Point> directions = { {0,1}, {1,0}, {0,-1}, {-1,0} };
     for (const auto& dir : directions) {
@@ -41,7 +44,7 @@ std::vector<A_Point> getNeighbors(const A_Point& p, const std::function<bool(int
     return neighbors;
 }
 
-std::vector<A_Point> reconstructPath(A_Node* node) {
+inline std::vector<A_Point> reconstructPath(A_Node* node) {
     std::vector<A_Point> path;
     while (node != nullptr) {
         path.push_back(node->point);
@@ -51,7 +54,7 @@ std::vector<A_Point> reconstructPath(A_Node* node) {
     return path;
 }
 
-std::vector<A_Point> aStar(A_Point start, A_Point goal, int mapWidth, const std::function<bool(int, int)>& isWalkable) {
+inline std::vector<A_Point> aStar(A_Point start, A_Point goal, int mapWidth, const std::function<bool(int, int)>& isWalkable) {
 
     //Validation
     if (!isWalkable(goal.x, goal.y))
@@ -105,3 +108,5 @@ std::vector<A_Point> aStar(A_Point start, A_Point goal, int mapWidth, const std:
 
     return {}; // No path found
 }
+
+#endif // ASTAR_H
