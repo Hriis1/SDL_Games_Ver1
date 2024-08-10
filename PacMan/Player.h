@@ -60,6 +60,15 @@ public:
     {
         return _yPos;
     }
+
+    float getWidth()
+    {
+        return PLAYER_WIDTH;
+    }
+    float getHeight()
+    {
+        return PLAYER_HEIGHT;
+    }
     
 private:
     //Moves the collision rect relative to the Player's offset

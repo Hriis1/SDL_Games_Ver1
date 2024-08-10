@@ -52,16 +52,16 @@ void Level::printMap()
 
 SDL_Point Level::getGridPos(const SDL_Point& worldPos) const
 {
-    int tileX = (worldPos.x - x) / (int)_tileSize;
-    int tileY = (worldPos.y - y) / (int)_tileSize;
+    int tileX = (worldPos.x - x) / _tileSize;
+    int tileY = (worldPos.y - y) / _tileSize;
 
     return SDL_Point{ tileX, tileY };
 }
 
 SDL_Point Level::getWalkableGridPos(const SDL_Point& worldPos) const
 {
-    int tileX = (worldPos.x - x) / (int)_tileSize;
-    int tileY = (worldPos.y - y) / (int)_tileSize;
+    int tileX = (worldPos.x - x) / _tileSize;
+    int tileY = (worldPos.y - y) / _tileSize;
 
     //If position is not walkable take right then down then down right
     if(isWalkable(tileX, tileY))
