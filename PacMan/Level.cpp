@@ -27,14 +27,27 @@ void Level::fillTile(const LWindow& _window, const SDL_Point& tilePos)
     SDL_RenderFillRect(_window.renderer, &tile);
 }
 
-void Level::init(size_t tileSize, const std::string& mapFile)
+void Level::init(size_t tileSize, const std::string& mapFile, int scale)
 {
     //Colliders
     initColliders();
 
     //Tiles
     _tileSize = tileSize;
-    loadTileMap(mapFile);
+    loadTileMap(mapFile, scale);
+}
+
+void Level::printMap()
+{
+    for (size_t i = 0; i < _tileMapHeight; i++)
+    {
+        for (size_t j = 0; j < _tileMapWidth; j++)
+        {
+            std::cout << _tileMap[i];
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl << std::endl;
 }
 
 SDL_Point Level::getGridPos(const SDL_Point& worldPos) const
@@ -137,7 +150,7 @@ void Level::initColliders()
     }
 }
 
-void Level::loadTileMap(const std::string& filename) {
+void Level::loadTileMap(const std::string& filename, int scale) {
 
     if (_tileMap.size() == 0) //check if the map has already been inited
     {
@@ -155,14 +168,28 @@ void Level::loadTileMap(const std::string& filename) {
             ss >> _tileMapWidth >> delimiter >> _tileMapHeight;
         }
 
+        //Scale the width and height
+        _tileMapWidth *= scale;
+        _tileMapHeight *= scale;
+
+        //scale the tile size
+        _tileSize /= (float)scale;
+
         // Read the rest of the file to get the tile map
         _tileMap.resize(_tileMapWidth * _tileMapHeight);
         size_t idx = 0;
         while (std::getline(file, line)) {
-            for (char ch : line) {
-                _tileMap[idx] = (ch - '0'); // Convert char to int
-                idx++;
+            for (size_t y = 0; y < scale; y++) // scale the character vertically 
+            {
+                for (char ch : line) {
+                    for (size_t x = 0; x < scale; x++) // scale the character horizontally 
+                    {
+                        _tileMap[idx] = (ch - '0'); // Convert char to int
+                        idx++;
+                    }
+                }
             }
+            
         }
 
         file.close();

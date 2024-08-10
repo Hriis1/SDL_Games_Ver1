@@ -16,7 +16,9 @@ public:
 
 	void fillTile(const LWindow& _window, const SDL_Point& tilePos);
 
-	void init(size_t tileSize, const std::string& mapFile);
+	void init(size_t tileSize, const std::string& mapFile, int scale = 1);
+
+	void printMap();
 
 	//getters
 	SDL_Point getGridPos(const SDL_Point& worldPos) const;
@@ -69,7 +71,7 @@ public:
 
 private:
 	void initColliders();
-	void loadTileMap(const std::string& filename);
+	void loadTileMap(const std::string& filename, int scale = 1);
 
 public:
 	//Where grid starts(top left)
@@ -84,7 +86,7 @@ private:
 	
 
 	//Tiles for pathfinding
-	size_t _tileSize = 0;
+	float _tileSize = 0;
 	size_t _tileMapWidth = 0;
 	size_t _tileMapHeight = 0;
 	std::vector<int> _tileMap;

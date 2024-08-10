@@ -30,7 +30,8 @@ bool LevelScene::init()
     }
 
     _player.reset();
-    _level.init(21,"Assets/level_map");
+    _level.init(21,"Assets/level_map", 2);
+
     initCollectables(); //Init the coins
     initGhosts(); //Init the ghosts
 
