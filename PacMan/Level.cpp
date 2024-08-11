@@ -43,7 +43,7 @@ void Level::printMap()
     {
         for (size_t j = 0; j < _tileMapWidth; j++)
         {
-            std::cout << _tileMap[i];
+            std::cout << _tileMap[i * _tileMapWidth + j];
         }
         std::cout << std::endl;
     }

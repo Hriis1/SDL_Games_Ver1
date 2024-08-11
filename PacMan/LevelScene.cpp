@@ -31,6 +31,7 @@ bool LevelScene::init()
 
     _player.reset();
     _level.init(21,"Assets/level_map", 2);
+    _level.printMap();
 
     initCollectables(); //Init the coins
     initGhosts(); //Init the ghosts
@@ -225,7 +226,7 @@ void LevelScene::draw()
     //Draw ghosts
     for (size_t i = 0; i < _ghosts.size(); i++)
     {
-        _ghosts[i].render(_camera.x, _camera.y);
+        //_ghosts[i].render(_camera.x, _camera.y);
     }
 
     //Draw the player
@@ -260,7 +261,7 @@ void LevelScene::restart()
     reset();
 
     //Reinit objects
-    _level.init(21, "Assets/level_map");
+    _level.init(21, "Assets/level_map", 2);
     initCollectables();
     initGhosts();
 }
