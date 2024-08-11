@@ -22,9 +22,9 @@ void Level::drawTileGrid(const LWindow& _window)
 
 void Level::fillTile(const LWindow& _window, const SDL_Point& tilePos)
 {
-    SDL_Rect tile = { x + tilePos.x * _tileSize, y + tilePos.y * _tileSize, _tileSize, _tileSize };
+    SDL_FRect tile = { x + tilePos.x * _tileSize, y + tilePos.y * _tileSize, _tileSize, _tileSize };
 
-    SDL_RenderFillRect(_window.renderer, &tile);
+    SDL_RenderFillRectF(_window.renderer, &tile);
 }
 
 void Level::init(size_t tileSize, const std::string& mapFile, int scale)
