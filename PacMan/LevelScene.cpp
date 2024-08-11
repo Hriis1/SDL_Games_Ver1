@@ -207,7 +207,7 @@ void LevelScene::draw()
 
         //Fill the players tile
         SDL_SetRenderDrawColor(_window.renderer, 255, 0, 255, 255);
-        auto playerPos = _level.getWalkableGridPos(SDL_Point{(int)(_player.getXPos()), (int)(_player.getYPos())});
+        auto playerPos = _level.getWalkableGridPos(SDL_Point{(int)(_player.getXPos() + _player.getWidth() / 2.0f), (int)(_player.getYPos() + _player.getHeight() / 2.0f)});
         _level.fillTile(_window, playerPos);
 
         //Fill the ghost tile
@@ -228,13 +228,18 @@ void LevelScene::draw()
         _ghosts[i].render(_camera.x, _camera.y);
     }
 
+    //Draw the player
+    _player.render(_camera.x, _camera.y);
+
     //Fill the ghost tile
     SDL_SetRenderDrawColor(_window.renderer, 255, 0, 0, 255);
     auto ghostPos = _level.getWalkableGridPos(SDL_Point{ (int)(_ghosts[0].getXPos() + Ghost::GET_WIDTH() / 2), (int)(_ghosts[0].getYPos() + Ghost::GET_HEIGHT() / 2) });
     _level.fillTile(_window, ghostPos);
 
-    //Draw the player
-    _player.render(_camera.x, _camera.y);
+    //Fill the players tile
+    SDL_SetRenderDrawColor(_window.renderer, 255, 0, 255, 255);
+    auto playerPos = _level.getWalkableGridPos(SDL_Point{ (int)(_player.getXPos() + _player.getWidth() / 2.0f), (int)(_player.getYPos() + _player.getHeight() / 2.0f) });
+    _level.fillTile(_window, playerPos);
     
 
     //Update screen
