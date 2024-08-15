@@ -67,7 +67,7 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
         }
     }
 
-    ghostMove(deltaTime, _ghostMovementDir); //Move the ghost at the direction determined by the path
+    ghostMove(deltaTime); //Move the ghost at the direction determined by the path
 
     //Collide with level
     collideWithLevel(_collisionRect, _xPos, _yPos, level.getCollisionWalls());
@@ -178,11 +178,11 @@ std::vector<A_Point> Ghost::pathFindToPlayerAStar(const Level& level, const Play
     return path;
 }
 
-void Ghost::ghostMove(float deltaTime, SDL_Point movementDir)
+void Ghost::ghostMove(float deltaTime)
 {
     //Move ghost
-    _xPos += movementDir.x * GHOST_VEL * deltaTime;
-    _yPos += movementDir.y * GHOST_VEL * deltaTime;
+    _xPos += _ghostMovementDir.x * GHOST_VEL * deltaTime;
+    _yPos += _ghostMovementDir.y * GHOST_VEL * deltaTime;
     
     shiftColliders(); //Shift colliders afrer movement
 }
