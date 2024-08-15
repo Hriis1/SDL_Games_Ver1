@@ -63,11 +63,12 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
         //Determine the moving direction
         if (_pathToFollow.size() > pathPosIdx + 1)
         {
-            _ghostMovementDir = { _pathToFollow[pathPosIdx + 1].x - _pathToFollow[pathPosIdx].x, _pathToFollow[pathPosIdx + 1].y - _pathToFollow[pathPosIdx].y };
+            SDL_Point newMovementDir = { _pathToFollow[pathPosIdx + 1].x - _pathToFollow[pathPosIdx].x, _pathToFollow[pathPosIdx + 1].y - _pathToFollow[pathPosIdx].y };
+            _ghostMovementDir = newMovementDir; //set the new direction
         }
     }
 
-    ghostMove(deltaTime); //Move the ghost at the direction determined by the path
+    ghostMove(deltaTime, level); //Move the ghost at the direction determined by the path
 
     //Collide with level
     collideWithLevel(_collisionRect, _xPos, _yPos, level.getCollisionWalls());
@@ -178,12 +179,24 @@ std::vector<A_Point> Ghost::pathFindToPlayerAStar(const Level& level, const Play
     return path;
 }
 
-void Ghost::ghostMove(float deltaTime)
+void Ghost::ghostMove(float deltaTime, const Level& level)
 {
-    //Move ghost
-    _xPos += _ghostMovementDir.x * GHOST_VEL * deltaTime;
-    _yPos += _ghostMovementDir.y * GHOST_VEL * deltaTime;
-    
+    //Get the potential future position
+    float xMovement = _ghostMovementDir.x * GHOST_VEL * deltaTime;
+    float yMovement = _ghostMovementDir.y * GHOST_VEL * deltaTime;
+    SDL_FRect futurePoS{ _collisionRect.x + xMovement,_collisionRect.y + yMovement, _collisionRect.w, _collisionRect.h };
+
+    if (checkCollisionWithLevel(_collisionRect, level.getCollisionWalls())) //if future position collides with level
+    {
+        //instead set the movment dir to the previous movement dir
+        xMovement = _ghostPrevMovementDir.x * GHOST_VEL * deltaTime;
+        yMovement = _ghostPrevMovementDir.y * GHOST_VEL * deltaTime;
+    }
+
+    //update the position
+    _xPos += xMovement;
+    _yPos += yMovement;
+
     shiftColliders(); //Shift colliders afrer movement
 }
 
