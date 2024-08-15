@@ -29,6 +29,16 @@ struct A_Point {
     {
         return x == other.x && y == other.y;
     }
+
+    A_Point operator+(const A_Point& other) const
+    {
+        return A_Point(this->x + other.x, this->y + other.y);
+    }
+
+    A_Point operator-(const A_Point& other) const
+    {
+        return A_Point(this->x - other.x, this->y - other.y);
+    }
 };
 
 struct A_Node {
