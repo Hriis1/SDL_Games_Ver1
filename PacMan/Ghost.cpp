@@ -63,14 +63,7 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
         //Determine the moving direction
         if (_pathToFollow.size() > pathPosIdx + 1)
         {
-            if (_pathToFollow[pathPosIdx + 1].x > _pathToFollow[pathPosIdx].x)
-                _ghostMovementDir = { 1, 0 }; //Right
-            else if (_pathToFollow[pathPosIdx + 1].x < _pathToFollow[pathPosIdx].x)
-                _ghostMovementDir = { -1, 0 }; //Left
-            else if (_pathToFollow[pathPosIdx + 1].y > _pathToFollow[pathPosIdx].y)
-                _ghostMovementDir = { 0, 1 }; //Bot
-            else
-                _ghostMovementDir = { 0, -1 }; //Top
+            _ghostMovementDir = { _pathToFollow[pathPosIdx + 1].x - _pathToFollow[pathPosIdx].x, _pathToFollow[pathPosIdx + 1].y - _pathToFollow[pathPosIdx].y };
         }
     }
 
