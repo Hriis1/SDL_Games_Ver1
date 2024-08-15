@@ -184,14 +184,6 @@ void Ghost::ghostMove(float deltaTime, const Level& level)
     //Get the potential future position
     float xMovement = _ghostMovementDir.x * GHOST_VEL * deltaTime;
     float yMovement = _ghostMovementDir.y * GHOST_VEL * deltaTime;
-    SDL_FRect futurePoS{ _collisionRect.x + xMovement,_collisionRect.y + yMovement, _collisionRect.w, _collisionRect.h };
-
-    if (checkCollisionWithLevel(_collisionRect, level.getCollisionWalls())) //if future position collides with level
-    {
-        //instead set the movment dir to the previous movement dir
-        xMovement = _ghostPrevMovementDir.x * GHOST_VEL * deltaTime;
-        yMovement = _ghostPrevMovementDir.y * GHOST_VEL * deltaTime;
-    }
 
     //update the position
     _xPos += xMovement;
