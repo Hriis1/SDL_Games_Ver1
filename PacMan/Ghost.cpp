@@ -194,7 +194,8 @@ void Ghost::ghostMove(float deltaTime, const Level& level)
         if (_pathToFollow.size() > 0)
             posToChase = _pathToFollow[_pathToFollow.size() - 1]; //the position of the player at the time of path finding
 
-        SDL_Point dirToPlayer = { _xPos <  posToChase.x ? 1 : -1, _yPos > posToChase.y ? 1 : -1 }; //the direction of the player
+        SDL_Point gridPos = level.getGridPos(SDL_Point{(int)_xPos, (int)_yPos});
+        SDL_Point dirToPlayer = { gridPos.x <  posToChase.x ? 1 : -1, gridPos.y < posToChase.y ? 1 : -1 }; //the direction of the player
 
         if (xMovement) //if the original direction was on the x axis
         {
