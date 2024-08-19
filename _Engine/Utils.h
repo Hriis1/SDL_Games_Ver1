@@ -191,7 +191,7 @@ static SDL_FRect getIntersectionWithLevel(const SDL_FRect& _collisionRect, const
         }
     }
 
-    return intersection;
+    return SDL_FRect { 0, 0, 0, 0 };
 
 }
 

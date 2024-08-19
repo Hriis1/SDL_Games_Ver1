@@ -61,7 +61,7 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
     SDL_Point ghostGridPos = level.getWalkableGridPos({ (int)(_xPos + GHOST_WIDTH / 2), (int)(_yPos + GHOST_HEIGHT / 2) });
     A_Point gridAPoint = { ghostGridPos.x, ghostGridPos.y };
 
-    int pathPosIdx = binarySearch(_pathToFollow, gridAPoint);
+    int pathPosIdx = linearSearch(_pathToFollow, gridAPoint);
 
     if (pathPosIdx != -1)
     {
@@ -193,8 +193,8 @@ void Ghost::ghostMove(float deltaTime, const Level& level)
     //change the movement direction to the oposite axis still chasing the player
     SDL_FRect futurePos = { _collisionRect.x + xMovement, _collisionRect.y + yMovement, _collisionRect.w, _collisionRect.h }; //the future position after moving
 
-    SDL_FRect intersection = getIntersectionWithLevel(futurePos, level.getCollisionWalls());
-    if (intersection.w > 0 && intersection.h > 0) //if the future position is colliding with level
+    SDL_FRect futureIntersection = getIntersectionWithLevel(futurePos, level.getCollisionWalls());
+    if (futureIntersection.w > 0 && futureIntersection.h > 0) //if the future position is colliding with level
     {
         A_Point posToChase = { 0, 0 };
         if (_pathToFollow.size() > 0)
@@ -203,12 +203,12 @@ void Ghost::ghostMove(float deltaTime, const Level& level)
         SDL_Point gridPos = level.getGridPos(SDL_Point{(int)_xPos, (int)_yPos});
         SDL_Point dirToPlayer = { gridPos.x <  posToChase.x ? 1 : -1, gridPos.y < posToChase.y ? 1 : -1 }; //the direction of the player
 
-        if (xMovement &&  abs(intersection.w) > abs(intersection.h)) //if the original direction was on the x axis and the inteersaction is on the x axis
+        if (xMovement &&  abs(futureIntersection.w) > abs(futureIntersection.h)) //if the original direction was on the x axis and the inteersaction is on the x axis
         {
             xMovement = 0; //dont move to the x axis
             yMovement = dirToPlayer.y * GHOST_VEL * deltaTime; //move to the y axis instead
         }
-        else if(yMovement && abs(intersection.w) < abs(intersection.h)) //if the original direction was on the y axis and the inteersaction is on the y axis
+        else if(yMovement && abs(futureIntersection.w) < abs(futureIntersection.h)) //if the original direction was on the y axis and the inteersaction is on the y axis
         {
             yMovement = 0; //dont move to the y axis
             xMovement = dirToPlayer.x * GHOST_VEL * deltaTime; //move to the x axis instead
