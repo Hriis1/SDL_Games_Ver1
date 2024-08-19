@@ -193,7 +193,8 @@ void Ghost::ghostMove(float deltaTime, const Level& level)
     //change the movement direction to the oposite axis still chasing the player
     SDL_FRect futurePos = { _collisionRect.x + xMovement, _collisionRect.y + yMovement, _collisionRect.w, _collisionRect.h }; //the future position after moving
 
-    if (checkCollisionWithLevel(futurePos, level.getCollisionWalls())) //if the future position is colliding with player
+    SDL_FRect intersection = getIntersectionWithLevel(futurePos, level.getCollisionWalls());
+    if (intersection.w > 0 && intersection.h > 0) //if the future position is colliding with level
     {
         A_Point posToChase = { 0, 0 };
         if (_pathToFollow.size() > 0)
