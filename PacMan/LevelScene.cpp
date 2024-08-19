@@ -261,7 +261,7 @@ void LevelScene::restart()
     reset();
 
     //Reinit objects
-    _level.init(21, "Assets/level_map", 2);
+    _level.init(21, "Assets/level_map_restricted", 2);
     initCollectables();
     initGhosts();
 }
