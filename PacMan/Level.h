@@ -66,7 +66,7 @@ public:
 		if (x < 0 || y < 0 || x >= _tileMapWidth || y >= _tileMapHeight) 
 			return false;
 
-		return _tileMap[y * _tileMapWidth + x] != 1;
+		return _tileMap[y * _tileMapWidth + x] == 0;
 	}
 
 private:
