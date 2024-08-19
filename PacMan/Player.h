@@ -51,6 +51,12 @@ public:
         return PointT{ (VarT)_xPos, (VarT)_yPos };
     }
 
+    template<typename PointT, typename VarT>
+    PointT getCenterPos() const
+    {
+        return PointT{ (VarT)(_xPos + PLAYER_WIDTH / 2), (VarT)(_yPos + PLAYER_HEIGHT / 2)) };
+    }
+
     float getXPos() const
     {
         return _xPos;
