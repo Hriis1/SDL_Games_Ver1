@@ -47,4 +47,14 @@ inline int binarySearch(const std::vector<T>& arr, T target) {
     return -1; // Target not found
 }
 
+template <typename T>
+inline int linearSearch(const std::vector<T>& arr, T target)
+{
+    for (size_t i = 0; i < arr.size(); i++)
+    {
+        if (arr[i] == target)
+            return i;
+    }
 
+    return -1;
+}
