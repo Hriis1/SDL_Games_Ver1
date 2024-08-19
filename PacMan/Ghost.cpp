@@ -51,15 +51,15 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
         
 
         //Print the path for debug
-        //printPath(level, _pathToFollow);
+        printPath(level, _pathToFollow);
 
         //Restart the timer
         _pathFindTimer.start();
     }
 
     //get the grid pos
-    SDL_Point gridPos = level.getGridPos({ (int)(_xPos + GHOST_WIDTH / 2), (int)(_yPos + GHOST_HEIGHT / 2) });
-    A_Point gridAPoint = { gridPos.x, gridPos.y };
+    SDL_Point ghostGridPos = level.getWalkableGridPos({ (int)(_xPos + GHOST_WIDTH / 2), (int)(_yPos + GHOST_HEIGHT / 2) });
+    A_Point gridAPoint = { ghostGridPos.x, ghostGridPos.y };
 
     int pathPosIdx = binarySearch(_pathToFollow, gridAPoint);
 
@@ -203,12 +203,12 @@ void Ghost::ghostMove(float deltaTime, const Level& level)
         SDL_Point gridPos = level.getGridPos(SDL_Point{(int)_xPos, (int)_yPos});
         SDL_Point dirToPlayer = { gridPos.x <  posToChase.x ? 1 : -1, gridPos.y < posToChase.y ? 1 : -1 }; //the direction of the player
 
-        if (xMovement) //if the original direction was on the x axis
+        if (xMovement &&  abs(intersection.w) > abs(intersection.h)) //if the original direction was on the x axis and the inteersaction is on the x axis
         {
             xMovement = 0; //dont move to the x axis
             yMovement = dirToPlayer.y * GHOST_VEL * deltaTime; //move to the y axis instead
         }
-        else //if the original direction was on the y axis
+        else if(yMovement && abs(intersection.w) < abs(intersection.h)) //if the original direction was on the y axis and the inteersaction is on the y axis
         {
             yMovement = 0; //dont move to the y axis
             xMovement = dirToPlayer.x * GHOST_VEL * deltaTime; //move to the x axis instead

@@ -46,3 +46,5 @@ inline int binarySearch(const std::vector<T>& arr, T target) {
 
     return -1; // Target not found
 }
+
+
