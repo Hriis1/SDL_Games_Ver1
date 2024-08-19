@@ -43,7 +43,12 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
     if (_pathFindTimer.getTicks() > 500.0f) //Executes every 1 secs
     {
         //Find path to player
-        _pathToFollow = pathFindToPlayerAStar(level, player);
+        auto newPath = pathFindToPlayerAStar(level, player);
+        if (newPath.size() > 0) //only update the path if it found one
+        {
+            _pathToFollow = newPath;
+        }
+        
 
         //Print the path for debug
         printPath(level, _pathToFollow);

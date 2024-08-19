@@ -91,7 +91,7 @@ inline std::vector<A_Point> aStar(A_Point start, A_Point goal, int mapWidth, con
     }
     if (!isWalkable(start.x, start.y))
     {
-        //std::cout << "Start is not walkable" << std::endl;
+        std::cout << "Start is not walkable" << std::endl;
         return {}; // No path found
     }
 
