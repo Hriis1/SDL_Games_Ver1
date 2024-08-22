@@ -30,7 +30,7 @@ bool LevelScene::init()
     }
 
     _player.reset();
-    _level.init(21,"Assets/level_map_restricted", 1);
+    _level.init(16,"Assets/level_map_tile_16px", 1);
     _level.printMap();
 
     initCollectables(); //Init the coins
@@ -261,7 +261,7 @@ void LevelScene::restart()
     reset();
 
     //Reinit objects
-    _level.init(21, "Assets/level_map_restricted", 2);
+    _level.init(16, "Assets/level_map_tile_16px", 1);
     initCollectables();
     initGhosts();
 }

@@ -51,7 +51,7 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
         
 
         //Print the path for debug
-        printPath(level, _pathToFollow);
+        //printPath(level, _pathToFollow);
 
         //Restart the timer
         _pathFindTimer.start();

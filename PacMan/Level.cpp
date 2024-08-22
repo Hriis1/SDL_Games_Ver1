@@ -10,13 +10,13 @@ void Level::drawTileGrid(const LWindow& _window)
     //Horizontal lines
     for (int i = x; i <= x + _tileMapWidth * _tileSize; i += _tileSize)
     {
-        SDL_RenderDrawLine(_window.renderer, i, 12, i, 705);
+        SDL_RenderDrawLine(_window.renderer, i, y, i, y + _tileMapHeight * _tileSize);
     }
 
     //Vertical lines
     for (int i = y; i <= y + _tileMapHeight * _tileSize; i += _tileSize)
     {
-        SDL_RenderDrawLine(_window.renderer, 264, i, 1020, i);
+        SDL_RenderDrawLine(_window.renderer, x, i, x + _tileMapWidth * _tileSize, i);
     }
 }
 
