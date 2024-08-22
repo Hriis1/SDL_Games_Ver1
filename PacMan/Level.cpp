@@ -70,8 +70,16 @@ SDL_Point Level::getWalkableGridPos(const SDL_Point& worldPos) const
         return SDL_Point{ tileX + 1, tileY };
     if (isWalkable(tileX, tileY + 1))
         return SDL_Point{ tileX, tileY + 1 };
+    if(isWalkable(tileX + 1, tileY + 1))
+        return SDL_Point{ tileX + 1, tileY + 1 };
+    if (isWalkable(tileX - 1, tileY))
+        return SDL_Point{ tileX - 1, tileY };
+    if (isWalkable(tileX, tileY - 1))
+        return SDL_Point{ tileX, tileY - 1 };
+    if (isWalkable(tileX - 1, tileY - 1))
+        return SDL_Point{ tileX - 1, tileY - 1 };
 
-    return SDL_Point{ tileX + 1, tileY + 1 };
+    return SDL_Point{ tileX, tileY };
 }
 
 void Level::initColliders()
