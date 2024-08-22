@@ -52,6 +52,12 @@ public:
         return _collisionRect;
     }
 
+    template<typename PointT, typename VarT>
+    PointT getCenterPos() const
+    {
+        return PointT{ (VarT)(_xPos + GHOST_WIDTH / 2), (VarT)(_yPos + GHOST_HEIGHT / 2) };
+    }
+
     float getXPos() const
     {
         return _xPos;
