@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <memory>
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
@@ -20,6 +21,7 @@
 #include "Player.h"
 #include "Collectable.h"
 #include "Ghost.h"
+#include "RedGhost.h"
 
 class LevelScene : public IScene
 {
@@ -75,7 +77,7 @@ private:
 	std::vector<Collectable> _coins;
 
 	//ghosts
-	std::vector<Ghost> _ghosts;
+	std::vector<std::unique_ptr<Ghost>> _ghosts;
 
 	//Quit flag
 	bool& _quitFlag;

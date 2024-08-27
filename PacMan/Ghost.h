@@ -1,6 +1,4 @@
 #pragma once
-#pragma once
-#pragma once
 #include <vector>
 #include <functional>
 
@@ -88,8 +86,9 @@ public:
 
 public:
     //Pathfinding algoritm
-    std::vector<A_Point> pathFind(const Level& level, const Player& player);
-private:
+    virtual std::vector<A_Point> pathFind(const Level& level, const Player& player) = 0;
+
+protected:
     void ghostMove(float deltaTime, const Level& level, int pathPosIdx);
     void chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
     void chasePlayerAStar(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
@@ -98,7 +97,7 @@ private:
     //Moves the collision rect relative to the Player's offset
     void shiftColliders();
 
-private:
+protected:
 
     //The X and Y offsets of the Ghost
     float _xPos = 0;

@@ -148,6 +148,7 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="LevelScene.cpp" />
+    <ClCompile Include="RedGhost.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="WinScene.cpp" />
   </ItemGroup>
@@ -160,6 +161,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="LevelScene.h" />
     <ClInclude Include="PacManData.h" />
+    <ClInclude Include="RedGhost.h" />
     <ClInclude Include="WinScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

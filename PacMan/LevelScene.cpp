@@ -87,7 +87,7 @@ void LevelScene::handleEvents(SDL_Event& e)
 
             //Handle ghost input(debugging)
             if (DEVELOPER_MODE)
-                _ghosts[0].handleEvent(e, _level, _player);
+                _ghosts[0].get()->handleEvent(e, _level, _player);
         }
 
         //Special key input
@@ -139,7 +139,7 @@ void LevelScene::update()
             //Update ghosts
             for (size_t i = 0; i < _ghosts.size(); i++)
             {
-                _ghosts[i].update(deltaTime, _level, _player);
+                _ghosts[i].get()->update(deltaTime, _level, _player);
             }
 
             //Check the win condition
@@ -213,7 +213,7 @@ void LevelScene::draw()
 
         //Fill the ghost tile
         SDL_SetRenderDrawColor(_window.renderer, 255, 0, 0, 255);
-        auto ghostPos = _level.getWalkableGridPos(SDL_Point{ (int)(_ghosts[0].getXPos() + Ghost::GET_WIDTH() / 2), (int)(_ghosts[0].getYPos() + Ghost::GET_HEIGHT() / 2) });
+        auto ghostPos = _level.getWalkableGridPos(SDL_Point{ (int)(_ghosts[0].get()->getXPos() + Ghost::GET_WIDTH() / 2), (int)(_ghosts[0].get()->getYPos() + Ghost::GET_HEIGHT() / 2) });
         _level.fillTile(_window, ghostPos);
     }
    
@@ -226,7 +226,7 @@ void LevelScene::draw()
     //Draw ghosts
     for (size_t i = 0; i < _ghosts.size(); i++)
     {
-        _ghosts[i].render(_camera.x, _camera.y);
+        _ghosts[i].get()->render(_camera.x, _camera.y);
     }
 
     //Draw the player
@@ -234,7 +234,7 @@ void LevelScene::draw()
 
     //Fill the ghost tile
     SDL_SetRenderDrawColor(_window.renderer, 255, 0, 0, 255);
-    auto ghostPos = _level.getWalkableGridPos(SDL_Point{ (int)(_ghosts[0].getXPos() + Ghost::GET_WIDTH() / 2), (int)(_ghosts[0].getYPos() + Ghost::GET_HEIGHT() / 2) });
+    auto ghostPos = _level.getWalkableGridPos(SDL_Point{ (int)(_ghosts[0].get()->getXPos() + Ghost::GET_WIDTH() / 2), (int)(_ghosts[0].get()->getYPos() + Ghost::GET_HEIGHT() / 2) });
     _level.fillTile(_window, ghostPos);
 
     //Fill the players tile
@@ -358,7 +358,7 @@ void LevelScene::initCollectables()
 
 void LevelScene::initGhosts()
 {
-    _ghosts.emplace_back(575.0f, 286.0f, GhostType::RED);
+    _ghosts.push_back(std::make_unique<RedGhost>(575.0f, 286.0f, GhostType::RED));
    /* _ghosts.emplace_back(675.0f, 286.0f, GhostType::GREEN);
     _ghosts.emplace_back(575.0f, 396.0f, GhostType::BLUE);
     _ghosts.emplace_back(675.0f, 396.0f, GhostType::ORANGE);
