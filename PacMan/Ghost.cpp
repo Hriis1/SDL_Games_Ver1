@@ -43,7 +43,7 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
     if (_pathFindTimer.getTicks() > 500.0f) //Executes every 1 secs
     {
         //Find path to player
-        auto newPath = pathFindToPlayerAStar(level, player);
+        auto newPath = pathFind(level, player);
         if (newPath.size() > 0) //only update the path if it found one
         {
             _pathToFollow = newPath;
@@ -172,7 +172,7 @@ void Ghost::render(int camX, int camY)
     }
 }
 
-std::vector<A_Point> Ghost::pathFindToPlayerAStar(const Level& level, const Player& player)
+std::vector<A_Point> Ghost::pathFind(const Level& level, const Player& player)
 {
     //Get the positions of the player and ghost
     SDL_Point playerGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());

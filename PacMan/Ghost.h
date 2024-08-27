@@ -87,8 +87,8 @@ public:
     }
 
 public:
-    //Pathfinding and chasing the player
-    std::vector<A_Point> pathFindToPlayerAStar(const Level& level, const Player& player);
+    //Pathfinding algoritm
+    std::vector<A_Point> pathFind(const Level& level, const Player& player);
 private:
     void ghostMove(float deltaTime, const Level& level, int pathPosIdx);
     void chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
