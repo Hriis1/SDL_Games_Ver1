@@ -207,7 +207,7 @@ void Ghost::ghostMove(float deltaTime, const Level& level, int pathPosIdx)
         {
             xMovement = 0; //dont move to the x axis
             int newYDir = 0;
-            int currY = _pathToFollow[pathPosIdx].y;
+            int currY = pathPosIdx >= 0 ? _pathToFollow[pathPosIdx].y : -1;
             for (int i = pathPosIdx; i >= 0; i--)
             {
                 if (_pathToFollow[i].y != currY)
@@ -223,7 +223,7 @@ void Ghost::ghostMove(float deltaTime, const Level& level, int pathPosIdx)
         {
             yMovement = 0; //dont move to the y axis
             int newXDir = 0;
-            int currX = _pathToFollow[pathPosIdx].x;
+            int currX = pathPosIdx >= 0 ? _pathToFollow[pathPosIdx].x : -1;
             for (int i = pathPosIdx; i >= 0; i--)
             {
                 if (_pathToFollow[i].x != currX)
