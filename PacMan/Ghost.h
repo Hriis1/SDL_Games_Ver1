@@ -26,6 +26,11 @@ enum GhostMovementDir
     GHOST_TOP = 2, GHOST_BOTTOM = 20
 };
 
+enum class GhostMovementMode
+{
+    Scatter =1, Chase
+};
+
 class Ghost
 {
     //This Ghost class has rect collision detector
@@ -124,6 +129,8 @@ protected:
     //Stuff for pathfinding
     LTimer _pathFindTimer;
     std::vector<A_Point> _pathToFollow;
+    GhostMovementMode _movementMode = GhostMovementMode::Scatter;
+    SDL_Point _targetScatterTile = { 1, 1 };
 
     //static
     //consts
