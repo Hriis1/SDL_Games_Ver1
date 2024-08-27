@@ -69,6 +69,15 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
         if (_pathToFollow.size() > pathPosIdx + 1)
         {
             SDL_Point newMovementDir = { _pathToFollow[pathPosIdx + 1].x - _pathToFollow[pathPosIdx].x, _pathToFollow[pathPosIdx + 1].y - _pathToFollow[pathPosIdx].y };
+
+            //Set last movement x and y dirs
+            if (_ghostMovementDir.x != _ghostPrevMovementDir.x) {
+                _ghostPrevMovementDir.x = _ghostMovementDir.x;
+            }
+            if (_ghostMovementDir.y != _ghostPrevMovementDir.y) {
+                _ghostPrevMovementDir.y = _ghostMovementDir.y;
+            }
+
             _ghostMovementDir = newMovementDir; //set the new direction
         }
     }
@@ -201,39 +210,17 @@ void Ghost::ghostMove(float deltaTime, const Level& level, int pathPosIdx)
             posToChase = _pathToFollow[_pathToFollow.size() - 1]; //the position of the player at the time of path finding
 
         SDL_Point gridPos = level.getGridPos(SDL_Point{(int)_xPos, (int)_yPos});
-        //SDL_Point dirToPlayer = { gridPos.x <  posToChase.x ? 1 : -1, gridPos.y < posToChase.y ? 1 : -1 }; //the direction of the player
+        SDL_Point dirToPlayer = { gridPos.x <  posToChase.x ? 1 : -1, gridPos.y < posToChase.y ? 1 : -1 }; //the direction of the player
 
         if (xMovement &&  abs(futureIntersection.w) < abs(futureIntersection.h)) //if the original direction was on the x axis and the inteersaction is on the x axis
         {
             xMovement = 0; //dont move to the x axis
-            int newYDir = 0;
-            int currY = pathPosIdx >= 0 ? _pathToFollow[pathPosIdx].y : -1;
-            for (int i = pathPosIdx; i >= 0; i--)
-            {
-                if (_pathToFollow[i].y != currY)
-                {
-                    newYDir = currY - _pathToFollow[i].y;
-                    break;
-                }
-
-            }
-            yMovement = newYDir * GHOST_VEL * deltaTime; //move to the y axis instead
+            yMovement = dirToPlayer.y * GHOST_VEL * deltaTime; //move to the y axis instead
         }
         else if(yMovement && abs(futureIntersection.w) > abs(futureIntersection.h)) //if the original direction was on the y axis and the inteersaction is on the y axis
         {
             yMovement = 0; //dont move to the y axis
-            int newXDir = 0;
-            int currX = pathPosIdx >= 0 ? _pathToFollow[pathPosIdx].x : -1;
-            for (int i = pathPosIdx; i >= 0; i--)
-            {
-                if (_pathToFollow[i].x != currX)
-                {
-                    newXDir = currX - _pathToFollow[i].x;
-                    break;
-                }
-
-            }
-            xMovement = newXDir * GHOST_VEL * deltaTime; //move to the x axis instead
+            xMovement = dirToPlayer.x * GHOST_VEL * deltaTime; //move to the x axis instead
         }
     }
 
