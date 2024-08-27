@@ -1,8 +1,9 @@
 #include "RedGhost.h"
 
-RedGhost::RedGhost(float xPos, float yPos, GhostType type)
-    : Ghost(xPos, yPos, type)
+RedGhost::RedGhost(float xPos, float yPos)
+    : Ghost(xPos, yPos)
 {
+    _type = GhostType::RED;
 }
 
 std::vector<A_Point> RedGhost::pathFind(const Level& level, const Player& player)

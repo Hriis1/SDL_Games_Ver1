@@ -358,7 +358,7 @@ void LevelScene::initCollectables()
 
 void LevelScene::initGhosts()
 {
-    _ghosts.push_back(std::make_unique<RedGhost>(575.0f, 286.0f, GhostType::RED));
+    _ghosts.push_back(std::make_unique<RedGhost>(575.0f, 286.0f));
    /* _ghosts.emplace_back(675.0f, 286.0f, GhostType::GREEN);
     _ghosts.emplace_back(575.0f, 396.0f, GhostType::BLUE);
     _ghosts.emplace_back(675.0f, 396.0f, GhostType::ORANGE);

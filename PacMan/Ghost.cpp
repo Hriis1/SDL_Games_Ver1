@@ -16,8 +16,8 @@ LTexture Ghost::_orangeGhostSpriteSheet;
 LTexture Ghost::_yellowGhostSpriteSheet;
 SDL_Rect Ghost::_spriteClips[Ghost_ANIMATION_FRAMES];
 
-Ghost::Ghost(float xPos, float yPos, GhostType type)
-    : _xPos(xPos), _yPos(yPos), _type(type)
+Ghost::Ghost(float xPos, float yPos)
+    : _xPos(xPos), _yPos(yPos)
 {
     _pathFindTimer.start(); //Start the pathfinding timer
     shiftColliders(); //Shift colliders
