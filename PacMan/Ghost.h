@@ -109,7 +109,9 @@ private:
 
     //Dir that the ghost should move to
     SDL_Point _ghostPrevMovementDir = { 0, 0 };
+    SDL_Point _ghostRecentMovementDirs = { 0, 0 };
     SDL_Point _ghostMovementDir = {0, 0};
+    
 
     //The type of the Ghost
     GhostType _type;
