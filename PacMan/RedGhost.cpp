@@ -18,7 +18,8 @@ std::vector<A_Point> RedGhost::pathFind(const Level& level, const Player& player
         targetGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());
     else if (_movementMode == GhostMovementMode::Scatter)
     {
-        targetGridPos = _targetScatterTiles[0];
+        int currIdx = _targetScatterTileIdx % 2;
+        targetGridPos = _targetScatterTiles[currIdx];
     }
     A_Point targetGridAPos = { targetGridPos.x, targetGridPos.y };
 

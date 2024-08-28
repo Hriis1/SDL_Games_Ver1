@@ -58,6 +58,14 @@ SDL_Point Level::getGridPos(const SDL_Point& worldPos) const
     return SDL_Point{ tileX, tileY };
 }
 
+SDL_Point Level::getWorldPos(const SDL_Point& tilePos) const
+{
+    int worldX = x + (tilePos.x * _tileSize);
+    int worldY = y + (tilePos.y * _tileSize);
+
+    return SDL_Point{ worldX, worldY};
+}
+
 SDL_Point Level::getWalkableGridPos(const SDL_Point& worldPos) const
 {
     int tileX = (worldPos.x - x) / _tileSize;

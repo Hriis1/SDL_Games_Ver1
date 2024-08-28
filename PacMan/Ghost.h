@@ -95,6 +95,7 @@ public:
 
 protected:
     void handleMovementMode();
+    void changeScatterTileTarget();
     void ghostMove(float deltaTime, const Level& level, int pathPosIdx);
     void chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
     void printPath(const Level& level, const std::vector<A_Point>& path);

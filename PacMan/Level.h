@@ -23,6 +23,8 @@ public:
 	//getters
 	SDL_Point getGridPos(const SDL_Point& worldPos) const;
 
+	SDL_Point getWorldPos(const SDL_Point& tilePos) const;
+
 	//For player or ghost
 	SDL_Point getWalkableGridPos(const SDL_Point& worldPos) const;
 

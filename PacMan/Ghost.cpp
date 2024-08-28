@@ -203,6 +203,10 @@ void Ghost::handleMovementMode()
     }
 }
 
+void Ghost::changeScatterTileTarget()
+{
+}
+
 void Ghost::ghostMove(float deltaTime, const Level& level, int pathPosIdx)
 {
     //Get the potential future position
