@@ -206,14 +206,23 @@ void Ghost::handleMovementMode()
 
 void Ghost::changeScatterTileTarget(const Level& level)
 {
-    int currIdx = _targetScatterTileIdx % 2;
-    SDL_Point targetWorldPos = level.getWorldPos(_targetScatterTiles[currIdx]);
-
-    SDL_FRect scatterTile = { (float)targetWorldPos.x, (float)targetWorldPos.y, level.getTileSize(), level.getTileSize()};
-
-    if (checkCollision(_collisionRect, scatterTile)) //if ghost reaches the current scatter tile
+    //set the scatter tile on the 1st call
+    static bool firstCall = true;
+    if (firstCall)
     {
-        _targetScatterTileIdx++; //change the scatter target
+        int currIdx = _targetScatterTileIdx % 2;
+        SDL_Point targetWorldPos = level.getWorldPos(_targetScatterTiles[currIdx]);
+        _currScatterTile = { (float)targetWorldPos.x, (float)targetWorldPos.y, (float)level.getTileSize(), (float)level.getTileSize() };
+        firstCall = false;
+    }
+
+    if (checkCollision(_collisionRect, _currScatterTile)) //if ghost reaches the current scatter tile
+    {
+        //Update the scatter tile
+        _targetScatterTileIdx++;
+        int currIdx = _targetScatterTileIdx % 2;
+        SDL_Point targetWorldPos = level.getWorldPos(_targetScatterTiles[currIdx]);
+        _currScatterTile = { (float)targetWorldPos.x, (float)targetWorldPos.y, (float)level.getTileSize(), (float)level.getTileSize() };
     }
 }
 

@@ -135,6 +135,7 @@ protected:
     GhostMovementMode _movementMode = GhostMovementMode::Scatter;
     std::vector<SDL_Point> _targetScatterTiles;
     int _targetScatterTileIdx = 0;
+    SDL_FRect _currScatterTile;
     int _movementModeIdx = 0;
 
     //static
