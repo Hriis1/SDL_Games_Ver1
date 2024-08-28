@@ -16,7 +16,7 @@ std::vector<A_Point> BlueGhost::pathFind(const Level& level, const Player& playe
     SDL_Point targetGridPos = { 0, 0 };
     if (_movementMode == GhostMovementMode::Chase) //if the ghost is in chase mode
     {
-        targetGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());
+        auto playerGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());
     }
     else if (_movementMode == GhostMovementMode::Scatter)
     {

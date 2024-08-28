@@ -67,13 +67,18 @@ public:
         return _yPos;
     }
 
-    float getWidth()
+    float getWidth() const
     {
         return PLAYER_WIDTH;
     }
-    float getHeight()
+    float getHeight() const
     {
         return PLAYER_HEIGHT;
+    }
+
+    DIRECTION getDirection() const
+    {
+        return _direction;
     }
     
 private:
