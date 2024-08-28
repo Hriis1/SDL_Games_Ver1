@@ -46,6 +46,7 @@ void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
 void Ghost::update(float deltaTime, const Level& level, const Player& player)
 {
     handleMovementMode();
+    changeScatterTileTarget(level);
 
     if (_pathFindTimer.getTicks() > _pathFindInterval) //Executes _pathFindInterval milisecs
     {
@@ -203,8 +204,17 @@ void Ghost::handleMovementMode()
     }
 }
 
-void Ghost::changeScatterTileTarget()
+void Ghost::changeScatterTileTarget(const Level& level)
 {
+    int currIdx = _targetScatterTileIdx % 2;
+    SDL_Point targetWorldPos = level.getWorldPos(_targetScatterTiles[currIdx]);
+
+    SDL_FRect scatterTile = { (float)targetWorldPos.x, (float)targetWorldPos.y, level.getTileSize(), level.getTileSize()};
+
+    if (checkCollision(_collisionRect, scatterTile)) //if ghost reaches the current scatter tile
+    {
+        _targetScatterTileIdx++; //change the scatter target
+    }
 }
 
 void Ghost::ghostMove(float deltaTime, const Level& level, int pathPosIdx)
