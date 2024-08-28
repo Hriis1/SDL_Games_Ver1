@@ -4,7 +4,10 @@ RedGhost::RedGhost(float xPos, float yPos, float pathFindInterval)
     : Ghost(xPos, yPos, pathFindInterval)
 {
     _type = GhostType::RED;
-    _targetScatterTile = { 43, 2 }; //scatter to the right corner
+
+    //scatter to the top
+    _targetScatterTiles.push_back({ 43, 2 }); 
+    _targetScatterTiles.push_back({ 4, 6 });
 }
 
 std::vector<A_Point> RedGhost::pathFind(const Level& level, const Player& player)
@@ -13,8 +16,10 @@ std::vector<A_Point> RedGhost::pathFind(const Level& level, const Player& player
     SDL_Point targetGridPos = { 0, 0 };
     if(_movementMode == GhostMovementMode::Chase) //if the ghost is in chase mode
         targetGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());
-    else if(_movementMode == GhostMovementMode::Scatter)
-        targetGridPos = _targetScatterTile;
+    else if (_movementMode == GhostMovementMode::Scatter)
+    {
+        targetGridPos = _targetScatterTiles[0];
+    }
     A_Point targetGridAPos = { targetGridPos.x, targetGridPos.y };
 
     //Get the ghost position

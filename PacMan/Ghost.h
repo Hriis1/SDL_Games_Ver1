@@ -132,7 +132,8 @@ protected:
     std::vector<A_Point> _pathToFollow;
     LTimer _movementModeTimer;
     GhostMovementMode _movementMode = GhostMovementMode::Scatter;
-    SDL_Point _targetScatterTile = { 1, 1 };
+    std::vector<SDL_Point> _targetScatterTiles;
+    int _targetScatterTileIdx = 0;
     int _movementModeIdx = 0;
 
     //static
