@@ -161,7 +161,7 @@ void Player::render(int camX, int camY)
     {
         _playerSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
     }
-    else if (_direction == DIRECTION::DPWN)
+    else if (_direction == DIRECTION::DOWN)
     {
         _playerSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 90.0, NULL, SDL_FLIP_NONE);
     }
@@ -199,7 +199,7 @@ void Player::updateDirection()
     }
     else if (state[SDL_SCANCODE_DOWN]) //if left arrow or right arrow is being pressed
     {
-        _direction = DIRECTION::DPWN;
+        _direction = DIRECTION::DOWN;
     }
     else if (state[SDL_SCANCODE_UP]) //if left arrow or right arrow is being pressed
     {
