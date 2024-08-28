@@ -90,6 +90,16 @@ SDL_Point Level::getWalkableGridPos(const SDL_Point& worldPos) const
     return SDL_Point{ tileX, tileY };
 }
 
+SDL_Point Level::getClosestWalkableGridPos(const SDL_Point gridPos, SDL_Point dir) const
+{
+    if (!isWalkable(gridPos.x, gridPos.y))
+    {
+        return getClosestWalkableGridPos({ gridPos.x + dir.x, gridPos.y + dir.y }, dir);
+    }
+
+    return gridPos;
+}
+
 void Level::initColliders()
 {
 

@@ -28,6 +28,8 @@ public:
 	//For player or ghost
 	SDL_Point getWalkableGridPos(const SDL_Point& worldPos) const;
 
+	SDL_Point getClosestWalkableGridPos(const SDL_Point gridPos, SDL_Point dir) const;
+
 	const std::vector<SDL_FRect>& getCollisionWalls() const
 	{
 		return _collisionWalls;
