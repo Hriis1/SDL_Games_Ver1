@@ -1,21 +1,23 @@
-#include "RedGhost.h"
+#include "BlueGhost.h"
 
-RedGhost::RedGhost(float xPos, float yPos, float pathFindInterval)
+BlueGhost::BlueGhost(float xPos, float yPos, float pathFindInterval)
     : Ghost(xPos, yPos, pathFindInterval)
 {
-    _type = GhostType::RED;
+    _type = GhostType::BLUE;
 
     //scatter to the top
-    _targetScatterTiles.push_back({ 43, 2 }); 
-    _targetScatterTiles.push_back({ 3, 6 });
+    _targetScatterTiles.push_back({ 43, 40 });
+    _targetScatterTiles.push_back({ 3, 36 });
 }
 
-std::vector<A_Point> RedGhost::pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts)
+std::vector<A_Point> BlueGhost::pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts)
 {
     //Get the target position
     SDL_Point targetGridPos = { 0, 0 };
-    if(_movementMode == GhostMovementMode::Chase) //if the ghost is in chase mode
+    if (_movementMode == GhostMovementMode::Chase) //if the ghost is in chase mode
+    {
         targetGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());
+    }
     else if (_movementMode == GhostMovementMode::Scatter)
     {
         int currIdx = _targetScatterTileIdx % 2;

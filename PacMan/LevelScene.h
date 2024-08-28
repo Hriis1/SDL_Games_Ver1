@@ -22,6 +22,7 @@
 #include "Collectable.h"
 #include "Ghost.h"
 #include "RedGhost.h"
+#include "BlueGhost.h"
 
 class LevelScene : public IScene
 {
