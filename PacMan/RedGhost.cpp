@@ -10,7 +10,7 @@ RedGhost::RedGhost(float xPos, float yPos, float pathFindInterval)
     _targetScatterTiles.push_back({ 4, 6 });
 }
 
-std::vector<A_Point> RedGhost::pathFind(const Level& level, const Player& player)
+std::vector<A_Point> RedGhost::pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts)
 {
     //Get the target position
     SDL_Point targetGridPos = { 0, 0 };

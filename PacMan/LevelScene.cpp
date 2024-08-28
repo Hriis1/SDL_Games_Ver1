@@ -139,7 +139,7 @@ void LevelScene::update()
             //Update ghosts
             for (size_t i = 0; i < _ghosts.size(); i++)
             {
-                _ghosts[i].get()->update(deltaTime, _level, _player);
+                _ghosts[i].get()->update(deltaTime, _level, _player, _ghosts);
             }
 
             //Check the win condition

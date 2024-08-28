@@ -44,7 +44,7 @@ public:
     void handleEvent(SDL_Event& e, const Level& level, const Player& player);
 
     //update the ghost
-    void update(float deltaTime, const Level& level, const Player& player);
+    void update(float deltaTime, const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts);
 
     //Shows the Ghost on the screen
     void render(int camX, int camY);
@@ -90,8 +90,8 @@ public:
     }
 
 public:
-    //Pathfinding algoritm
-    virtual std::vector<A_Point> pathFind(const Level& level, const Player& player) = 0;
+    //Pathfinding algoritm to be implemented by derived ghosts
+    virtual std::vector<A_Point> pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts) = 0;
 
 protected:
     void handleMovementMode();

@@ -43,7 +43,7 @@ void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
     }
 }
 
-void Ghost::update(float deltaTime, const Level& level, const Player& player)
+void Ghost::update(float deltaTime, const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts)
 {
     handleMovementMode();
     changeScatterTileTarget(level);
@@ -51,7 +51,7 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player)
     if (_pathFindTimer.getTicks() > _pathFindInterval) //Executes _pathFindInterval milisecs
     {
         //Find path to player
-        auto newPath = pathFind(level, player);
+        auto newPath = pathFind(level, player, ghosts);
         if (newPath.size() > 0) //only update the path if it found one
         {
             _pathToFollow = newPath;
