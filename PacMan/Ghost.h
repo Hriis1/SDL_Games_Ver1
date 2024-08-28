@@ -94,6 +94,7 @@ public:
     virtual std::vector<A_Point> pathFind(const Level& level, const Player& player) = 0;
 
 protected:
+    void handleMovementMode();
     void ghostMove(float deltaTime, const Level& level, int pathPosIdx);
     void chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
     void printPath(const Level& level, const std::vector<A_Point>& path);
@@ -129,8 +130,10 @@ protected:
     LTimer _pathFindTimer;
     float _pathFindInterval = 0.0f;
     std::vector<A_Point> _pathToFollow;
+    LTimer _movementModeTimer;
     GhostMovementMode _movementMode = GhostMovementMode::Scatter;
     SDL_Point _targetScatterTile = { 1, 1 };
+    int _movementModeIdx = 0;
 
     //static
     //consts
@@ -148,6 +151,9 @@ protected:
     static LTexture _blueGhostSpriteSheet;
     static LTexture _orangeGhostSpriteSheet;
     static LTexture _yellowGhostSpriteSheet;
+
+    //Intervals for movement mode
+    static std::vector<int> _movementModeIntervals;
 
 
 };

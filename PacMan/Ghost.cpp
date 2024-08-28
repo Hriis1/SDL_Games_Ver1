@@ -16,10 +16,15 @@ LTexture Ghost::_orangeGhostSpriteSheet;
 LTexture Ghost::_yellowGhostSpriteSheet;
 SDL_Rect Ghost::_spriteClips[Ghost_ANIMATION_FRAMES];
 
+std::vector<int> Ghost::_movementModeIntervals = {7,20,7,20,5,20,5}; //intervals to change mode from scatter to chase or from chase to scatter
+
 Ghost::Ghost(float xPos, float yPos, float pathFindInterval)
     : _xPos(xPos), _yPos(yPos), _pathFindInterval(pathFindInterval)
 {
-    _pathFindTimer.start(); //Start the pathfinding timer
+    //Start the timers
+    _pathFindTimer.start(); 
+    _movementModeTimer.start();
+
     shiftColliders(); //Shift colliders
 }
 
@@ -40,6 +45,8 @@ void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
 
 void Ghost::update(float deltaTime, const Level& level, const Player& player)
 {
+    handleMovementMode();
+
     if (_pathFindTimer.getTicks() > _pathFindInterval) //Executes _pathFindInterval milisecs
     {
         //Find path to player
@@ -169,6 +176,30 @@ void Ghost::render(int camX, int camY)
     if (_animationFrame / 12 >= Ghost_ANIMATION_FRAMES)
     {
         _animationFrame = 0;
+    }
+}
+
+void Ghost::handleMovementMode()
+{
+    if (_movementModeIdx < _movementModeIntervals.size()) //if movement mode is still being changed
+    {
+        if (_movementModeTimer.getTicks() > _movementModeIntervals[_movementModeIdx] * 1000) //if its time to swap modes
+        {
+            //Increment the idx
+            _movementModeIdx++;
+
+            //Change the movement mode
+            _movementMode = static_cast<GhostMovementMode>(-static_cast<int>(_movementMode));
+
+            //Restart the timer
+            _movementModeTimer.start();
+        }
+    }
+    else if (_movementModeIdx == _movementModeIntervals.size()) //If the movement mode hit the final stage
+    {
+        //Stop the timer
+        _movementModeTimer.stop();
+        _movementModeIdx++;
     }
 }
 
