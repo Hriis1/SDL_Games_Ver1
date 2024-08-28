@@ -38,7 +38,7 @@ public:
 
 public:
     //Initializes the variables
-    Ghost(float xPos, float yPos);
+    Ghost(float xPos, float yPos, float pathFindInterval);
 
     //Handles ghost input(debugging)
     void handleEvent(SDL_Event& e, const Level& level, const Player& player);
@@ -128,6 +128,7 @@ protected:
 
     //Stuff for pathfinding
     LTimer _pathFindTimer;
+    float _pathFindInterval = 0.0f;
     std::vector<A_Point> _pathToFollow;
     GhostMovementMode _movementMode = GhostMovementMode::Scatter;
     SDL_Point _targetScatterTile = { 1, 1 };

@@ -1,7 +1,7 @@
 #include "RedGhost.h"
 
-RedGhost::RedGhost(float xPos, float yPos)
-    : Ghost(xPos, yPos)
+RedGhost::RedGhost(float xPos, float yPos, float pathFindInterval)
+    : Ghost(xPos, yPos, pathFindInterval)
 {
     _type = GhostType::RED;
     _targetScatterTile = { 43, 2 }; //scatter to the right corner

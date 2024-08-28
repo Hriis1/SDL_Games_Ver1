@@ -16,8 +16,8 @@ LTexture Ghost::_orangeGhostSpriteSheet;
 LTexture Ghost::_yellowGhostSpriteSheet;
 SDL_Rect Ghost::_spriteClips[Ghost_ANIMATION_FRAMES];
 
-Ghost::Ghost(float xPos, float yPos)
-    : _xPos(xPos), _yPos(yPos)
+Ghost::Ghost(float xPos, float yPos, float pathFindInterval)
+    : _xPos(xPos), _yPos(yPos), _pathFindInterval(pathFindInterval)
 {
     _pathFindTimer.start(); //Start the pathfinding timer
     shiftColliders(); //Shift colliders
@@ -40,7 +40,7 @@ void Ghost::handleEvent(SDL_Event& e, const Level& level, const Player& player)
 
 void Ghost::update(float deltaTime, const Level& level, const Player& player)
 {
-    if (_pathFindTimer.getTicks() > 500.0f) //Executes every 1 secs
+    if (_pathFindTimer.getTicks() > _pathFindInterval) //Executes _pathFindInterval milisecs
     {
         //Find path to player
         auto newPath = pathFind(level, player);
