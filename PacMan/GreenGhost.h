@@ -1,9 +1,9 @@
 #pragma once
 #include "Ghost.h"
-class BlueGhost : public Ghost
+class GreenGhost : public Ghost
 {
 public:
-	BlueGhost(float xPos, float yPos, float pathFindInterval);
+	GreenGhost(float xPos, float yPos, float pathFindInterval);
 
 	std::vector<A_Point> pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts) override;
 };

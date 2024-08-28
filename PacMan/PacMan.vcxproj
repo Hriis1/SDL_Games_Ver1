@@ -143,7 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
-    <ClCompile Include="BlueGhost.cpp" />
+    <ClCompile Include="GreenGhost.cpp" />
     <ClCompile Include="Collectable.cpp" />
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -155,7 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
-    <ClInclude Include="BlueGhost.h" />
+    <ClInclude Include="GreenGhost.h" />
     <ClInclude Include="Collectable.h" />
     <ClInclude Include="Flags.h" />
     <ClInclude Include="Ghost.h" />

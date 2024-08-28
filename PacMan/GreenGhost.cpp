@@ -1,16 +1,16 @@
-#include "BlueGhost.h"
+#include "GreenGhost.h"
 
-BlueGhost::BlueGhost(float xPos, float yPos, float pathFindInterval)
+GreenGhost::GreenGhost(float xPos, float yPos, float pathFindInterval)
     : Ghost(xPos, yPos, pathFindInterval)
 {
-    _type = GhostType::BLUE;
+    _type = GhostType::GREEN;
 
     //scatter to the top
     _targetScatterTiles.push_back({ 43, 40 });
     _targetScatterTiles.push_back({ 3, 36 });
 }
 
-std::vector<A_Point> BlueGhost::pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts)
+std::vector<A_Point> GreenGhost::pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts)
 {
     //Get the target position
     SDL_Point targetGridPos = { 0, 0 };

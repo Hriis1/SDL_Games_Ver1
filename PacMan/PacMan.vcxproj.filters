@@ -42,7 +42,7 @@
     <ClCompile Include="RedGhost.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BlueGhost.cpp">
+    <ClCompile Include="GreenGhost.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,7 +77,7 @@
     <ClInclude Include="RedGhost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BlueGhost.h">
+    <ClInclude Include="GreenGhost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
