@@ -23,7 +23,7 @@ bool LevelScene::init()
         return false;
     }
 
-    if (!Ghost::init(_window.renderer, _window.getSDLWindow()))
+    if (!Ghost::init())
     {
         std::cout << "Coild not init ghosts!" << std::endl;
         return false;

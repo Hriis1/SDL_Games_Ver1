@@ -77,8 +77,8 @@ public:
     }
 
     //static
-    //Init the Ghost textures
-    static bool init(SDL_Renderer* renderer, SDL_Window* window);
+    //Init the Ghost textures sprite clips
+    static bool init();
 
     static float GET_WIDTH()
     {
