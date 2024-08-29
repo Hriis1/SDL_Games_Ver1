@@ -33,9 +33,6 @@ enum class GhostMovementMode
 
 class Ghost
 {
-    //This Ghost class has rect collision detector
-public:
-
 public:
     //Initializes the variables
     Ghost(float xPos, float yPos, float pathFindInterval);
@@ -50,44 +47,23 @@ public:
     void render(int camX, int camY);
 
     //getters
-    const SDL_FRect& getCollider() const
-    {
-        return _collisionRect;
-    }
+    const SDL_FRect& getCollider() const { return _collisionRect; }
 
     template<typename PointT, typename VarT>
-    PointT getCenterPos() const
-    {
-        return PointT{ (VarT)(_xPos + GHOST_WIDTH / 2), (VarT)(_yPos + GHOST_HEIGHT / 2) };
-    }
+    PointT getCenterPos() const { return PointT{ (VarT)(_xPos + GHOST_WIDTH / 2), (VarT)(_yPos + GHOST_HEIGHT / 2) }; }
 
-    float getXPos() const
-    {
-        return _xPos;
-    }
+    float getXPos() const { return _xPos; }
 
-    float getYPos() const
-    {
-        return _yPos;
-    }
+    float getYPos() const { return _yPos; }
 
-    GhostType getType() const
-    {
-        return _type;
-    }
+    GhostType getType() const { return _type; }
 
     //static
     //Init the Ghost textures sprite clips
     static bool init();
 
-    static float GET_WIDTH()
-    {
-        return GHOST_WIDTH;
-    }
-    static float GET_HEIGHT()
-    {
-        return GHOST_HEIGHT;
-    }
+    static float GET_WIDTH() { return GHOST_WIDTH; }
+    static float GET_HEIGHT() { return GHOST_HEIGHT; }
 
 public:
     //Pathfinding algoritm to be implemented by derived ghosts
@@ -100,7 +76,7 @@ protected:
     void chasePlayer(float deltaTime, const Player& player, const std::vector<SDL_FRect>& level);
     void printPath(const Level& level, const std::vector<A_Point>& path);
 
-    //Moves the collision rect relative to the Player's offset
+    //Moves the collision rect relative to the Ghosts offset
     void shiftColliders();
 
 protected:
@@ -150,13 +126,6 @@ protected:
 
     //sprite clips
     static SDL_Rect _spriteClips[Ghost_ANIMATION_FRAMES];
-
-    //Ghosts texture
-    /*static LTexture _redGhostSpriteSheet;
-    static LTexture _greenGhostSpriteSheet;
-    static LTexture _blueGhostSpriteSheet;
-    static LTexture _orangeGhostSpriteSheet;
-    static LTexture _yellowGhostSpriteSheet;*/
 
     //Intervals for movement mode
     static std::vector<int> _movementModeIntervals;
