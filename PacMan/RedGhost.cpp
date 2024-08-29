@@ -1,8 +1,15 @@
 #include "RedGhost.h"
 
-RedGhost::RedGhost(float xPos, float yPos, float pathFindInterval)
+RedGhost::RedGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, float yPos, float pathFindInterval)
     : Ghost(xPos, yPos, pathFindInterval)
 {
+    //Init the sprite sheet of the ghost
+    _spriteSheet.initRenderer(renderer);
+    if (!_spriteSheet.loadFromFile("Assets/Textures/redGhost.png", window))
+    {
+        printf("Could not load red ghost texture\n");
+    }
+
     _type = GhostType::RED;
 
     //scatter to the top

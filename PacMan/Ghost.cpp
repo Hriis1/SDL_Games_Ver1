@@ -9,11 +9,11 @@ const float Ghost::TEXTURE_SCALE = 2.0f;
 const float Ghost::GHOST_HEIGHT = 16 * Ghost::TEXTURE_SCALE;
 const float Ghost::GHOST_WIDTH = 16 * Ghost::TEXTURE_SCALE;
 const float Ghost::GHOST_VEL = 175.0f;
-LTexture Ghost::_redGhostSpriteSheet;
-LTexture Ghost::_greenGhostSpriteSheet;
-LTexture Ghost::_blueGhostSpriteSheet;
-LTexture Ghost::_orangeGhostSpriteSheet;
-LTexture Ghost::_yellowGhostSpriteSheet;
+//LTexture Ghost::_redGhostSpriteSheet;
+//LTexture Ghost::_greenGhostSpriteSheet;
+//LTexture Ghost::_blueGhostSpriteSheet;
+//LTexture Ghost::_orangeGhostSpriteSheet;
+//LTexture Ghost::_yellowGhostSpriteSheet;
 SDL_Rect Ghost::_spriteClips[Ghost_ANIMATION_FRAMES];
 
 std::vector<int> Ghost::_movementModeIntervals = {7,20,7,20,5,20,5}; //intervals to change mode from scatter to chase or from chase to scatter
@@ -98,7 +98,7 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player, st
 bool Ghost::init(SDL_Renderer* renderer, SDL_Window* window)
 {
     //init texture
-    _redGhostSpriteSheet.initRenderer(renderer);
+    /*_redGhostSpriteSheet.initRenderer(renderer);
     _greenGhostSpriteSheet.initRenderer(renderer);
     _blueGhostSpriteSheet.initRenderer(renderer);
     _orangeGhostSpriteSheet.initRenderer(renderer);
@@ -128,7 +128,7 @@ bool Ghost::init(SDL_Renderer* renderer, SDL_Window* window)
     {
         printf("Could not load yellow ghost texture\n");
         return false;
-    }
+    }*/
 
     //init spriteclips
     int textureWidth = GHOST_WIDTH / TEXTURE_SCALE;
@@ -147,9 +147,11 @@ bool Ghost::init(SDL_Renderer* renderer, SDL_Window* window)
 
 void Ghost::render(int camX, int camY)
 {
+    //Render the current clip
     SDL_Rect* currentClip = &_spriteClips[_animationFrame / 12];
+    _spriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
 
-    if (_type == GhostType::RED)
+    /*if (_type == GhostType::RED)
     {
         _redGhostSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
     }
@@ -168,7 +170,7 @@ void Ghost::render(int camX, int camY)
     else if (_type == GhostType::YELLOW)
     {
         _yellowGhostSpriteSheet.render(_xPos - camX, _yPos - camY, currentClip, TEXTURE_SCALE, 0.0, NULL, SDL_FLIP_NONE);
-    }
+    }*/
 
     //Go to next frame
     _animationFrame++;

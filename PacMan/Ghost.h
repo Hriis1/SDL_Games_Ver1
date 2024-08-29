@@ -105,6 +105,8 @@ protected:
 
 protected:
 
+    LTexture _spriteSheet; //The sprite sheet the ghost uses
+
     //The X and Y offsets of the Ghost
     float _xPos = 0;
     float _yPos = 0;
@@ -139,6 +141,7 @@ protected:
     int _movementModeIdx = 0;
 
     //static
+    
     //consts
     static const float TEXTURE_SCALE;
     static const float GHOST_WIDTH;
@@ -149,11 +152,11 @@ protected:
     static SDL_Rect _spriteClips[Ghost_ANIMATION_FRAMES];
 
     //Ghosts texture
-    static LTexture _redGhostSpriteSheet;
+    /*static LTexture _redGhostSpriteSheet;
     static LTexture _greenGhostSpriteSheet;
     static LTexture _blueGhostSpriteSheet;
     static LTexture _orangeGhostSpriteSheet;
-    static LTexture _yellowGhostSpriteSheet;
+    static LTexture _yellowGhostSpriteSheet;*/
 
     //Intervals for movement mode
     static std::vector<int> _movementModeIntervals;

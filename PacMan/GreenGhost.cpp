@@ -1,8 +1,15 @@
 #include "GreenGhost.h"
 
-GreenGhost::GreenGhost(float xPos, float yPos, float pathFindInterval)
+GreenGhost::GreenGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, float yPos, float pathFindInterval)
     : Ghost(xPos, yPos, pathFindInterval)
 {
+    //Init the sprite sheet of the ghost
+    _spriteSheet.initRenderer(renderer);
+    if (!_spriteSheet.loadFromFile("Assets/Textures/greenGhost.png", window))
+    {
+        printf("Could not load red ghost texture\n");
+    }
+
     _type = GhostType::GREEN;
 
     //scatter to the top
