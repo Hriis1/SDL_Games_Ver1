@@ -23,12 +23,6 @@ bool LevelScene::init()
         return false;
     }
 
-    if (!Ghost::init())
-    {
-        std::cout << "Coild not init ghosts!" << std::endl;
-        return false;
-    }
-
     _player.reset();
     _level.init(16,"Assets/level_map_tile_16px", 1);
     _level.printMap();

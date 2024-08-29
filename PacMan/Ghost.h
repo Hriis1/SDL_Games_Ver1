@@ -59,9 +59,6 @@ public:
     GhostType getType() const { return _type; }
 
     //static
-    //Init the Ghost textures sprite clips
-    static bool init();
-
     static float GET_WIDTH() { return GHOST_WIDTH; }
     static float GET_HEIGHT() { return GHOST_HEIGHT; }
 

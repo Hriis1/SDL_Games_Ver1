@@ -21,6 +21,21 @@ std::vector<int> Ghost::_movementModeIntervals = {7,20,7,20,5,20,5}; //intervals
 Ghost::Ghost(float xPos, float yPos, float pathFindInterval)
     : _xPos(xPos), _yPos(yPos), _pathFindInterval(pathFindInterval)
 {
+    static bool firstCall = false;
+    if (!firstCall) //if its the 1st time calling the constructor init the sprite clips
+    {
+        //init spriteclips
+        int textureWidth = GHOST_WIDTH / TEXTURE_SCALE;
+        int textureHeight = GHOST_HEIGHT / TEXTURE_SCALE;
+        _spriteClips[0] = { 0,0, textureWidth, textureHeight };
+        _spriteClips[1] = { textureWidth,0, textureWidth, textureHeight };
+        _spriteClips[2] = { textureWidth * 2,0, textureWidth, textureHeight };
+        _spriteClips[3] = { textureWidth * 3,0, textureWidth, textureHeight };
+        _spriteClips[4] = { textureWidth * 4,0, textureWidth, textureHeight };
+        _spriteClips[5] = { textureWidth * 5,0, textureWidth, textureHeight };
+        _spriteClips[6] = { textureWidth * 6,0, textureWidth, textureHeight };
+        _spriteClips[7] = { textureWidth * 7,0, textureWidth, textureHeight };
+    }
     //Start the timers
     _pathFindTimer.start(); 
     _movementModeTimer.start();
@@ -93,23 +108,6 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player, st
     //Collide with level
     collideWithLevel(_collisionRect, _xPos, _yPos, level.getCollisionWalls());
     shiftColliders();
-}
-
-bool Ghost::init()
-{
-    //init spriteclips
-    int textureWidth = GHOST_WIDTH / TEXTURE_SCALE;
-    int textureHeight = GHOST_HEIGHT / TEXTURE_SCALE;
-    _spriteClips[0] = { 0,0, textureWidth, textureHeight };
-    _spriteClips[1] = { textureWidth,0, textureWidth, textureHeight };
-    _spriteClips[2] = { textureWidth * 2,0, textureWidth, textureHeight };
-    _spriteClips[3] = { textureWidth * 3,0, textureWidth, textureHeight };
-    _spriteClips[4] = { textureWidth * 4,0, textureWidth, textureHeight };
-    _spriteClips[5] = { textureWidth * 5,0, textureWidth, textureHeight };
-    _spriteClips[6] = { textureWidth * 6,0, textureWidth, textureHeight };
-    _spriteClips[7] = { textureWidth * 7,0, textureWidth, textureHeight };
-
-    return true;
 }
 
 void Ghost::render(int camX, int camY)
