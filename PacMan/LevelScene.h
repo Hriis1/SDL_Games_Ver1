@@ -23,6 +23,7 @@
 #include "Ghost.h"
 #include "RedGhost.h"
 #include "GreenGhost.h"
+#include "BlueGhost.h"
 
 class LevelScene : public IScene
 {
