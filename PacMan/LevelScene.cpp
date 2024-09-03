@@ -352,7 +352,7 @@ void LevelScene::initCollectables()
 
 void LevelScene::initGhosts()
 {
-    //_ghosts.push_back(std::make_unique<RedGhost>(_window.renderer, _window.getSDLWindow(), 670.0f, 286.0f, 500.0f));
+    _ghosts.push_back(std::make_unique<RedGhost>(_window.renderer, _window.getSDLWindow(), 670.0f, 286.0f, 500.0f));
     //_ghosts.emplace_back(std::make_unique<GreenGhost>(_window.renderer, _window.getSDLWindow(), 670.0f, 286.0f, 1000.0f));
     _ghosts.emplace_back(std::make_unique<BlueGhost>(_window.renderer, _window.getSDLWindow(), 670.0f, 286.0f, 1000.0f));
 }

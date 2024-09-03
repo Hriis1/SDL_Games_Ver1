@@ -1,4 +1,5 @@
 #include "BlueGhost.h"
+#include <cmath>
 
 BlueGhost::BlueGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, float yPos, float pathFindInterval)
     : Ghost(xPos, yPos, pathFindInterval)
@@ -29,20 +30,42 @@ std::vector<A_Point> BlueGhost::pathFind(const Level& level, const Player& playe
         auto futurePlayerGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());
 
         //Get the direction of the player
-        SDL_Point dir = { 0, 0 };
+        SDL_Point playerDir = { 0, 0 };
         if (player.getDirection() == DIRECTION::LEFT)
-            dir = { -1, 0 };
+            playerDir = { -1, 0 };
         else if (player.getDirection() == DIRECTION::RIGHT)
-            dir = { 1, 0 };
+            playerDir = { 1, 0 };
         else if (player.getDirection() == DIRECTION::UP)
-            dir = { 0, -1 };
+            playerDir = { 0, -1 };
         else
-            dir = { 0, 1 };
+            playerDir = { 0, 1 };
 
         //Get the target pos of the ghost
-        futurePlayerGridPos.x += 6 * dir.x;
-        futurePlayerGridPos.y += 6 * dir.y;
-        _targetGridPos = level.getClosestWalkableGridPos(futurePlayerGridPos, { dir.x * -1, dir.y * -1 });
+        futurePlayerGridPos.x += 3 * playerDir.x;
+        futurePlayerGridPos.y += 3 * playerDir.y;
+
+        //Get the position of the red ghost
+        SDL_Point redGhostPos = { 0, 0 };
+        for (size_t i = 0; i < ghosts.size(); i++)
+        {
+            if (ghosts[i]->getType() == GhostType::RED)
+            {
+                redGhostPos = level.getWalkableGridPos(ghosts[i]->getCenterPos<SDL_Point, int>());
+                break;
+            }
+        }
+
+        SDL_Point ghostToFuturePlayerPosDist = { futurePlayerGridPos.x - redGhostPos.x, futurePlayerGridPos.y - redGhostPos.y };
+        _targetGridPos.x = futurePlayerGridPos.x + ghostToFuturePlayerPosDist.x;
+        _targetGridPos.y = futurePlayerGridPos.y + ghostToFuturePlayerPosDist.y;
+
+        //Grt the opisite direction of the dist vector
+        int dirX = ghostToFuturePlayerPosDist.x == 0 ? 0 : ghostToFuturePlayerPosDist.x / abs(ghostToFuturePlayerPosDist.x);
+        int dirY = ghostToFuturePlayerPosDist.y == 0 ? 0 : ghostToFuturePlayerPosDist.y / abs(ghostToFuturePlayerPosDist.y);
+        SDL_Point dir = { dirX, dirY };
+
+
+        _targetGridPos = level.getClosestWalkableGridPos(_targetGridPos, { -dir.x, -dir.y });
 
     }
     else if (_movementMode == GhostMovementMode::Scatter)
