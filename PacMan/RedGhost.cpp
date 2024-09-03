@@ -11,9 +11,9 @@ RedGhost::RedGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, float
     }
 
     _type = GhostType::RED;
-    _fillTileColor[0] = 255;
-    _fillTileColor[1] = 0;
-    _fillTileColor[2] = 0;
+    _fillTileColor.r = 255;
+    _fillTileColor.g = 0;
+    _fillTileColor.b = 0;
 
     //scatter to the top
     _targetScatterTiles.push_back({ 43, 2 }); 

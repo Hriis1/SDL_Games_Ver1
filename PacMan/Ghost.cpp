@@ -131,7 +131,7 @@ void Ghost::render(const LWindow& window, const Level& level, int camX, int camY
 
 void Ghost::fillTargetTile(const LWindow& window, const Level& level) const
 {
-    SDL_SetRenderDrawColor(window.renderer, _fillTileColor[0], _fillTileColor[1], _fillTileColor[2], 255);
+    SDL_SetRenderDrawColor(window.renderer, _fillTileColor.r, _fillTileColor.g, _fillTileColor.b, _fillTileColor.a);
     level.fillTile(window, _targetGridPos);
 }
 

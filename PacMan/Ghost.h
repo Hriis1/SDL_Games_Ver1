@@ -115,7 +115,7 @@ protected:
     int _movementModeIdx = 0;
     SDL_Point _targetGridPos = { 0, 0 };
 
-    std::vector<int> _fillTileColor = { 0, 0, 0 };
+    SDL_Color _fillTileColor = { 0, 0, 0, 255 };
 
     //static
     
