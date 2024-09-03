@@ -44,7 +44,7 @@ public:
     void update(float deltaTime, const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts);
 
     //Shows the Ghost on the screen
-    void render(int camX, int camY);
+    void render(const LWindow& window, const Level& level, int camX, int camY);
 
     //getters
     const SDL_FRect& getCollider() const { return _collisionRect; }
@@ -67,7 +67,7 @@ public:
     virtual std::vector<A_Point> pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts) = 0;
 
 protected:
-    virtual void drawTargetTile(const LWindow& window, const Level& level) const;
+    virtual void fillTargetTile(const LWindow& window, const Level& level) const;
     void handleMovementMode();
     void changeScatterTileTarget(const Level& level);
     void ghostMove(float deltaTime, const Level& level, int pathPosIdx);
@@ -114,6 +114,8 @@ protected:
     SDL_FRect _currScatterTile;
     int _movementModeIdx = 0;
     SDL_Point _targetGridPos = { 0, 0 };
+
+    std::vector<int> _fillTileColor = { 0, 0, 0 };
 
     //static
     

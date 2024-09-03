@@ -79,6 +79,7 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player, st
         //Restart the timer
         _pathFindTimer.start();
     }
+   
 
     //get the grid pos
     SDL_Point ghostGridPos = level.getWalkableGridPos({ (int)(_xPos + GHOST_WIDTH / 2), (int)(_yPos + GHOST_HEIGHT / 2) });
@@ -110,7 +111,7 @@ void Ghost::update(float deltaTime, const Level& level, const Player& player, st
     shiftColliders();
 }
 
-void Ghost::render(int camX, int camY)
+void Ghost::render(const LWindow& window, const Level& level, int camX, int camY)
 {
     //Render the current clip
     SDL_Rect* currentClip = &_spriteClips[_animationFrame / 12];
@@ -124,10 +125,13 @@ void Ghost::render(int camX, int camY)
     {
         _animationFrame = 0;
     }
+
+    fillTargetTile(window, level);
 }
 
-void Ghost::drawTargetTile(const LWindow& window, const Level& level) const
+void Ghost::fillTargetTile(const LWindow& window, const Level& level) const
 {
+    SDL_SetRenderDrawColor(window.renderer, _fillTileColor[0], _fillTileColor[1], _fillTileColor[2], 255);
     level.fillTile(window, _targetGridPos);
 }
 

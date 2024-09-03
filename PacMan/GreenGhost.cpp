@@ -11,6 +11,9 @@ GreenGhost::GreenGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, f
     }
 
     _type = GhostType::GREEN;
+    _fillTileColor[0] = 0;
+    _fillTileColor[1] = 255;
+    _fillTileColor[2] = 0;
 
     //scatter to the top
     _targetScatterTiles.push_back({ 43, 40 });

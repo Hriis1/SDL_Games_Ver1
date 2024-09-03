@@ -220,7 +220,7 @@ void LevelScene::draw()
     //Draw ghosts
     for (size_t i = 0; i < _ghosts.size(); i++)
     {
-        _ghosts[i].get()->render(_camera.x, _camera.y);
+        _ghosts[i].get()->render(_window, _level, _camera.x, _camera.y);
     }
 
     //Draw the player
