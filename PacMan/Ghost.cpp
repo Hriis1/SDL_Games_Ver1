@@ -126,6 +126,11 @@ void Ghost::render(int camX, int camY)
     }
 }
 
+void Ghost::drawTargetTile(const LWindow& window, const Level& level) const
+{
+    level.fillTile(window, _targetGridPos);
+}
+
 void Ghost::handleMovementMode()
 {
     if (_movementModeIdx < _movementModeIntervals.size()) //if movement mode is still being changed

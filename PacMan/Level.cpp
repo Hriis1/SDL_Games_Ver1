@@ -20,7 +20,7 @@ void Level::drawTileGrid(const LWindow& _window)
     }
 }
 
-void Level::fillTile(const LWindow& _window, const SDL_Point& tilePos)
+void Level::fillTile(const LWindow& _window, const SDL_Point& tilePos) const
 {
     SDL_FRect tile = { x + tilePos.x * _tileSize, y + tilePos.y * _tileSize, _tileSize, _tileSize };
 

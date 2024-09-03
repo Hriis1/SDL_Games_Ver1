@@ -14,7 +14,7 @@ public:
 
 	void drawTileGrid(const LWindow& _window);
 
-	void fillTile(const LWindow& _window, const SDL_Point& tilePos);
+	void fillTile(const LWindow& _window, const SDL_Point& tilePos) const;
 
 	void init(size_t tileSize, const std::string& mapFile, int scale = 1);
 

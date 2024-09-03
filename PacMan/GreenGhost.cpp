@@ -20,7 +20,6 @@ GreenGhost::GreenGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, f
 std::vector<A_Point> GreenGhost::pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts)
 {
     //Get the target position
-    SDL_Point targetGridPos = { 0, 0 };
     if (_movementMode == GhostMovementMode::Chase) //if the ghost is in chase mode
     {
         //Get the position of the player
@@ -40,15 +39,15 @@ std::vector<A_Point> GreenGhost::pathFind(const Level& level, const Player& play
         //Get the target pos of the ghost
         futurePlayerGridPos.x += 6 * dir.x;
         futurePlayerGridPos.y += 6 * dir.y;
-        targetGridPos = level.getClosestWalkableGridPos(futurePlayerGridPos, { dir.x * -1, dir.y * -1 });
+        _targetGridPos = level.getClosestWalkableGridPos(futurePlayerGridPos, { dir.x * -1, dir.y * -1 });
 
     }
     else if (_movementMode == GhostMovementMode::Scatter)
     {
         int currIdx = _targetScatterTileIdx % 2;
-        targetGridPos = _targetScatterTiles[currIdx];
+        _targetGridPos = _targetScatterTiles[currIdx];
     }
-    A_Point targetGridAPos = { targetGridPos.x, targetGridPos.y };
+    A_Point targetGridAPos = { _targetGridPos.x, _targetGridPos.y };
 
     //Get the ghost position
     SDL_Point ghostGridPos = level.getWalkableGridPos(getCenterPos<SDL_Point, int>());

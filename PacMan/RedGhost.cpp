@@ -20,15 +20,14 @@ RedGhost::RedGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, float
 std::vector<A_Point> RedGhost::pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts)
 {
     //Get the target position
-    SDL_Point targetGridPos = { 0, 0 };
     if(_movementMode == GhostMovementMode::Chase) //if the ghost is in chase mode
-        targetGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());
+        _targetGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());
     else if (_movementMode == GhostMovementMode::Scatter)
     {
         int currIdx = _targetScatterTileIdx % 2;
-        targetGridPos = _targetScatterTiles[currIdx];
+        _targetGridPos = _targetScatterTiles[currIdx];
     }
-    A_Point targetGridAPos = { targetGridPos.x, targetGridPos.y };
+    A_Point targetGridAPos = { _targetGridPos.x, _targetGridPos.y };
 
     //Get the ghost position
     SDL_Point ghostGridPos = level.getWalkableGridPos(getCenterPos<SDL_Point, int>());
