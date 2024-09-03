@@ -16,8 +16,8 @@ BlueGhost::BlueGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, flo
     _fillTileColor.b = 255;
 
     //scatter to the top
-    _targetScatterTiles.push_back({ 43, 40 });
-    _targetScatterTiles.push_back({ 3, 36 });
+    _targetScatterTiles.push_back({ 3, 40 }); 
+    _targetScatterTiles.push_back({ 43, 36 });
 }
 
 std::vector<A_Point> BlueGhost::pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts)
