@@ -10,10 +10,11 @@ struct Circle
 };
 
 //Calculates distance squared between two points
-static float distanceSquared(float x1, float y1, float x2, float y2)
+template<typename T>
+static float distanceSquared(T x1, T y1, T x2, T y2)
 {
-    float xDist = x1 - x2;
-    float yDist = y1 - y2;
+    float xDist = float(x1 - x2);
+    float yDist = float(y1 - y2);
 
     return pow(xDist, 2) + pow(yDist, 2);
 }

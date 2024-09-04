@@ -24,7 +24,9 @@ std::vector<A_Point> OrangeGhost::pathFind(const Level& level, const Player& pla
 {
     //Get the target position
     if (_movementMode == GhostMovementMode::Chase) //if the ghost is in chase mode
+    {
         _targetGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());
+    }
     else if (_movementMode == GhostMovementMode::Scatter)
     {
         int currIdx = _targetScatterTileIdx % 2;
