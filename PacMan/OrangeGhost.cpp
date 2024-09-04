@@ -1,4 +1,5 @@
 #include "OrangeGhost.h"
+#include <Utils.h>
 
 OrangeGhost::OrangeGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, float yPos, float pathFindInterval)
     : Ghost(xPos, yPos, pathFindInterval)
@@ -25,7 +26,20 @@ std::vector<A_Point> OrangeGhost::pathFind(const Level& level, const Player& pla
     //Get the target position
     if (_movementMode == GhostMovementMode::Chase) //if the ghost is in chase mode
     {
-        _targetGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());
+        //Find the distance to the player
+        auto playerGridPos = level.getWalkableGridPos(player.getCenterPos<SDL_Point, int>());
+        auto centereGriddPos = level.getWalkableGridPos(getCenterPos<SDL_Point, int>());
+        float distanceToPlayerSqrt = distanceSquared(centereGriddPos.x, centereGriddPos.y, playerGridPos.x, playerGridPos.y);
+
+        if (distanceToPlayerSqrt > 64) //if distance is > 8 follow target the scatter pos
+        {
+            int currIdx = _targetScatterTileIdx % 2;
+            _targetGridPos = _targetScatterTiles[currIdx];
+        }
+        else //if distance is <= 8 follow target player
+        {
+            _targetGridPos = playerGridPos;
+        }
     }
     else if (_movementMode == GhostMovementMode::Scatter)
     {
