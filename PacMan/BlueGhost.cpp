@@ -1,5 +1,6 @@
 #include "BlueGhost.h"
 #include <cmath>
+#include <algorithm>
 
 BlueGhost::BlueGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, float yPos, float pathFindInterval)
     : Ghost(xPos, yPos, pathFindInterval)
@@ -56,8 +57,8 @@ std::vector<A_Point> BlueGhost::pathFind(const Level& level, const Player& playe
         }
 
         SDL_Point ghostToFuturePlayerPosDist = { futurePlayerGridPos.x - redGhostPos.x, futurePlayerGridPos.y - redGhostPos.y };
-        _targetGridPos.x = futurePlayerGridPos.x + ghostToFuturePlayerPosDist.x;
-        _targetGridPos.y = futurePlayerGridPos.y + ghostToFuturePlayerPosDist.y;
+        _targetGridPos.x = std::max(-3, std::min(futurePlayerGridPos.x + ghostToFuturePlayerPosDist.x, (int)level.getTileMapWidth() + 3)); //clamp the values between -3 and the width of the level + 3
+        _targetGridPos.y = std::max(-3, std::min(futurePlayerGridPos.y + ghostToFuturePlayerPosDist.y, (int)level.getTileMapHeight() + 3)); //clamp the values between -3 and the height of the level + 3
 
         //Grt the opisite direction of the dist vector
         int dirX = ghostToFuturePlayerPosDist.x == 0 ? 0 : ghostToFuturePlayerPosDist.x / abs(ghostToFuturePlayerPosDist.x);
