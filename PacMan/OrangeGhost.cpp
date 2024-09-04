@@ -31,12 +31,12 @@ std::vector<A_Point> OrangeGhost::pathFind(const Level& level, const Player& pla
         auto centereGriddPos = level.getWalkableGridPos(getCenterPos<SDL_Point, int>());
         float distanceToPlayerSqrt = distanceSquared(centereGriddPos.x, centereGriddPos.y, playerGridPos.x, playerGridPos.y);
 
-        if (distanceToPlayerSqrt > 64) //if distance is > 8 follow target the scatter pos
+        if (distanceToPlayerSqrt <= _distToPlayerThreshold * _distToPlayerThreshold) //if distance is <= _distToPlayerThreshold follow target the scatter pos
         {
             int currIdx = _targetScatterTileIdx % 2;
             _targetGridPos = _targetScatterTiles[currIdx];
         }
-        else //if distance is <= 8 follow target player
+        else //if distance is > _distToPlayerThreshold follow target player
         {
             _targetGridPos = playerGridPos;
         }
