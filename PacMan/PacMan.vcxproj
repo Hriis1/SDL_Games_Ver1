@@ -148,6 +148,7 @@
     <ClCompile Include="Collectable.cpp" />
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="OrangeGhost.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="LevelScene.cpp" />
     <ClCompile Include="RedGhost.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Flags.h" />
     <ClInclude Include="Ghost.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="OrangeGhost.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="LevelScene.h" />
     <ClInclude Include="PacManData.h" />
