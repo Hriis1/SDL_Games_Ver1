@@ -8,7 +8,7 @@ BlueGhost::BlueGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, flo
     _spriteSheet.initRenderer(renderer);
     if (!_spriteSheet.loadFromFile("Assets/Textures/blueGhost.png", window))
     {
-        printf("Could not load red ghost texture\n");
+        printf("Could not load blue ghost texture\n");
     }
 
     _type = GhostType::BLUE;

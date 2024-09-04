@@ -7,7 +7,7 @@ GreenGhost::GreenGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, f
     _spriteSheet.initRenderer(renderer);
     if (!_spriteSheet.loadFromFile("Assets/Textures/greenGhost.png", window))
     {
-        printf("Could not load red ghost texture\n");
+        printf("Could not load green ghost texture\n");
     }
 
     _type = GhostType::GREEN;
