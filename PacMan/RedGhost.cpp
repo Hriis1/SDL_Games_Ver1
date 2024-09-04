@@ -15,7 +15,7 @@ RedGhost::RedGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, float
     _fillTileColor.g = 0;
     _fillTileColor.b = 0;
 
-    //scatter to the top
+    //scatter to the top right to left
     _targetScatterTiles.push_back({ 43, 2 }); 
     _targetScatterTiles.push_back({ 3, 6 });
 }

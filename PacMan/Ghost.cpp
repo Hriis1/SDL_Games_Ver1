@@ -162,13 +162,12 @@ void Ghost::handleMovementMode()
 void Ghost::changeScatterTileTarget(const Level& level)
 {
     //set the scatter tile on the 1st call
-    static bool firstCall = true;
-    if (firstCall)
+    if (!_scatterTileInited)
     {
         int currIdx = _targetScatterTileIdx % 2;
         SDL_Point targetWorldPos = level.getWorldPos(_targetScatterTiles[currIdx]);
         _currScatterTile = { (float)targetWorldPos.x, (float)targetWorldPos.y, (float)level.getTileSize(), (float)level.getTileSize() };
-        firstCall = false;
+        _scatterTileInited = true;
     }
 
     if (checkCollision(_collisionRect, _currScatterTile)) //if ghost reaches the current scatter tile

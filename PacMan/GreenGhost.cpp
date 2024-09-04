@@ -15,9 +15,9 @@ GreenGhost::GreenGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos, f
     _fillTileColor.g = 255;
     _fillTileColor.b = 0;
 
-    //scatter to the top
-    _targetScatterTiles.push_back({ 43, 40 });
-    _targetScatterTiles.push_back({ 3, 36 });
+    //scatter to the top left to right
+    _targetScatterTiles.push_back({ 4, 2 });
+    _targetScatterTiles.push_back({ 43, 6 });
 }
 
 std::vector<A_Point> GreenGhost::pathFind(const Level& level, const Player& player, std::vector<std::unique_ptr<Ghost>>& ghosts)

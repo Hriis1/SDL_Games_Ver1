@@ -28,7 +28,7 @@ enum GhostMovementDir
 
 enum class GhostMovementMode
 {
-    Chase = -1, Scatter =1
+    Chase = -1, Scatter =1, Frighten =2,
 };
 
 class Ghost
@@ -112,6 +112,7 @@ protected:
     std::vector<SDL_Point> _targetScatterTiles;
     int _targetScatterTileIdx = 0;
     SDL_FRect _currScatterTile;
+    bool _scatterTileInited = false;
     int _movementModeIdx = 0;
     SDL_Point _targetGridPos = { 0, 0 };
 

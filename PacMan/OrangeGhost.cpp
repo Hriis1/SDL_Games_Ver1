@@ -15,7 +15,7 @@ OrangeGhost::OrangeGhost(SDL_Renderer* renderer, SDL_Window* window, float xPos,
     _fillTileColor.g = 127;
     _fillTileColor.b = 80;
 
-    //scatter to the top
+    //scatter to the bot left to right
     _targetScatterTiles.push_back({ 3, 40 });
     _targetScatterTiles.push_back({ 43, 36 });
 }
