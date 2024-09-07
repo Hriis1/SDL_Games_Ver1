@@ -9,11 +9,6 @@ const float Ghost::TEXTURE_SCALE = 2.0f;
 const float Ghost::GHOST_HEIGHT = 16 * Ghost::TEXTURE_SCALE;
 const float Ghost::GHOST_WIDTH = 16 * Ghost::TEXTURE_SCALE;
 const float Ghost::GHOST_VEL = 175.0f;
-//LTexture Ghost::_redGhostSpriteSheet;
-//LTexture Ghost::_greenGhostSpriteSheet;
-//LTexture Ghost::_blueGhostSpriteSheet;
-//LTexture Ghost::_orangeGhostSpriteSheet;
-//LTexture Ghost::_yellowGhostSpriteSheet;
 SDL_Rect Ghost::_spriteClips[Ghost_ANIMATION_FRAMES];
 
 std::vector<int> Ghost::_movementModeIntervals = {7,20,7,20,5,20,5}; //intervals to change mode from scatter to chase or from chase to scatter
