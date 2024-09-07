@@ -37,6 +37,9 @@ public:
     //Initializes the variables
     Ghost(float xPos, float yPos, float pathFindInterval);
 
+    //virtual dtor
+    virtual ~Ghost() = default;
+
     //Handles ghost input(debugging)
     void handleEvent(SDL_Event& e, const Level& level, const Player& player);
 
